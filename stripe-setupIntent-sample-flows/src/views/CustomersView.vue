@@ -62,7 +62,7 @@ const style = ""
 
 
 // fetch('https://reqres.in/api/users')
-  fetch(`${BACKEND_BASE_URL}/stripe/customers`)
+  fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)
     .then(response => response.json())
     .then( res2 => {
       users.value = res2.data

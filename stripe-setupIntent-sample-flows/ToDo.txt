@@ -1,17 +1,11 @@
 Today:
-1. fetch /customers
-2. fetch /cusotmers/cus_...
-3. create new customer
-4. fetch payment methods of customer (wallet)
+//review Tailwind CSS
+//review Coolaquas 
 
-5. create setupIntent
+//add TS interfaces
 
-6. add 'one product' page with paymentIntent element
-
-
-7. Style pages with tailwind ui 
-
-Sample customer_id
-//cus_OJlAhVqFVib7YR
-
-// review table styling
+1. create new customer
+2. fetch payment methods of customer (wallet)
+3. create setupIntent
+4. add 'one product' page with paymentIntent element
+5. Style pages with tailwind ui 

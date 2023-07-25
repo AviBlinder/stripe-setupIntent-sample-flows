@@ -13,16 +13,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const port = 4001;
 
-app.get('/', (req, res) => {
-  res.status(200).send('Hello Stripe World');
-}),
-
-app.get('/products', (req, res) => {
-    res.status(200).send('Hello Stripe Products');
-});
-
 // stripe-related endpoints
-app.get('/stripe/customers', async (req,res) => {
+// get all customers
+app.get('/stripe/v1/customers', async (req,res) => {
     console.log('inside GET /stripe/customers')
     try {
       const customers = await stripe.customers.list({
@@ -33,13 +26,52 @@ app.get('/stripe/customers', async (req,res) => {
     } catch (error) {
       console.log ("/stripe/customers error" , error)
       res.status(500).send({error})
-    }
-
+    }   
+})
+// get customer by customerId
+app.get('/stripe/v1/customers/:id', async (req,res) => {
+    console.log('inside GET /stripe/customers/:id ' + req.params.id);
+    const customerId = req.params.id
+    try {
+      const customer = await stripe.customers.retrieve(
+        customerId
+      );
+      console.log('customer retrieved :', customer)
+      res.status(200).send(customer)
+    } catch (error) {
+      console.log ("/stripe/customers error" , error)
+      res.status(500).send({error})
+    }   
+})
+        
+app.get('/stripe/v1/setupintents/:id', async (req,res) => {
+  try {
+    const customerId = req.params.id;
     
+    const setupIntents = await stripe.setupIntents.list({
+      customer: customerId,
+    });
+
+    // List of SetupIntents associated with the customer
+    console.log('SetupIntents:', setupIntents.data);
+    // if (!SetupIntents) {
+    //   res.status(404).send('not found');
+    //   return
+    // }
+
+      res.status(200).send(setupIntents)
+
+  } catch (error) {
+    // Handle any errors that occur during the retrieval
+    console.error('Error retrieving SetupIntents:', error.message);
+  }
+
+//
 
 })
 
-app.post('/payment/create', async (request, response) => {
+// 
+app.post('stripe/v1/payment/create', async (request, response) => {
   console.log('inside POST /stripe', request.header);
   // just getting the amount from the request is a BAD PRACTICE since it can be
   // hacked. It is better to fetch the price by some other property
@@ -60,8 +92,8 @@ app.post('/payment/create', async (request, response) => {
   }
 });
 
-// Route to create a new customer
-app.post('/create-customer', async (req, res) => {
+//create a new customer
+app.post('stripe/v1/create-customer', async (req, res) => {
   try {
     const customer = await stripe.customers.create({
       email: req.body.email,
@@ -72,8 +104,8 @@ app.post('/create-customer', async (req, res) => {
   }
 });
 
-// Route to create a SetupIntent
-app.post('/create-setup-intent', async (req, res) => {
+// create a SetupIntent
+app.post('stripe/v1/create-setup-intent', async (req, res) => {
   try {
     const intent = await stripe.setupIntents.create({
       customer: req.body.customerId,

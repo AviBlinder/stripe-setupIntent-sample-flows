@@ -7,7 +7,9 @@
         focus-visible:outline-offset-2 focus-visible:outline-lime-600
 }
 
-.tableRow {
-  @apply px-3 py-3.5 text-left text-sm font-semibold text-gray-900
+.tableColumns {
+  @apply px-3 py-3.5 text-left text-sm font-semibold text-gray-900 
+  
+  
 }
 @tailwind utilities;

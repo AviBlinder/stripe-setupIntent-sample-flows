@@ -12,9 +12,11 @@
             <RouterLink to="/about">About</RouterLink>
           </button >
         </nav>
-<div class="w-2/4 mx-9">
-  <RouterView />
-</div>
+        <div class="w-1/6"></div>
+        <div class="w-4/6 mx-9">
+          <RouterView />
+        </div>
+        <div class="w-1/6"></div>
   </div>
 </template>
 
