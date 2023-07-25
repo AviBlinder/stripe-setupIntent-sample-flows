@@ -2,6 +2,7 @@
   "name": "stripe-setupintent-sample-flows",
   "version": "0.0.0",
   "private": true,
+  
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",

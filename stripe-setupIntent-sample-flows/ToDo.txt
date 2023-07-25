@@ -1,0 +1,17 @@
+Today:
+1. fetch /customers
+2. fetch /cusotmers/cus_...
+3. create new customer
+4. fetch payment methods of customer (wallet)
+
+5. create setupIntent
+
+6. add 'one product' page with paymentIntent element
+
+
+7. Style pages with tailwind ui 
+
+Sample customer_id
+//cus_OJlAhVqFVib7YR
+
+// review table styling

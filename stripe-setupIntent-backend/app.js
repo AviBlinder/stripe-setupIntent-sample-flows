@@ -22,6 +22,23 @@ app.get('/products', (req, res) => {
 });
 
 // stripe-related endpoints
+app.get('/stripe/customers', async (req,res) => {
+    console.log('inside GET /stripe/customers')
+    try {
+      const customers = await stripe.customers.list({
+        limit: 100,
+      })
+      
+      res.status(200).send(customers)
+    } catch (error) {
+      console.log ("/stripe/customers error" , error)
+      res.status(500).send({error})
+    }
+
+    
+
+})
+
 app.post('/payment/create', async (request, response) => {
   console.log('inside POST /stripe', request.header);
   // just getting the amount from the request is a BAD PRACTICE since it can be

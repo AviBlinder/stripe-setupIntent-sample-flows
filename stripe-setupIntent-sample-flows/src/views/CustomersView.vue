@@ -1,26 +1,10 @@
 <template>
-  <div>
-      <div class="m-6">
-      <button class="btn">
-        <RouterLink to="/about">About</RouterLink>
-      </button >
-    </div>
+  <div class="">
 
     <div>
-      <!-- list existing customers -->
-      <!-- <div>
-        <p v-for="user in users" :key="user.id"> {{user.id}} - {{ user.email }}</p>
-      </div> -->
-      <div>
-        <label class="m-4" for="customersList">Select a customer</label>
-      </div>
-      <select 
-      class="bg-blue-100 border-4 "
-      v-model="selectedCustomer" id="customersList">
-        <option 
-        class="text-md"
-        v-for="user in users" :key="user.id" :value="user"> {{ user.email }}</option> 
-      </select>
+
+<UsersTable :users="users"/>
+
       <div>
         <div v-if="selectedCustomer">
           <button @click="customerDetails" class="m-4 p-2 bg-green-200">
@@ -36,21 +20,49 @@
     <div>
       <!-- create setupIntent (e.g. add payment method to customer) -->
     </div>
+
+    <div id="stripe-element-mount-point" class="hidden"></div>
   </div>
   
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import {ref, onMounted, computed} from 'vue'
 import type { Ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+
+import UsersTable from '@/components/UsersTable.vue'
+
+const router = useRouter()
 
 import {type Users} from '../types/customers'
-import router from '@/router';
+
+
 
 const users: Ref<Users | null> = ref(null)
 const selectedCustomer = ref('')
+const loading = ref(true)
+const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
+const style = ""
 
-fetch('https://reqres.in/api/users')
+
+    onMounted(async () => {
+
+      const ELEMENT_TYPE = "card";
+      // const ELEMENT_TYPE = "payment";
+      // stripe = await loadStripe(import.meta.env.VITE_STRIPE_KEY);
+      const stripe = Stripe(import.meta.env.VITE_STRIPE_KEY);
+
+      //stripe.elements is the stripe's Iframe
+      const elements = stripe.elements();
+      const element = elements.create(ELEMENT_TYPE, style);
+      element.mount("#stripe-element-mount-point");
+      loading.value = false;
+    });
+
+
+// fetch('https://reqres.in/api/users')
+  fetch(`${BACKEND_BASE_URL}/stripe/customers`)
     .then(response => response.json())
     .then( res2 => {
       users.value = res2.data
