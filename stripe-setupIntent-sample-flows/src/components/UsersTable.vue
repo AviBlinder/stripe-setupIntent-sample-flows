@@ -8,12 +8,12 @@
               title, email and role.</div>
       </div>
         <div class="flex flex-col"> 
-          <div class="hidden "> a1 </div>
+          <div class="hidden "> 
+          </div>
         <div class="justify-end align-middle p-2 
           w-full 
            block mr-8 m-4 text-center"> 
           <button class="btn text-center text-sm font-semibold
-          
           ">Add User</button>
           
         </div>

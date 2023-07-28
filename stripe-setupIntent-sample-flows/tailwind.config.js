@@ -1,17 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 
 const colors = require('tailwindcss/colors');
+// 
+// Define spacing and sizing system + colors system
+// 
 
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
   theme: {
-    // related to margin, padding, height, width:
+    fontFamily: {
+      sans: ['Graphik', 'sans-serif'],
+      serif: ['Merriweather', 'serif'],
+    },
     spacing: {
       1: '4px',
+      1.5: '6px',
       2: '8px',
       3: '12px',
       3.5: '14px',
       4: '16px',
+      4.5: '20px',
       5: '24px',
       6: '32px',
       7: '48px',
@@ -45,9 +53,22 @@ module.exports = {
       black: '900',
     },
     extend: {
+      // Palette 16:
       colors: {
-        primary: colors.indigo,
-        secondary: colors.slate,
+        primary: colors.purple,
+        // blue grey palleta
+        secondary: {
+          DEFAULT: '#486581',
+          100: '#D9E2EC',
+          200: '#BCCCDC',
+          300: '#9FB3C8',
+          400: '#829AB1',
+          500: '#627D98',
+          600: '#486581',
+          700: '#334E68',
+          800: '#243B53',
+          900: '#102A43',
+        },
         //   secondary: sky,
         //   transparent: 'transparent',
         //   current: 'currentColor',
@@ -57,17 +78,18 @@ module.exports = {
         //   emerald: colors.emerald,
         //   indigo: colors.indigo,
         //   yellow: colors.yellow,
-        //   tahiti: {
-        //     100: '#cffafe',
-        //     200: '#a5f3fc',
-        //     300: '#67e8f9',
-        //     400: '#22d3ee',
-        //     500: '#06b6d4',
-        //     600: '#0891b2',
-        //     700: '#0e7490',
-        //     800: '#155e75',
-        //     900: '#164e63',
-        //   },
+        tahiti: {
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          DEFAULT: '#06b6d4',
+          500: '#06b6d4',
+          600: '#0891b2',
+          700: '#0e7490',
+          800: '#155e75',
+          900: '#164e63',
+        },
         // },
       },
 
