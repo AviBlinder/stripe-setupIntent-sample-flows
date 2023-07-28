@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Customer Details</h3>
+    <div class=" text-2xl">Customer Details</div>
 <div class="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
     <div class="px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -62,7 +62,7 @@
     </div>
 
     <div>
-      <h4>
+      <h4 >
         <button class="btn" @click="getSetupIntents"> Show Credit Cards </button>
         <p v-if="setup_intents.data">total setup intents {{ setup_intents.data.length }}</p>
       </h4>

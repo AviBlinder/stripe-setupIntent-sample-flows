@@ -1,6 +1,4 @@
 Today:
-//review Tailwind CSS
-//review Coolaquas 
 
 //add TS interfaces
 

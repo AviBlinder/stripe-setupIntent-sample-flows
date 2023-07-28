@@ -2,7 +2,6 @@
   "name": "stripe-setupintent-sample-flows",
   "version": "0.0.0",
   "private": true,
-  
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -16,6 +15,9 @@
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.4",
+    "@tailwindcss/typography": "^0.5.9",
     "@tsconfig/node18": "^2.0.1",
     "@types/node": "^18.16.17",
     "@vitejs/plugin-vue": "^4.2.3",

@@ -16,7 +16,6 @@ const port = 4001;
 // stripe-related endpoints
 // get all customers
 app.get('/stripe/v1/customers', async (req,res) => {
-    console.log('inside GET /stripe/customers')
     try {
       const customers = await stripe.customers.list({
         limit: 100,
@@ -30,7 +29,6 @@ app.get('/stripe/v1/customers', async (req,res) => {
 })
 // get customer by customerId
 app.get('/stripe/v1/customers/:id', async (req,res) => {
-    console.log('inside GET /stripe/customers/:id ' + req.params.id);
     const customerId = req.params.id
     try {
       const customer = await stripe.customers.retrieve(
