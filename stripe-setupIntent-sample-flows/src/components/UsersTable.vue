@@ -3,7 +3,7 @@
     <!--  -->
     <div class="flex lg:flex-row sm:flex-col ">
       <div class="flex flex-col w-full m-4">
-        <div class="m-2 text-xl font-semibold"> Users</div>
+        <div class="m-2 text-xl font-semibold"> Customers</div>
         <div class="mx-4 my-2"> A list of all the users in your account including their name,
               title, email and role.</div>
       </div>
@@ -13,9 +13,13 @@
         <div class="justify-end align-middle p-2 
           w-full 
            block mr-8 m-4 text-center"> 
-          <button class="btn text-center text-sm font-semibold
-          ">Add User</button>
-          
+           <router-link            
+           :to="{ name:'AddCustomer'}">
+             <button           
+             class="btn text-center text-sm font-semibold px-4
+             ">Add Customer</button>
+            </router-link>
+             
         </div>
       </div>
     </div>

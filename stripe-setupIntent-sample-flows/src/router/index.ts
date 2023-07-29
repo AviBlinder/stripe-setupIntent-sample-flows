@@ -23,12 +23,36 @@ const router = createRouter({
       component: CustomerDetails,
     },
     {
+      path: '/wallet/:id',
+      name: 'wallet',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/WalletView.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
+    },
+    {
+      path: '/addCustomer',
+      name: 'AddCustomer',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AddCustomer.vue'),
+    },
+    {
+      path: '/addSetupintent',
+      name: 'addSetupintent',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AddSetupintent.vue'),
     },
     {
       path: '/sandbox',

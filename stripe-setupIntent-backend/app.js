@@ -41,17 +41,35 @@ app.get('/stripe/v1/customers/:id', async (req,res) => {
       res.status(500).send({error})
     }   
 })
-        
+
+app.get('/stripe/v1/payment_methods/:id', async (req,res) => {
+      const customerId = req.params.id;
+
+      try{
+
+        const paymentMethods = await stripe.paymentMethods.list({
+          customer: customerId,
+          type: 'card',
+        })
+        // console.log('paymentMethods:', paymentMethods);
+        res.status(200).send(paymentMethods);
+
+      } catch (err) {
+        console.log("error in /stripe/v1/payment_methods/:id", err)
+        res.status(500).send(err)
+      }
+})
+
 app.get('/stripe/v1/setupintents/:id', async (req,res) => {
+  console.log('inside /stripe/v1/setupintents/:id', req.params.id);
   try {
     const customerId = req.params.id;
-    
+
     const setupIntents = await stripe.setupIntents.list({
-      customer: customerId,
-    });
+      customer: customerId,    });
 
     // List of SetupIntents associated with the customer
-    console.log('SetupIntents:', setupIntents.data);
+    console.log('SetupIntents:', setupIntents);
     // if (!SetupIntents) {
     //   res.status(404).send('not found');
     //   return
