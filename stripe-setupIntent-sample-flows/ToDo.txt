@@ -1,9 +1,20 @@
-Today:
+To Do:
 
-//add TS interfaces
+Read:
+- Stripe SetupIntent docs:
+https://stripe.com/docs/payments/setup-intents
+https://stripe.com/docs/payments/payment-element/migration?integration-path=future
+https://stripe.com/docs/js/setup_intents
 
-1. create new customer
-2. fetch payment methods of customer (wallet)
-3. create setupIntent
-4. add 'one product' page with paymentIntent element
-5. Style pages with tailwind ui 
+- Express on Netlify:
+https://docs.netlify.com/integrations/frameworks/express/
+
+- Add functionality to "Add Customer"
+- Add functionality to "Add SetupIntent"
+- Reorganize 'app.js"
+
+- Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind
+
+- Additions to project:
+  - Add Typescript
+  - Integrate with Mongo Serverless or Firebase

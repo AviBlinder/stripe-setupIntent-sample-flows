@@ -9,39 +9,48 @@
         <Transition name="modal-inner">
           <div
             v-if="modalActive"
-            class="p-4 bg-white self-start mt-32 max-w-screen-md
+            class="p-4 bg-white 	            
+            self-start mt-32 max-w-screen-md
             mt-6"
           >
             <!-- Modal contents -->
-        <div class="text-black">
-          <h1 class="text-2xl mb-1">About:</h1>
-          <p class="mb-4">
-            The Local Weather allows you to track the current and
-            future weather of cities of your choosing.
+        <div class="text-secondary-600">
+          <h1 class="text-xl mt-1 p-2">What is a Setup intent?</h1>
+          <div class="text-sm font-light">
+            <p class="mb-4 p-2">
+              Use the <a 
+              class="text-blue-600"
+              target="_blank"
+              href="https://stripe.com/docs/payments/setup-intents">Setup Intents API</a> 
+              to set up a payment method 
+              for future payments. 
+              It is similar to a payment, but no charge is created. 
+            Set up a payment method for future payments now.
           </p>
-          <h2 class="text-2xl">How it works:</h2>
+          <h2 class="text-lg">The Setup Intents API is useful for businesses that onboard customers but don’t charge them right away:</h2>
           <ol class="list-decimal list-inside mb-4">
-            <li>
-              Search for your city by entering the name into the
-              search bar.
+            <li class="my-2 px-2 pt-2">
+              A car rental company that collects payment method details before the customer rents the car and charges the card after the rental period ends
             </li>
-            <li>
-              Select a city within the results, this will take
-              you to the current weather for your selection.
+            <li class="my-2 p-2">
+              A crowdfunding website that collects card details to be charged later, only if the campaign reaches a certain amount
             </li>
-            <li>
-              Track the city by clicking on the "+" icon in the
-              top right. This will save the city to view at a
-              later time on the home page.
+            <li class="my-2 p-2">
+              A utility company that charges a different amount each month based on usage but collects SEPA payment details before the first month’s payment
             </li>
           </ol>
+        </div>
+          
+          <!-- <hr class="border-1 "> -->
+            <p class="border-l-2 border-secondary-200 pl-4   
+            mt-2 ml-2 text-sm font-light text-secondary-600">
+              Based on <a 
+              class="text-blue-600"
+              href="https://stripe.com/docs/payments/setup-intents" 
+              target="_blank"
+              >Stripe's official documentaion</a>
 
-          <h2 class="text-2xl">Removing a city</h2>
-          <p>
-            If you no longer wish to track a city, simply select
-            the city within the home page. At the bottom of the
-            page, there will be am option to delete the city.
-          </p>
+            </p>
         </div>
 
             <!--  -->

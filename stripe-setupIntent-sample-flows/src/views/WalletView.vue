@@ -3,13 +3,30 @@
       <ul v-if="setup_intents.length" v-for="intent in setup_intents"> 
         <hr class="bg-secondary-200 border-200 max-w-md mt-4">    
         <!-- Credit Card start -->
-<div class="bg-white min-h-full flex justify-center items-center">
-        <div class="space-y-16">
+        <div class="bg-white min-h-full flex justify-center items-center">
+          <div class="space-y-16">
             <div class="w-96 h-1/2 m-auto bg-red-100 rounded-xl relative 
             text-white shadow-2xl transition-transform transform hover:scale-110">
-            
-                <img class="relative object-cover w-full h-full rounded-xl" 
+            <!--  -->
+
+            <!--  -->
+                <img 
+                class="relative object-cover w-full h-full 
+                opacity-70
+                rounded-xl"                
                 src="https://i.imgur.com/kGkSg1v.png">
+                
+               <!-- <div class="skewed-bg border-4
+                        relative w-full h-full 
+                  rounded-xl object-cover               
+                  bg-gradient-to-r from-slate-200 from-0% 
+                        via-red-500 via-50% to-slat-200 to-100%
+                  before:absolute before:top-0 before:left-[50%] 
+                  before:content-['']
+                  before:skew-x-[-20deg] before:w-[1px] before:h-full
+                  before:bg-slate-200">                   
+                -->
+
                 
                 <div class="w-full px-6 absolute top-2">
                     <div class="flex  flex-row  ">
@@ -66,8 +83,8 @@
                             </div>
                         </div>
                     </div>
-    
                 </div>
+              <!-- </div> -->
             </div>
     
         </div>

@@ -2,24 +2,16 @@
 </script>
 
 <template>
-  <div class=" w-screen">
-        <nav class="inline-block min-w-full m-6">
+  <div class=" w-full ">
+        <SiteNavigator/>
 
-          <button class="btn">
-            <RouterLink to="/">Home</RouterLink>
-          </button >
-          <button class="btn">
-            <RouterLink to="/about">About</RouterLink>
-          </button >
-        </nav>
-        <div class="w-1/6"></div>
-        <div class="w-4/6 mx-9">
           <RouterView />
-        </div>
-        <div class="w-1/6"></div>
   </div>
 </template>
 
-<style scoped>
+<script setup>
 
-</style>
+import SiteNavigator from './components/SiteNavigator.vue'
+</script>
+
+

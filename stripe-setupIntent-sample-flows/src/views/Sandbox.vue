@@ -8,8 +8,8 @@
     before:absolute before:top-0 before:left-[50%] 
     before:content-['']
     before:skew-x-[-20deg] before:w-[1px] before:h-full
-    before:bg-slate-200"></div>
-
+    before:bg-slate-200">
+  </div>
     </div>
   </template>
   
