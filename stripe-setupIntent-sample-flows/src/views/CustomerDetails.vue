@@ -1,10 +1,24 @@
 <template>
   <div>
     <div
-      class="
-      flex flex-row 
+      class="flex flex-row 
        align-middle p-2 w-full block mr-8 m-4 text-center"
     >
+    <!--  -->
+        <i class="fa-solid fa-question-circle 
+        aria-hidden='true'
+        text-2xl 
+        text-primary-400 mt-3 
+          cursor-pointer"
+          @click="toggleModal"
+        ></i>
+        <!-- v-if="router.query.preview" -->
+      <SetupintentModal
+        :modalActive="modalActive"
+        @close-modal="toggleModal"
+      >
+      </SetupintentModal>
+    <!--  -->
       <router-link 
       class="justify-start"
       :to="{ name: 'addSetupintent' }">
@@ -93,12 +107,18 @@
 <script setup lang="ts">
   import { ref, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
+  import SetupintentModal from '../components/SetupintentModal.vue';
+
 
   const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const route = useRoute();
 
   const user = ref({});
+  const modalActive = ref(false);
+  const toggleModal = () => {
+    modalActive.value = !modalActive.value;
+};
 
   onMounted(async () => {
     const id = route.params.id;

@@ -1,11 +1,16 @@
 @tailwind base;
 @tailwind components;
+ body {
+  @apply
+    flex align-middle justify-center
+  }
+
 .btn {
   @apply mx-4 my-2 rounded-md bg-primary-500 px-2 py-2 
         text-center text-sm font-semibold text-white shadow-sm 
-        hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 
+        hover:bg-primary-700 hover:scale-105
+        focus-visible:outline focus-visible:outline-2 
         focus-visible:outline-offset-2 focus-visible:outline-primary-900
-        hover:scale-105
 }
 
 .btn-xl {
