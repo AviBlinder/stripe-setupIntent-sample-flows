@@ -100,7 +100,6 @@
   console.log(props.users);
 
   const createDateFunc = function (linuxDate) {
-    console.log('createDateFunc : ', linuxDate);
     const longDate = new Date(linuxDate * 1000);
     return (
       longDate.getDate() +

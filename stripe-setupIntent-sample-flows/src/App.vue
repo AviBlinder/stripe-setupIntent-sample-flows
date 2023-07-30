@@ -2,16 +2,24 @@
 </script>
 
 <template>
-  <div class=" w-full ">
-        <SiteNavigator/>
+  <div class="flex flex-col min-h-screen bg-secondary-100">
 
-          <RouterView />
+    <SiteNavigation/>
+
+    <RouterView class="flex-1" v-slot="{ Component }">
+      <Transition name="page">
+        <component :is="Component" />
+      </Transition>
+    </RouterView>
+
   </div>
+
 </template>
 
 <script setup>
+import { RouterView } from 'vue-router'
+import SiteNavigation from './components/SiteNavigation.vue'
 
-import SiteNavigator from './components/SiteNavigator.vue'
 </script>
 
 

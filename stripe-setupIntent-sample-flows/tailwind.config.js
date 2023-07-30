@@ -53,6 +53,9 @@ module.exports = {
       black: '900',
     },
     extend: {
+      fontFamily: {
+        Roboto: ['Roboto, sans-serif'],
+      },
       // Palette 16:
       colors: {
         primary: colors.purple,
