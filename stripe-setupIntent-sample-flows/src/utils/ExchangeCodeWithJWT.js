@@ -1,7 +1,8 @@
 // This is the second part of a HOSTED UI Authentication.
 // shoud be used when response_type=code
+import { ref } from 'vue';
 
-export default function getToken() {
+export function getToken() {
   const login_code = route.query.code;
   console.log('login_code = ', login_code);
 

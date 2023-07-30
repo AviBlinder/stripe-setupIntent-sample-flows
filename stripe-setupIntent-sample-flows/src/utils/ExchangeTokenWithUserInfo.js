@@ -3,7 +3,9 @@
 // For example:
 // https://stripe-setupintent-app.auth.eu-west-1.amazoncognito.com/oauth2/authorize?client_id=37lj6lk2nm10dcka708himmpga&response_type=token&scope=email+openid+phone&redirect_uri=http%3A%2F%2Flocalhost%3A3005%2F
 
-export default function getToken() {
+import {ref} from 'vue'
+
+export function getToken() {
 
   // Login verification
   const full_token = route.fullPath;
