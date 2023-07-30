@@ -68,13 +68,17 @@
 </template>
 
 <script setup lang="ts">
+import {ref} from 'vue';
+
 defineEmits(["close-modal"]);
 defineProps({
   modalActive: {
     type: Boolean,
     default: false,
   },
-});
+})
+
+const isMobile = ref(false)
 </script>
 
 <style scoped>
