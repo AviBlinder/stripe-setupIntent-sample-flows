@@ -34,20 +34,27 @@ import { useRouter, useRoute } from 'vue-router'
 import UsersTable from '@/components/UsersTable.vue'
 
 const router = useRouter()
+const route = useRoute()
 
 import {type Users} from '../types/customers'
 
+// import {getToken} from '../utils/HostedUIGetToken'
 
+  
 
 const users: Ref<Users | null> = ref(null)
 const selectedCustomer = ref('')
 const loading = ref(true)
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
-const style = ""
 
+const style = ""
+const JWT = ref('')
 
     onMounted(async () => {
-
+      // 
+      // make call to obtain JWT based on returned code from backend
+      // 
+      
       const ELEMENT_TYPE = "card";
       // const ELEMENT_TYPE = "payment";
       // stripe = await loadStripe(import.meta.env.VITE_STRIPE_KEY);

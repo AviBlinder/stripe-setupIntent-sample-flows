@@ -15,6 +15,9 @@ https://docs.netlify.com/integrations/frameworks/express/
 
 - Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind
 
+
 - Additions to project:
   - Add Typescript
   - Integrate with Mongo Serverless or Firebase
+  - Hosted UI - make call to obtain JWT based on returned code from backend + understand 
+  how to inforce authorization beforeEach route
