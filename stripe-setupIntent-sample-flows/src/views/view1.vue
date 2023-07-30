@@ -118,7 +118,7 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 </script>
 

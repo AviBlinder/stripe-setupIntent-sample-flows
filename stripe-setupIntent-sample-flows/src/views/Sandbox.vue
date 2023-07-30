@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { useProductStore } from '../stores/ProductStore';
 
   const { products, productCount, productsCheaperThan, addProduct } =
