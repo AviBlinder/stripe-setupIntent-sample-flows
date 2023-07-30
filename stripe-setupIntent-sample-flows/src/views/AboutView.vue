@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <main class="viewSize">
     <h1>This is an about page</h1>
           <div class="m-6">
       <button class="btn">
@@ -7,7 +7,7 @@
       </button >
     </div>
 
-  </div>
+  </main>
 </template>
 
 <style>

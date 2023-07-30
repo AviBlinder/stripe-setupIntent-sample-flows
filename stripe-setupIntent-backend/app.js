@@ -1,4 +1,6 @@
 import express from 'express';
+import serverless from 'serverless-http';
+
 import cors from 'cors';
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
@@ -15,58 +17,55 @@ const port = 4001;
 
 // stripe-related endpoints
 // get all customers
-app.get('/stripe/v1/customers', async (req,res) => {
-    try {
-      const customers = await stripe.customers.list({
-        limit: 100,
-      })
-      
-      res.status(200).send(customers)
-    } catch (error) {
-      console.log ("/stripe/customers error" , error)
-      res.status(500).send({error})
-    }   
-})
+app.get('/stripe/v1/customers', async (req, res) => {
+  try {
+    const customers = await stripe.customers.list({
+      limit: 100,
+    });
+
+    res.status(200).send(customers);
+  } catch (error) {
+    console.log('/stripe/customers error', error);
+    res.status(500).send({ error });
+  }
+});
 // get customer by customerId
-app.get('/stripe/v1/customers/:id', async (req,res) => {
-    const customerId = req.params.id
-    try {
-      const customer = await stripe.customers.retrieve(
-        customerId
-      );
-      console.log('customer retrieved :', customer)
-      res.status(200).send(customer)
-    } catch (error) {
-      console.log ("/stripe/customers error" , error)
-      res.status(500).send({error})
-    }   
-})
+app.get('/stripe/v1/customers/:id', async (req, res) => {
+  const customerId = req.params.id;
+  try {
+    const customer = await stripe.customers.retrieve(customerId);
+    console.log('customer retrieved :', customer);
+    res.status(200).send(customer);
+  } catch (error) {
+    console.log('/stripe/customers error', error);
+    res.status(500).send({ error });
+  }
+});
 
-app.get('/stripe/v1/payment_methods/:id', async (req,res) => {
-      const customerId = req.params.id;
+app.get('/stripe/v1/payment_methods/:id', async (req, res) => {
+  const customerId = req.params.id;
 
-      try{
+  try {
+    const paymentMethods = await stripe.paymentMethods.list({
+      customer: customerId,
+      type: 'card',
+    });
+    // console.log('paymentMethods:', paymentMethods);
+    res.status(200).send(paymentMethods);
+  } catch (err) {
+    console.log('error in /stripe/v1/payment_methods/:id', err);
+    res.status(500).send(err);
+  }
+});
 
-        const paymentMethods = await stripe.paymentMethods.list({
-          customer: customerId,
-          type: 'card',
-        })
-        // console.log('paymentMethods:', paymentMethods);
-        res.status(200).send(paymentMethods);
-
-      } catch (err) {
-        console.log("error in /stripe/v1/payment_methods/:id", err)
-        res.status(500).send(err)
-      }
-})
-
-app.get('/stripe/v1/setupintents/:id', async (req,res) => {
+app.get('/stripe/v1/setupintents/:id', async (req, res) => {
   console.log('inside /stripe/v1/setupintents/:id', req.params.id);
   try {
     const customerId = req.params.id;
 
     const setupIntents = await stripe.setupIntents.list({
-      customer: customerId,    });
+      customer: customerId,
+    });
 
     // List of SetupIntents associated with the customer
     console.log('SetupIntents:', setupIntents);
@@ -75,18 +74,16 @@ app.get('/stripe/v1/setupintents/:id', async (req,res) => {
     //   return
     // }
 
-      res.status(200).send(setupIntents)
-
+    res.status(200).send(setupIntents);
   } catch (error) {
     // Handle any errors that occur during the retrieval
     console.error('Error retrieving SetupIntents:', error.message);
   }
 
+  //
+});
+
 //
-
-})
-
-// 
 app.post('stripe/v1/payment/create', async (request, response) => {
   console.log('inside POST /stripe', request.header);
   // just getting the amount from the request is a BAD PRACTICE since it can be
@@ -132,8 +129,10 @@ app.post('stripe/v1/create-setup-intent', async (req, res) => {
   }
 });
 
+//api.use('/api/', router);
 
-// 
 app.listen(port, () => {
   console.log('running on ' + port);
 });
+
+export const handler = serverless(app);

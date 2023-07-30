@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <main class="viewSize">
     <div
       class="flex flex-row 
-       align-middle p-2 w-full block mr-8 m-4 text-center"
+       align-middle p-2 w-full  mr-8 m-4 text-center"
     >
     <!--  -->
         <i class="fa-solid fa-question-circle 
@@ -101,7 +101,7 @@
       </div>
 
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
