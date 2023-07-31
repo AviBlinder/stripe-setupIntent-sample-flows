@@ -40,8 +40,10 @@
   import { type Users } from '../types/customers';
 
   const users: Ref<Users | null> = ref(null);
-  const selectedCustomer = ref('');
+  const selectedCustomer : Ref<Users | null> = ref(null);
   const loading = ref(true);
+
+  // @ts-ignore
   const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const style = '';
@@ -51,11 +53,14 @@
     //
     // make call to obtain JWT based on returned code from backend
     //
-
+    // @ts-ignore
+    const stripePublicKey : string = import.meta.env.VITE_STRIPE_KEY
     const ELEMENT_TYPE = 'card';
     // const ELEMENT_TYPE = "payment";
     // stripe = await loadStripe(import.meta.env.VITE_STRIPE_KEY);
-    const stripe = Stripe(import.meta.env.VITE_STRIPE_KEY);
+
+    // @ts-ignore
+    const stripe = Stripe(stripePublicKey);
 
     //stripe.elements is the stripe's Iframe
     const elements = stripe.elements();
@@ -73,6 +78,7 @@
     });
 
   const customerDetails = () => {
+    // @ts-ignore
     router.push(`/customers/${selectedCustomer.value.id}`);
   };
 </script>

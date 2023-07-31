@@ -78,7 +78,7 @@ defineProps({
   },
 })
 
-const isMobile = ref(false)
+const isMobile = ref<boolean>(false)
 </script>
 
 <style scoped>

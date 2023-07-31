@@ -19,12 +19,14 @@
 </template>
 
 <script setup lang="ts">
+// @ts-ignore
   import { useProductStore } from '../stores/ProductStore';
+  
 
   const { products, productCount, productsCheaperThan, addProduct } =
     useProductStore();
 
-    const addProduct2 = (product) => {
+    const addProduct2 = (product : string) => {
       console.log('inside addProduct2 ',product)
       addProduct(product)
     }

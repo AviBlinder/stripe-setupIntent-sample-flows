@@ -99,29 +99,58 @@
           </div>
         </dl>
       </div>
-
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
   import { ref, onMounted } from 'vue';
+
   import { useRoute } from 'vue-router';
+  // @ts-ignore
   import SetupintentModal from '../components/SetupintentModal.vue';
 
-
-  const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+  import { type User, type InvoiceSettings } from '../types/customers'
+// @ts-ignore
+  const BACKEND_BASE_URL :string = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const route = useRoute();
 
-  const user = ref({});
-  const modalActive = ref(false);
+  const id : string | any = route.params.id;
+
+  const user = ref<User>({
+value: undefined,
+id: '',
+object: '',
+address: {
+  city: '',
+  line1: '',
+  postal_code: 0
+},
+balance: 0,
+created: 0,
+currency: null,
+default_source: null,
+delinquent: false,
+description: '',
+discount: null,
+email: '',
+invoice_prefix: '',
+livemode: false,
+name: '',
+next_invoice_sequence: 0,
+phone: null,
+preferred_locales: [],
+shipping: null,
+tax_exempt: '',
+test_clock: null
+})
+  const modalActive = ref<boolean>(false)
   const toggleModal = () => {
     modalActive.value = !modalActive.value;
 };
 
   onMounted(async () => {
-    const id = route.params.id;
     const response = await fetch(
       `${BACKEND_BASE_URL}/stripe/v1/customers/${id}`
     );
