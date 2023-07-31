@@ -3,12 +3,12 @@
     <div class="flex flex-col md:flex-row">
       <div class="flex flex-col">
         <div
-          class="text-lg md:text-xl mb-2 flex md:flex-row md:ml-10 md:mt-4 text-secondary-700"
+          class="text-3xl md:text-xl mb-2 flex md:flex-row md:ml-10 md:mt-4 text-secondary-700"
         >
           List of Stripe Users:
         </div>
         <div
-          class="mb-2 flex md:flex-row md:ml-10 md:mt-4 md:text-normal text-sm text-secondary-600"
+          class="mb-2 flex md:flex-row md:ml-10 md:mt-4 md:text-normal text-2xl text-secondary-600"
         >
           Select a user to get additional information and perform actions
         </div>
@@ -17,7 +17,7 @@
         <router-link            
           :to="{ name:'AddCustomer'}">
              <button           
-             class="btn text-center text-2xl md:text-lg font-semibold px-4
+             class="btn text-center text-3xl md:text-lg font-semibold px-4
              ">Add Customer</button>
             </router-link>
 
