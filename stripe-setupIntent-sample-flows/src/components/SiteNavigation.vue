@@ -7,7 +7,7 @@
     >
       <RouterLink :to="{ name: 'home' }">
         <div class="flex items-center gap-3">
-          <i class="fa-solid fa-credit-card text-sk text-2xl pl-2"></i>
+          <i class="fa-solid fa-credit-card text-2xl pl-2"></i>
           <p class="text-2xl">Stripe Customers and Intents</p>
         </div>
       </RouterLink>

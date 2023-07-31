@@ -3,6 +3,7 @@
   <div class="p-5 h-screen bg-gray-100">
     <h1 class="text-xl mb-2">Your orders</h1>
 
+    <!-- on mobile devices - the tabe will be hidden -->
     <div class="overflow-auto rounded-lg shadow hidden md:block">
       <table class="w-full">
         <thead class="bg-gray-50 border-b-2 border-gray-200">
@@ -57,7 +58,9 @@
       </table>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+    <!-- on non-mobile devices - the cards will be hidden -->
+    <div class="grid grid-cols-1 sm:grid-cols-1  gap-4 md:hidden">
+
       <div class="bg-white space-y-3 p-4 rounded-lg shadow">
         <div class="flex items-center space-x-2 text-sm">
           <div>

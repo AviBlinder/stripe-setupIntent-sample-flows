@@ -1,8 +1,9 @@
 <template>
   <main class="viewSize">
   <!-- <main class="container text-white max-w-full"> -->
-    <div>
-      <UsersTable :users="users" />
+    <div class=" ml-5">
+      <!-- <CustomersTable :users="users" /> -->
+      <CustomersTable :users="users" />
 
       <div>
         <div v-if="selectedCustomer">
@@ -26,10 +27,10 @@
 
 <script setup lang="ts">
   import { ref, onMounted, computed } from 'vue';
-  import type { Ref } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
 
-  import UsersTable from '@/components/UsersTable.vue';
+  // @ts-ignore
+  import CustomersTable from '../components/CustomersTable.vue';
 
   // import { getToken } from '../utils/ExchangeCodeWithJWT.js'
   // const { userData } = getToken()
@@ -39,8 +40,8 @@
 
   import { type Users } from '../types/customers';
 
-  const users: Ref<Users | null> = ref(null);
-  const selectedCustomer : Ref<Users | null> = ref(null);
+  const users = ref<Users | null>(null);
+  const selectedCustomer =  ref<Users | null>(null);
   const loading = ref(true);
 
   // @ts-ignore
@@ -50,7 +51,7 @@
   const JWT = ref('');
 
   onMounted(async () => {
-    //
+    // To Do:
     // make call to obtain JWT based on returned code from backend
     //
     // @ts-ignore

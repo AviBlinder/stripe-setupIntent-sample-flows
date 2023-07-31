@@ -1,14 +1,5 @@
 To Do:
 
-Read:
-- Stripe SetupIntent docs:
-https://stripe.com/docs/payments/setup-intents
-https://stripe.com/docs/payments/payment-element/migration?integration-path=future
-https://stripe.com/docs/js/setup_intents
-
-- Express on Netlify:
-https://docs.netlify.com/integrations/frameworks/express/
-
 - Add functionality to "Add Customer"
 - Add functionality to "Add SetupIntent"
 - Reorganize 'app.js"
@@ -19,5 +10,16 @@ https://docs.netlify.com/integrations/frameworks/express/
 - Additions to project:
   - Add Typescript
   - Integrate with Mongo Serverless or Firebase
-  - Hosted UI - make call to obtain JWT based on returned code from backend + understand 
-  how to inforce authorization beforeEach route
+  - Hosted UI - make call to obtain JWT based on returned code 
+  from backend + understand 
+  - how to inforce authorization beforeEach route
+
+----------------------------------------------------------------------------------
+Documentation about Stripe Setup Intent:
+https://stripe.com/docs/payments/setup-intents
+https://stripe.com/docs/payments/payment-element/migration?integration-path=future
+https://stripe.com/docs/js/setup_intents
+
+Documentation about deploying Express on Netlify:
+https://docs.netlify.com/integrations/frameworks/express/
+
