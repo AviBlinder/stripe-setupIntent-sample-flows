@@ -71,7 +71,10 @@
                   params: { id: user.id },
                 }"
               >
-                {{ user.phone }}
+              <span v-if="user.phone">
+              {{ user.phone }}
+              </span>
+              <span v-else> N/A</span>
               </router-link>
             </td>
           </tr>

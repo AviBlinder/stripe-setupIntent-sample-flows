@@ -1,4 +1,5 @@
 <template>
+    <main class="viewSize">
   <div class="flex md:flex-row sm:flex-col gap-4">
     <div v-if="setup_intents.length">
     <ul v-for="intent in setup_intents"
@@ -84,6 +85,7 @@
       <p>No Credit Cards currently associated to this customer</p>
     </template>
   </div>
+  </main>
 </template>
 
 <script setup lang="ts">
