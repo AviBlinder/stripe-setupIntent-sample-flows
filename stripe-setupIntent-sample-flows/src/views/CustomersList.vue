@@ -7,7 +7,7 @@
 
       <div>
         <div v-if="selectedCustomer">
-          <button @click="customerDetails" class="m-4 p-2 btn">
+          <button @click="customerDetails" class="m-4 p-2 btn text-2xl md:texl-lg">
             See Customer details
           </button>
         </div>
