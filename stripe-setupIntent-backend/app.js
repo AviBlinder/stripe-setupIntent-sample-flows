@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import serverless from 'serverless-http';
 
 import cors from 'cors';
@@ -10,6 +10,9 @@ const app = express();
 app.use(cors());
 
 dotenv.config();
+
+const router = Router();
+app.use('/.netlify/functions/', router);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
