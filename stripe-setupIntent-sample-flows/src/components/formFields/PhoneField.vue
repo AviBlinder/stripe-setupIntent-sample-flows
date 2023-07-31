@@ -8,7 +8,8 @@
         name="phone"
         id="phone"
         autocomplete="tel"
-        class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-secondary-500 focus:border-secondary-500 sm:text-sm"
+        class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-secondary-500
+         focus:border-secondary-500 sm:text-sm"
         v-model="input"
         @keyup="validateInput"
         @blur="$emit('update:modelValue', $event.target.value)"
@@ -25,7 +26,7 @@
 <script>
   import { ref, watch } from 'vue';
   // @ts-ignore
-  import FormValidation from '@/utils/checkout/FormValidations.js';
+  import FormValidation from '@/utils/FormValidations.js';
   export default {
     setup() {
       let input = ref('');

@@ -114,7 +114,8 @@
         <div
           v-for="user in users"
           :key="user.id"
-          class="bg-white space-y-3 p-4 rounded-lg shadow hover:scale-105"
+          class="bg-white space-y-3 p-4 rounded-lg  hover:scale-105 w-[250px]
+          shadow-sm border-2"
         >
           <router-link
             :to="{
@@ -122,21 +123,26 @@
               params: { id: user.id },
             }"
           >
-            <div class="flex flex-row space-x-2 text-sm mb-2">
+            <div class="flex flex-row space-x-2 text-xs py-2 bg-secondary-200 rounded-2xl">
               <i class="fa-solid fa-user text-secondary-200"></i>
               <div class="flex justify-start basis-1/2 align-middle">
-                <p class="text-secondary-500 font-bold hover:underline">
+                <p class="text-secondary-500 font-bold hover:underline
+                
+                ">
                   {{ user.name }}
                 </p>
               </div>
+            </div>
+
               <div
-                class="flex text-gray-500 justify-end basis-1/2 align-middle"
-              >
-                <i class="fa-regular fa-calendar text-secondary-200 px-1"> </i>
+                class="flex flex-row items-center text-xs mb-2 pb-2 mt-6">
+              <div>
+                <i class="fa-regular fa-calendar text-secondary-200 "> </i>
                 {{ createDateFunc(user.created) }}
               </div>
             </div>
-            <div class="flex items-center text-sm text-gray-700 mb-2">
+            
+            <div class="flex items-center text-xs text-gray-700 mb-2">
               <div>
                 <i class="fa-regular fa-envelope"></i>
                 {{ user.email }}
@@ -144,7 +150,7 @@
             </div>
             <div
               v-if="user.phone"
-              class="flex items-center text-sm text-gray-700 my-2"
+              class="flex items-center text-xs text-gray-700 my-2"
             >
               <div>
                 <i class="fa-solid fa-phone"></i>
@@ -152,10 +158,10 @@
               </div>
             </div>
             <hr class="border-1 border-slate-200 mt-5" />
-            <div class="text-sm font-medium text-black my-4">
+            <div class="text-sm font-medium text-black mt-2">
               <i class="fa-solid fa-info"></i>
-              <span class="text-blue-400 text-sm pl-1">
-                Click for additional details</span
+              <span class="text-blue-400 text-xs pl-1">
+                View full profile</span
               >
             </div>
           </router-link>

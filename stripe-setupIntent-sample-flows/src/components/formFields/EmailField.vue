@@ -29,7 +29,7 @@
 <script>
   import { ref } from 'vue';
   // @ts-ignore
-  import FormValidation from '@/utils/checkout/FormValidations.js';
+  import FormValidation from '@/utils/FormValidations.js';
   export default {
     setup() {
       let input = ref('');
