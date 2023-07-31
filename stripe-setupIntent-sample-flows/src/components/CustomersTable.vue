@@ -134,16 +134,6 @@
 </template>
 
 <script setup lang="ts">
-  import eyeIcon from '../icons/eye.vue';
-
-  interface User {
-    id: number;
-    email: string;
-    first_name: string;
-    last_name: string;
-    avatar: string;
-  }
-
   // const users = defineProps<User>()
 
   const props = defineProps({

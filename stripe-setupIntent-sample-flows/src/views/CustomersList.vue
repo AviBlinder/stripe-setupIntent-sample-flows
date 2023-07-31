@@ -1,7 +1,7 @@
 <template>
   <main class="viewSize">
   <!-- <main class="container text-white max-w-full"> -->
-    <div class=" ml-5">
+    <div class=" ml-5 ">
       <!-- <CustomersTable :users="users" /> -->
       <CustomersTable :users="users" />
 
@@ -40,7 +40,8 @@
 
   import { type Users } from '../types/customers';
 
-  const users = ref<Users | null>(null);
+  // @ts-ignore
+  const users = ref({});
   const selectedCustomer =  ref<Users | null>(null);
   const loading = ref(true);
 
