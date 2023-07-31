@@ -17,12 +17,12 @@ const port = 4001;
 
 // stripe-related endpoints
 // get all customers
-app.get('/stripe/v1/customers', async (req, res) => {
+app.get('/api/stripe/v1/customers', async (req, res) => {
   try {
     const customers = await stripe.customers.list({
       limit: 100,
     });
-    
+
     res.status(200).send(customers);
   } catch (error) {
     console.log('/stripe/customers error', error);
@@ -30,7 +30,7 @@ app.get('/stripe/v1/customers', async (req, res) => {
   }
 });
 // get customer by customerId
-app.get('/stripe/v1/customers/:id', async (req, res) => {
+app.get('/api/stripe/v1/customers/:id', async (req, res) => {
   const customerId = req.params.id;
   try {
     const customer = await stripe.customers.retrieve(customerId);
@@ -42,7 +42,7 @@ app.get('/stripe/v1/customers/:id', async (req, res) => {
   }
 });
 
-app.get('/stripe/v1/payment_methods/:id', async (req, res) => {
+app.get('/api/stripe/v1/payment_methods/:id', async (req, res) => {
   const customerId = req.params.id;
 
   try {
@@ -58,7 +58,7 @@ app.get('/stripe/v1/payment_methods/:id', async (req, res) => {
   }
 });
 
-app.get('/stripe/v1/setupintents/:id', async (req, res) => {
+app.get('/api/stripe/v1/setupintents/:id', async (req, res) => {
   console.log('inside /stripe/v1/setupintents/:id', req.params.id);
   try {
     const customerId = req.params.id;
@@ -84,7 +84,7 @@ app.get('/stripe/v1/setupintents/:id', async (req, res) => {
 });
 
 //
-app.post('stripe/v1/payment/create', async (request, response) => {
+app.post('/api/stripe/v1/payment/create', async (request, response) => {
   console.log('inside POST /stripe', request.header);
   // just getting the amount from the request is a BAD PRACTICE since it can be
   // hacked. It is better to fetch the price by some other property
@@ -106,7 +106,7 @@ app.post('stripe/v1/payment/create', async (request, response) => {
 });
 
 //create a new customer
-app.post('stripe/v1/create-customer', async (req, res) => {
+app.post('/api/stripe/v1/create-customer', async (req, res) => {
   try {
     const customer = await stripe.customers.create({
       email: req.body.email,
@@ -118,7 +118,7 @@ app.post('stripe/v1/create-customer', async (req, res) => {
 });
 
 // create a SetupIntent
-app.post('stripe/v1/create-setup-intent', async (req, res) => {
+app.post('/api/stripe/v1/create-setup-intent', async (req, res) => {
   try {
     const intent = await stripe.setupIntents.create({
       customer: req.body.customerId,
