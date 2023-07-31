@@ -71,11 +71,6 @@
     loading.value = false;
   });
 
-  console.log("BACKEND_BASE_URL :",BACKEND_BASE_URL)
-  if (BACKEND_BASE_URL == 'https://bucolic-rabanadas-979114.netlify.app/'){
-    BACKEND_BASE_URL = 'https://bucolic-rabanadas-979114.netlify.app'
-  }
-
   // fetch('https://reqres.in/api/users')
   fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)
     .then((response) => response.json())
