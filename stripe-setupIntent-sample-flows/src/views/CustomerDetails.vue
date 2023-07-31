@@ -5,13 +5,15 @@
        align-middle p-2 w-full  mr-8 m-4 text-center"
     >
     <!--  -->
-        <i class="fa-solid fa-question-circle 
-        aria-hidden='true'
-        text-2xl 
-        text-primary-400 mt-1 
-          cursor-pointer"
-          @click="toggleModal"
-        ></i>
+    <div>
+      <i class="fa-solid fa-question-circle 
+      aria-hidden='true'
+      text-2xl 
+      text-primary-400 mt-1 
+      cursor-pointer"
+      @click="toggleModal"
+      ></i>
+    </div>
         <!-- v-if="router.query.preview" -->
       <SetupintentModal
         :modalActive="modalActive"
@@ -19,10 +21,14 @@
       >
       </SetupintentModal>
     <!--  -->
+      <button class="btn-sm md:btn"     
+      @click="$router.go(-1)"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to Customers</button>
+
       <router-link 
       class="justify-start"
       :to="{ name: 'addSetupintent' }">
-        <button class="btn text-center text-sm font-semibold">
+        <button class="btn-sm md:btn">
+          <i class="fa fa-plus" aria-hidden="true"></i>
           Add Setup Intent
         </button>
       </router-link>
@@ -36,7 +42,9 @@
                 query: { name: user.name },
               }"
             >
-              <button class="btn">Show Credit Cards</button>
+              <button class="btn-sm md:btn">
+          <i class="fa fa-credit-card" aria-hidden="true"></i>                
+                Show Credit Cards</button>
             </router-link>
           </Suspense>
       </div>

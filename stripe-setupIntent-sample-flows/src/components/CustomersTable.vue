@@ -1,6 +1,15 @@
 <template>
   <div>
-  <h1 class="text-xl mb-2">Your users:</h1>
+  <div class="text-lg md:text-xl mb-2 flex md:flex-row md:ml-10 md:mt-4
+  text-secondary-700
+  ">List of Stripe Users:</div>
+  <div class="  mb-2 flex md:flex-row md:ml-10 md:mt-4
+  md:text-normal text-sm
+  text-secondary-600
+  ">
+    Select a user to get additional information and perform actions
+  </div>
+
   <div class="p-5 h-screen grid grid-cols-1">
     <div class="overflow-auto rounded-lg shadow hidden md:block">
       <table class="w-full">

@@ -7,7 +7,7 @@
           class="flex items-center gap-3 justif-center text-secondary-700"
         >
           <i class="fa-solid fa-credit-card text-2xl pl-2"></i>
-          <p class="text-2xl">Stripe Customers and Intents</p>
+          <p class="text-lg md:text-2xl">Stripe Customers and Intents</p>
         </div>
       </RouterLink>
       <!-- <router-link :to="{name: 'view1'}"> view1 </router-link>
