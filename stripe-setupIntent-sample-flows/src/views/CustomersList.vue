@@ -72,7 +72,7 @@
   });
 
   console.log("BACKEND_BASE_URL :",BACKEND_BASE_URL)
-  if (BACKEND_BASE_URL == 'http://localhost:4001'){
+  if (BACKEND_BASE_URL == 'https://bucolic-rabanadas-979114.netlify.app/'){
     BACKEND_BASE_URL = 'https://bucolic-rabanadas-979114.netlify.app'
   }
 
