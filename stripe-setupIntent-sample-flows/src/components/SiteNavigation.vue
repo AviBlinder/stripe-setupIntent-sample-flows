@@ -1,21 +1,26 @@
 <template>
-  <header
+  <header 
     class="sticky top-0 max-w-full min-w-full bg-secondary-200 rounded-sm md:mt-3">
     <div class="flex flex-col md:flex-row gap-4 flex-1 justify-between align-middle m-2">
       <RouterLink :to="{ name: 'home' }">
         <div
-          class="flex items-center gap-3 justif-center text-secondary-700"
+          class="flex items-center gap-3 justif-center text-secondary-700
+          min-h-[100px] md:min-h-[800px] min-w-full md:min-w-[800px]
+          "
         >
           <i class="fa-solid fa-credit-card text-2xl pl-2"></i>
           <p class="text-lg md:text-2xl">Stripe Customers and Intents</p>
         </div>
       </RouterLink>
-      <router-link :to="{name: 'view2'}"> view2 </router-link>
+      <router-link :to="{name: 'view2'}"
+            class="text-2xl md:text-xl"
+
+      > view2 </router-link>
       <!-- <router-link :to="{name: 'view1'}"> view1 </router-link> 
       <router-link :to="{name: 'view3'}"> view3 </router-link>
       <router-link :to="{name: 'view4'}"> view4 </router-link> -->
 
-      <RouterLink to="/about">
+      <RouterLink to="/about" class="text-2xl md:text-xl">
         <div
           class="flex justify-end text-xl flex-inital-4 text-secondary-700"
         >
