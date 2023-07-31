@@ -22,7 +22,7 @@ app.get('/stripe/v1/customers', async (req, res) => {
     const customers = await stripe.customers.list({
       limit: 100,
     });
-
+    
     res.status(200).send(customers);
   } catch (error) {
     console.log('/stripe/customers error', error);
