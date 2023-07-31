@@ -46,7 +46,7 @@
   const loading = ref(true);
 
   // @ts-ignore
-  const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+  let BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const style = '';
   const JWT = ref('');
@@ -71,6 +71,11 @@
     loading.value = false;
   });
 
+  console.log("BACKEND_BASE_URL :",BACKEND_BASE_URL)
+  if (BACKEND_BASE_URL == 'http://localhost:4001'){
+    BACKEND_BASE_URL = 'https://bucolic-rabanadas-979114.netlify.app/'
+  }
+  
   // fetch('https://reqres.in/api/users')
   fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)
     .then((response) => response.json())
