@@ -13,14 +13,14 @@
           Select a user to get additional information and perform actions
         </div>
       </div>
-      <div class="flex justify-center  md:justify-end align-middle mt-3 md:mt-4 ml-5 md:ml-4">
-        <router-link            
-          :to="{ name:'AddCustomer'}">
-             <button           
-             class="btn text-center text-lg md:text-sm font-semibold px-4
-             ">Add Customer</button>
-            </router-link>
-
+      <div
+        class="flex justify-center md:justify-end align-middle mt-3 md:mt-4 ml-5 md:ml-4"
+      >
+        <router-link :to="{ name: 'AddCustomer' }">
+          <button class="btn text-center text-lg md:text-sm font-semibold px-4">
+            Add Customer
+          </button>
+        </router-link>
       </div>
     </div>
 
@@ -41,6 +41,11 @@
                 class="w-24 text-sm font-semibold tracking-wide text-left font-sans"
               >
                 <span class="pl-6">Email </span>
+              </th>
+              <th
+                class="w-24 p-3 text-sm font-semibold tracking-wide text-left"
+              >
+                Balance
               </th>
               <th
                 class="w-24 p-3 text-sm font-semibold tracking-wide text-left"
@@ -91,6 +96,23 @@
                   >
                 </router-link>
               </td>
+              <td class="p-3 text-sm text-gray-700 whitespace-nowrap
+              flex justify-end -translate-x-7  
+              ">
+                <router-link
+                  :to="{
+                    name: 'customer-details',
+                    params: { id: user.id },
+                  }"
+                >
+                  <span
+                    class="p-1.5 text-xs font-medium uppercase tracking-wider 
+                    text-secondary-400 rounded-lg bg-opacity-50 "
+                  >
+                    {{ user.balance }} {{ user.currency }} </span
+                  >
+                </router-link>
+              </td>
               <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                 <router-link
                   :to="{
@@ -114,8 +136,7 @@
         <div
           v-for="user in users"
           :key="user.id"
-          class="bg-white space-y-3 p-4 rounded-lg  hover:scale-105 w-[250px]
-          shadow-sm border-2"
+          class="bg-white space-y-3 p-4 rounded-lg hover:scale-105 w-[250px] shadow-sm border-2"
         >
           <router-link
             :to="{
@@ -123,46 +144,56 @@
               params: { id: user.id },
             }"
           >
-            <div class="flex flex-row space-x-2 text-xs py-2 bg-secondary-200 rounded-2xl">
+            <div
+              class="flex flex-row space-x-2 text-xs py-2 bg-secondary-200 rounded-2xl"
+            >
               <i class="fa-solid fa-user text-secondary-200"></i>
               <div class="flex justify-start basis-1/2 align-middle">
-                <p class="text-secondary-500 font-bold hover:underline
-                
-                ">
+                <p class="text-secondary-500 font-bold hover:underline">
                   {{ user.name }}
                 </p>
               </div>
             </div>
 
-              <div
-                class="flex flex-row items-center text-xs mb-2 pb-2 mt-6">
+            <div class="flex flex-row items-center justify-between text-xs mb-2 pb-2 mt-6">
               <div>
-                <i class="fa-regular fa-calendar text-secondary-200 "> </i>
-                {{ createDateFunc(user.created) }}
+                <i class="fa-regular fa-calendar text-secondary-200"> </i>
+                <span class="pl-2">{{ createDateFunc(user.created) }}</span>
+              </div>
+              <div class="flex flex-row ml-5 justify-end ">
+                <i class="fa-solid fa-coins mx-1"></i>
+                <span>
+                  {{ user.balance }}
+                </span>
+
               </div>
             </div>
-            
-            <div class="flex items-center text-xs text-gray-700 mb-2">
+
+            <div class="flex items-center text-xs text-gray-700 my-2">
               <div>
                 <i class="fa-regular fa-envelope"></i>
-                {{ user.email }}
+                <span class="pl-2">{{ user.email }}</span>
               </div>
             </div>
             <div
               v-if="user.phone"
-              class="flex items-center text-xs text-gray-700 my-2"
-            >
+              class="flex items-center text-xs text-gray-700 pt-3">
               <div>
                 <i class="fa-solid fa-phone"></i>
-                {{ user.phone }}
+                <span class="pl-2">{{ user.phone }}</span>
               </div>
+            </div>
+            <div v-else class="flex items-center  text-xs text-gray-700 pt-3">
+              <div>
+                <i class="fa-solid fa-phone"></i>
+                  <span class="pl-2">N/A</span>
+              </div>
+
             </div>
             <hr class="border-1 border-slate-200 mt-5" />
             <div class="text-sm font-medium text-black mt-2">
               <i class="fa-solid fa-info"></i>
-              <span class="text-blue-400 text-xs pl-1">
-                View full profile</span
-              >
+              <span class="text-blue-400 text-xs pl-1"> View full profile</span>
             </div>
           </router-link>
         </div>
@@ -178,12 +209,12 @@
     users: [Object],
   });
 
-  console.log('users: ', props.users);
+  // console.log('users: ', props.users);
 
   const createDateFunc = function (linuxDate: number) {
-    console.log(linuxDate);
+    // console.log(linuxDate);
     const longDate = new Date(linuxDate * 1000);
-    console.log('longDate :', longDate);
+    // console.log('longDate :', longDate);
     return (
       longDate.getDate() +
       '/' +

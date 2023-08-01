@@ -1,13 +1,22 @@
 <template>
     <main class="viewSize">
+      <router-link 
+  
+      :to="{ name: 'customers' }">
+        <button class="btn-sm md:btn m-4 ">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          Back to Customers
+        </button>
+      </router-link>
+
   <div class="flex md:flex-row sm:flex-col gap-4">
     <div v-if="setup_intents.length">
     <ul v-for="intent in setup_intents"
       :key="intent.key"
     >
-      <hr class="bg-secondary-200 border-200 max-w-md mt-4" />
+      <hr class="bg-secondary-200 border-200 max-w-md my-1 ml-2 md:my-4" />
       <!-- Credit Card start -->
-      <div class="bg-white min-h-full flex justify-center items-center">
+      <div class="bg-white min-h-full flex justify-center items-center ml-4 md-ml-4">
         <div class="space-y-16">
           <div
             class="w-96 h-1/2 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110"
@@ -31,8 +40,8 @@
                   before:bg-slate-200">                   
                 -->
 
-            <div class="w-full px-6 absolute top-2">
-              <div class="flex flex-row">
+            <div class="w-full px-6 absolute top-2 text-sm font-light leading-4 text-slate-700">
+              <div class="flex flex-row mt-3">
                 <div
                   class="flex flex-col justify-start min-w-max -translate-x-1"
                 >
@@ -42,21 +51,22 @@
                   </p>
                 </div>
                 <div
-                  class="flex justify-end bg-slate-400 p-4 mx-6 rounded-xl md:translate-x-9"
+                  class="flex justify-end bg-slate-400 p-4 ml-9 
+                  md:mx-6 rounded-xl md:translate-x-9"
                 >
-                  <p>
+                  <span>
                     {{ intent.card.brand }}
-                  </p>
+                  </span>
                 </div>
                 <!-- <img class="w-14 h-14" src="https://i.imgur.com/bbPHJVe.png"/> -->
               </div>
-              <div class="pt-1">
+              <div class="md:pt-1">
                 <p class="font-light">Last 4 Digits</p>
                 <p class="font-medium tracking-more-wider">
                   {{ intent.card.last4 }}
                 </p>
               </div>
-              <div class="pt-4 pr-6">
+              <div class="pt-1 md:pt-4 pr-6">
                 <div class="flex justify-between">
                   <div class="">
                     <p class="font-light text-xs">Valid</p>
@@ -67,10 +77,7 @@
                     <p class="font-medium tracking-wider text-sm">03/25</p>
                   </div>
 
-                  <div class="">
-                    <p class="font-light text-xs">CVV</p>
-                    <p class="font-bold tracking-more-wider text-sm">···</p>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -109,11 +116,11 @@
     );
 
     const fullResponse = await response.json();
-    console.log('fullResponse:', fullResponse);
+    // console.log('fullResponse:', fullResponse);
 
     setup_intents.value = fullResponse.data;
 
-    console.log('setup_intents: ', JSON.stringify(setup_intents));
+    // console.log('setup_intents: ', JSON.stringify(setup_intents));
   });
 </script>
 

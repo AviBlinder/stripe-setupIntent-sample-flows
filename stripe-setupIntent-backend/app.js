@@ -1,6 +1,8 @@
 import express, { Router } from 'express';
 import serverless from 'serverless-http';
 
+import bodyParser from 'body-parser';
+
 import cors from 'cors';
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
@@ -10,6 +12,9 @@ const app = express();
 app.use(cors());
 
 dotenv.config();
+
+// create application/json parser
+var jsonParser = bodyParser.json()
 
 const router = Router();
 app.use('/.netlify/functions/', router);
@@ -87,7 +92,7 @@ app.get('/api/stripe/v1/setupintents/:id', async (req, res) => {
 });
 
 //
-app.post('/api/stripe/v1/payment/create', async (request, response) => {
+app.post('/api/stripe/v1/payment/create', jsonParser, async (request, response) => {
   console.log('inside POST /stripe', request.header);
   // just getting the amount from the request is a BAD PRACTICE since it can be
   // hacked. It is better to fetch the price by some other property
@@ -109,29 +114,63 @@ app.post('/api/stripe/v1/payment/create', async (request, response) => {
 });
 
 //create a new customer
-app.post('/api/stripe/v1/create-customer', async (req, res) => {
+app.post('/api/stripe/v1/create-customer', jsonParser, async (req, res) => {
   try {
-    console.log("inside create-customer ", req.body)
-    customerExists = await searchCustomer(req.body.email)
+    // console.log("req.headers ", req.headers)
+    const customer = req.body.customer
+    // console.log("inside create-customer ", customer)
+    const customerExists = await searchCustomer(customer.email)
+    if (customerExists.length === 0) {
+      console.log('new customer', customer.email);
+      const currency = selectCurrency()
+      console.log("currency = ",currency)
+      const balance = selectBalance()
+      const customerCreate = await stripe.customers.create({
+        email: customer.email,
+        name: customer.fullName,
+        phone: customer.phone,
+        address: customer.address,
+        description: customer.fullName,
+        balance: balance
+      });
+      res.status(201).json({ customerCreate });
+    } else {
+      console.log('customer already exists', customer.email);
+      res.status(200).json({ customerExists });
 
+    }
     // const customer = await stripe.customers.create({
     //   email: req.body.email,
     // });
-    res.status(201).json({ customer });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
 const searchCustomer = async (email) => {
+  const searchQuery = `email: '${email}' `
+  try {
+    const customerFound = await stripe.customers.search({
+      query: searchQuery,
+    }); 
+    // console.log('search customer :', customerFound.data);
+    return customerFound.data
+  } catch (err) {
+    console.log('search error :',err )
+    return err
+  }
+    
+  }
 
-  const customer = await stripe.customers.search({
-    query: `email: ${email} `,
-  }) 
-
-  console.log('search customer :', customer)
-}
-
+  const selectCurrency = () => {
+    const currencies = ['usd', 'eur', 'aed', 'nis', 'egp', 'gbp','jpy',];
+    let currency = currencies[Math.floor(Math.random() * currencies.length)]
+    return currency
+  }
+  const selectBalance = () => {
+    const balance = Math.floor(Math.random() * 1000);
+    return balance
+  }
 
 // create a SetupIntent
 app.post('/api/stripe/v1/create-setup-intent', async (req, res) => {
