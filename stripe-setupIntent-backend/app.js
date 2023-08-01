@@ -111,14 +111,27 @@ app.post('/api/stripe/v1/payment/create', async (request, response) => {
 //create a new customer
 app.post('/api/stripe/v1/create-customer', async (req, res) => {
   try {
-    const customer = await stripe.customers.create({
-      email: req.body.email,
-    });
+    console.log("inside create-customer ", req.body)
+    customerExists = await searchCustomer(req.body.email)
+
+    // const customer = await stripe.customers.create({
+    //   email: req.body.email,
+    // });
     res.status(201).json({ customer });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
+
+const searchCustomer = async (email) => {
+
+  const customer = await stripe.customers.search({
+    query: `email: ${email} `,
+  }) 
+
+  console.log('search customer :', customer)
+}
+
 
 // create a SetupIntent
 app.post('/api/stripe/v1/create-setup-intent', async (req, res) => {

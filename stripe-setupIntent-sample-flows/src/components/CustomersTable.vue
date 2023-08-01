@@ -17,7 +17,7 @@
         <router-link            
           :to="{ name:'AddCustomer'}">
              <button           
-             class="btn text-center text-3xl md:text-lg font-semibold px-4
+             class="btn text-center text-lg md:text-sm font-semibold px-4
              ">Add Customer</button>
             </router-link>
 
