@@ -108,7 +108,7 @@
 
 <script setup lang="ts">
   import { useRoute } from 'vue-router';
-  import { onMounted, ref } from 'vue';
+  import { onMounted, ref, inject } from 'vue';
 
   // @ts-ignore
   const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
@@ -122,15 +122,13 @@
     const full_name = route.query.name;
 
     const response = await fetch(
-      `${BACKEND_BASE_URL}/stripe/v1/payment_methods/${id}`
+      `${inject('NETLIFY_FUNCTIONS_URL')}/getPaymetMethodsByCustomerId/${id}`
     );
 
     const fullResponse = await response.json();
-    // console.log('fullResponse:', fullResponse);
+    console.log('fullResponse:', fullResponse);
 
-    setup_intents.value = fullResponse.data;
-
-    // console.log('setup_intents: ', JSON.stringify(setup_intents));
+    setup_intents.value = fullResponse.paymentMethods;
   });
 </script>
 
