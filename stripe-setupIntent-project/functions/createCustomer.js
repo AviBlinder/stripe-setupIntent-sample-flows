@@ -60,7 +60,7 @@ const handler = async (event, context) => {
       };
     } else {
       return {
-        statusCode: 200,
+        statusCode: 201,
         body: JSON.stringify({ customerExists }),
         headers: {
           'Access-Control-Allow-Origin': '*',
