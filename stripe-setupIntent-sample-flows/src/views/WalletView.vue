@@ -120,8 +120,7 @@
   onMounted(async () => {
     const id = route.params.id;
     const full_name = route.query.name;
-    console.log('id =', id);
-    // const response = await  fetch(`${BACKEND_BASE_URL}/stripe/v1/setupintents/${id}`)
+
     const response = await fetch(
       `${BACKEND_BASE_URL}/stripe/v1/payment_methods/${id}`
     );

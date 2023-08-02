@@ -18,7 +18,6 @@ export const useProductStore = defineStore('product', {
   },
   actions: {
     addProduct(product) {
-      console.log("adding product to products")
       this.products.push(product)
     }
   }

@@ -26,7 +26,6 @@ export function getToken() {
       .then((response) => response.json())
       .then((data) => {
         JWT.value = data;
-        console.log('data :', data);
       });
 
       } catch (err) {

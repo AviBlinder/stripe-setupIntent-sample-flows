@@ -9,7 +9,7 @@ export function getToken() {
 
   // Login verification
   const full_token = route.fullPath;
-  console.log('full_token =', full_token);
+  // console.log('full_token =', full_token);
   const parsed_token = full_token.replace('/#id_token=', '');
 
   const token = parsed_token.split('&');

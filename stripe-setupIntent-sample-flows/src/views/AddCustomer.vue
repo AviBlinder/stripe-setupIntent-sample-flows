@@ -327,8 +327,7 @@
   const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
   
   const saveCustomer = () => {
-    console.log('customerDetails ', customerDetails.value);
-
+    
     if (!validationError.value) {
       var customer = Object.assign({}, customerDetails.value);
 
