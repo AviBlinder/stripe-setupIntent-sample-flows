@@ -33,11 +33,13 @@
     const route = useRoute();
     const setupIntentSecret = ref({});
 
+    // @ts-ignore
     let globalElements = null
     const customerId: string | any = route.params.id;
     console.log('customerId :', customerId);
     // @ts-ignore
     const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
+    // @ts-ignore    
     const FRONTEND_BASE_URL: string = import.meta.env.VITE_BASE_URL;
     // @ts-ignore
     const stripe_publishable_key = import.meta.env.VITE_STRIPE_KEY;
