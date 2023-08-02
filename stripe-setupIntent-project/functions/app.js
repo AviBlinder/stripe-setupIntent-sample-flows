@@ -14,7 +14,7 @@ app.use(cors());
 dotenv.config();
 
 // create application/json parser
-var jsonParser = bodyParser.json()
+var jsonParser = bodyParser.json();
 
 const router = Router();
 app.use('/.netlify/functions/', router);
@@ -22,7 +22,6 @@ app.use('/.netlify/functions/', router);
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const port = 4001;
-
 
 // stripe-related endpoints
 // get all customers
@@ -68,7 +67,6 @@ app.get('/api/stripe/v1/payment_methods/:id', async (req, res) => {
 });
 
 app.get('/api/stripe/v1/setupintents/:id', async (req, res) => {
-  
   try {
     const customerId = req.params.id;
 
@@ -92,61 +90,62 @@ app.get('/api/stripe/v1/setupintents/:id', async (req, res) => {
 });
 
 //
-app.post('/api/stripe/v1/payment/create', jsonParser, async (request, response) => {
-  // just getting the amount from the request is a BAD PRACTICE since it can be
-  // hacked. It is better to fetch the price by some other property
-  const { amount } = request.body;
+app.post(
+  '/api/stripe/v1/payment/create',
+  jsonParser,
+  async (request, response) => {
+    // just getting the amount from the request is a BAD PRACTICE since it can be
+    // hacked. It is better to fetch the price by some other property
+    const { amount } = request.body;
 
+    try {
+      console.log('inside try stripe.paymentIntents.create', amount);
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: amount,
+        currency: 'USD',
+        description: 'Buy Product',
+      });
+      response.status(200).send({ secret: paymentIntent.client_secret });
+    } catch (err) {
+      console.log('error :' + err);
+      response.status(500).send('error :' + err);
+    }
+  }
+);
+
+//delete customer
+app.post('/api/stripe/v1/delete-customer', jsonParser, async (req, res) => {
   try {
-    console.log('inside try stripe.paymentIntents.create', amount);
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount,
-      currency: 'USD',
-      description: 'Buy Product',
-    });
-    response.status(200).send({ secret: paymentIntent.client_secret });
+    const deleted = await stripe.customers.del(req.body.id);
+    if (deleted) {
+      res.status(200).send({ deleted });
+    }
   } catch (err) {
-    console.log('error :' + err);
-    response.status(500).send('error :' + err);
+    console.log('error deleteing customer', err);
   }
 });
-
-//delete customer 
-app.post('/api/stripe/v1/delete-customer', jsonParser, async (req,res) => {
-  try {
-    const deleted = await stripe.customers.del(
-      req.body.id)
-      if(deleted) {
-        res.status(200).send({deleted})
-      }
-
-      } catch (err) {
-        console.log ('error deleteing customer', err)
-    }
-})
 //create a new customer
 app.post('/api/stripe/v1/create-customer', jsonParser, async (req, res) => {
   try {
     // console.log("req.headers ", req.headers)
-    const customer = req.body.customer
+    const customer = req.body.customer;
     // console.log("inside create-customer ", customer)
-    const customerExists = await searchCustomer(customer.email)
+    const customerExists = await searchCustomer(customer.email);
     if (customerExists.length === 0) {
-      const currency = selectCurrency()
-      const balance = selectBalance()
+      const currency = selectCurrency();
+      const balance = selectBalance();
       const customerCreate = await stripe.customers.create({
         email: customer.email,
         name: customer.fullName,
         phone: customer.phone,
         address: customer.address,
         description: customer.fullName,
-        balance: balance
+        balance: balance,
       });
       res.status(201).json({ customerCreate });
     } else {
       console.log('customer already exists', customer.email);
       res.status(200).json({ customerExists });
-
     }
     // const customer = await stripe.customers.create({
     //   email: req.body.email,
@@ -157,29 +156,28 @@ app.post('/api/stripe/v1/create-customer', jsonParser, async (req, res) => {
 });
 
 const searchCustomer = async (email) => {
-  const searchQuery = `email: '${email}' `
+  const searchQuery = `email: '${email}' `;
   try {
     const customerFound = await stripe.customers.search({
       query: searchQuery,
-    }); 
+    });
     // console.log('search customer :', customerFound.data);
-    return customerFound.data
+    return customerFound.data;
   } catch (err) {
-    console.log('search error :',err )
-    return err
+    console.log('search error :', err);
+    return err;
   }
-    
-  }
+};
 
-  const selectCurrency = () => {
-    const currencies = ['usd', 'eur', 'aed', 'nis', 'egp', 'gbp','jpy',];
-    let currency = currencies[Math.floor(Math.random() * currencies.length)]
-    return currency
-  }
-  const selectBalance = () => {
-    const balance = Math.floor(Math.random() * 1000);
-    return balance
-  }
+const selectCurrency = () => {
+  const currencies = ['usd', 'eur', 'aed', 'nis', 'egp', 'gbp', 'jpy'];
+  let currency = currencies[Math.floor(Math.random() * currencies.length)];
+  return currency;
+};
+const selectBalance = () => {
+  const balance = Math.floor(Math.random() * 1000);
+  return balance;
+};
 
 // create a SetupIntent
 app.post('/api/stripe/v1/create-setup-intent', jsonParser, async (req, res) => {

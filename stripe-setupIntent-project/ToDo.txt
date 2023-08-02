@@ -1,6 +1,7 @@
 To Do:
 - Finish migration to serverless functions
 - Add localStorage
+https://gist.github.com/AviBlinder/a7ca0303d45c78a80bac030b345a0eef
 - Fix Nav Bar
 - Delete Customer: Confirmetion Modal + refresh list
 - About page

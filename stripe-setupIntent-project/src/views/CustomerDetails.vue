@@ -127,8 +127,6 @@
   import SetupintentModal from '../components/SetupintentModal.vue';
 
   import { type User, type InvoiceSettings } from '../types/customers';
-  // @ts-ignore
-  const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const route = useRoute();
   const router = useRouter();

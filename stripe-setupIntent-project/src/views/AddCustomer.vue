@@ -238,8 +238,10 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref, inject } from 'vue';
 
+  const baseURL = inject('NETLIFY_FUNCTIONS_URL')
+ 
   const customerDetails = ref({
     fullName: '',
     email: '',
@@ -323,9 +325,6 @@
     }
   };
 
-  // @ts-ignore
-  const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
-  
   const saveCustomer = () => {
     
     if (!validationError.value) {
@@ -339,10 +338,13 @@
         body: JSON.stringify({ customer }),
       };
       try {
+        console.log("customer :", customer)
         fetch(
-          `${BACKEND_BASE_URL}/stripe/v1/create-customer`,
-          requestOptions
-        ).then((response) => {
+          // `${BACKEND_BASE_URL}/stripe/v1/create-customer`,
+          // requestOptions
+          `${baseURL}/createCustomer`,
+          requestOptions)
+          .then((response) => {
           switch (response.status) {
             case 200:
               createCustomerResponse.value =
