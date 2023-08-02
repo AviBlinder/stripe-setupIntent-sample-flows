@@ -34,6 +34,7 @@
               >
                 Name
               </th>
+              <th></th>
               <th class="p-3 text-sm font-semibold tracking-wide text-left">
                 Created On
               </th>
@@ -71,7 +72,14 @@
                 >
                   {{ user.name }}
                 </router-link>
-              </td>
+
+             </td>
+             <td>
+              <button class="btn bg-secondary-300 p-1"  @click="deleteCustomer(user.id)"> 
+                  <i class="fa-solid fa-trash" > </i>                  
+                </button>
+
+             </td>
               <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                 <router-link
                   :to="{
@@ -223,6 +231,43 @@
       longDate.getFullYear()
     );
   };
+  // @ts-ignore
+  const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
+
+  // @ts-ignore
+  const deleteCustomer = (id) => {
+    console.log("deleteCustomer ", id)
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      };
+      try {
+        fetch(
+          `${BACKEND_BASE_URL}/stripe/v1/delete-customer`,
+          requestOptions
+        ).then((response) => {
+          switch (response.status) {
+            case 200:
+
+              console.log( 'delete customer status 200 ', response.status)
+
+              break;
+            default:
+              console.log( 'delete customer status ', response.status)
+              break;
+          }
+        });
+      } catch (err) {
+        console.log( `there was an error creating the deleting: ${err}`)
+      }
+
+    // stripe/v1/delete-customer
+  }
+   
 </script>
 
 <style scoped></style>

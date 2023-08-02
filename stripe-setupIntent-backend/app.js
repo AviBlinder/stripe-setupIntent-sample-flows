@@ -110,6 +110,19 @@ app.post('/api/stripe/v1/payment/create', jsonParser, async (request, response) 
   }
 });
 
+//delete customer 
+app.post('/api/stripe/v1/delete-customer', jsonParser, async (req,res) => {
+  try {
+    const deleted = await stripe.customers.del(
+      req.body.id)
+      if(deleted) {
+        res.status(200).send({deleted})
+      }
+
+      } catch (err) {
+        console.log ('error deleteing customer', err)
+    }
+})
 //create a new customer
 app.post('/api/stripe/v1/create-customer', jsonParser, async (req, res) => {
   try {
