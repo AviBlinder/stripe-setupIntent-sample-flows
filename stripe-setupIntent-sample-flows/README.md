@@ -38,3 +38,18 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Netlify functions:
+- under /stripe-setupIntent-backend:
+```sh
+netlify functions:build --functions /dist --src .
+```
+```sh
+netlify functions:list
+```
+```sh
+netlify deploy
+```
+```sh
+netlify deploy --prod
+```
