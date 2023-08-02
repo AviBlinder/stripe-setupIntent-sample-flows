@@ -211,7 +211,8 @@
 </template>
 
 <script setup lang="ts">
-  // const users = defineProps<User>()
+  import { inject } from 'vue';
+  const baseURL = inject('NETLIFY_FUNCTIONS_URL')
 
   const props = defineProps({
     users: [Object],
@@ -246,10 +247,8 @@
         body: JSON.stringify({ id }),
       };
       try {
-        fetch(
-          `${BACKEND_BASE_URL}/stripe/v1/delete-customer`,
-          requestOptions
-        ).then((response) => {
+        fetch(`${baseURL}/deleteCustomer`,requestOptions)
+        .then((response) => {
           switch (response.status) {
             case 200:
 
