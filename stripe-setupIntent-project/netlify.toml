@@ -1,0 +1,8 @@
+[dev]
+  targetPort = 3005
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+  directory = "./functions"  
+[[plugins]]
+package = "@netlify/plugin-functions-install-core"

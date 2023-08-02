@@ -1,0 +1,26 @@
+{
+  "name": "stripe-setupintent-backend",
+  "version": "1.0.0",
+  "description": "backend for stripe setupIntent project",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [
+    "stripe",
+    "express"
+  ],
+  "author": "Avi Blinder",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "serverless-http": "^3.2.0",
+    "stripe": "^12.14.0"
+  }
+}
