@@ -39,12 +39,18 @@ npm run dev
 npm run build
 ```
 
-## Deploying the project with /functions folder:
+## Deploying the project directly to Netlify:
 ```sh
 netlify dev
 npm run dev
 netlify deploy
 netlify deploy --prod
+```
+## or - if git repo connectet - just commit and push it
+```sh
+git add .
+git commit -m "some comment"
+git push -u origin main
 ```
 
 ### Netlify functions:

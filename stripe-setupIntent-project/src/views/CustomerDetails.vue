@@ -57,7 +57,7 @@
     </div>
     <hr class="border-1 border-slate-200 my-1" />
     <div class="flex flex-row justify-normal ml-5 mb-3 md:ml-10 md:mb-5 text-2xl">
-      Customer Details:
+      Customer Details: 
     </div>
     <div
       class="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg md: ml-6"
@@ -120,7 +120,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted , inject} from 'vue';
 
   import { useRouter, useRoute } from 'vue-router';
   // @ts-ignore
@@ -169,10 +169,10 @@
 
   onMounted(async () => {
     const response = await fetch(
-      `${BACKEND_BASE_URL}/stripe/v1/customers/${id}`
-    );
-    user.value = await response.json();
-    console.log(user.value);
+      `${inject('NETLIFY_FUNCTIONS_URL')}/getCustomerById/${id}`)
+      // @ts-ignore
+    const responseJson = await response.json()
+    user.value = responseJson.customer
   });
 </script>
 

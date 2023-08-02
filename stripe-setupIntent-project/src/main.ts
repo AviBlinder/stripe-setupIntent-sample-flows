@@ -9,6 +9,8 @@ import router from './router'
 
 const app = createApp(App)
 
+app.provide('NETLIFY_FUNCTIONS_URL', '/.netlify/functions');
+
 app.use(createPinia())
 app.use(router)
 

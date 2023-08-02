@@ -26,7 +26,9 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted, computed } from 'vue';
+  import { ref, onMounted, inject } from 'vue';
+  
+
   import { useRouter, useRoute } from 'vue-router';
 
   // @ts-ignore
@@ -45,8 +47,6 @@
   const selectedCustomer =  ref<Users | null>(null);
   const loading = ref(true);
 
-  // @ts-ignore
-  let BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const style = '';
   const JWT = ref('');
@@ -74,7 +74,7 @@
   //
   const  getCustomers = ref([])
   // fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)
-  fetch('/.netlify/functions/getCustomers').then(
+  fetch(`${inject('NETLIFY_FUNCTIONS_URL')}/getCustomers`).then(
       ( (response) => response.json())).then(
          (data) => {
           getCustomers.value = data
