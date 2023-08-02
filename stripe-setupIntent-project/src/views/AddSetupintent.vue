@@ -29,9 +29,10 @@
 </template>
 
 <script setup lang="ts">
-    import { ref , onMounted} from 'vue';
+    import { ref , onMounted, inject} from 'vue';
     import { useRoute } from 'vue-router';
 
+    const baseURL = inject('NETLIFY_FUNCTIONS_URL')
     const route = useRoute();
     const setupIntentSecret = ref({});
 
@@ -88,7 +89,7 @@
         body: JSON.stringify({ customerId }),
       };
       try {
-        fetch(`${BACKEND_BASE_URL}/stripe/v1/create-setup-intent`, requestOptions)
+        fetch(`${baseURL}/createSetupIntent`, requestOptions)
           .then((response) => {
             switch (response.status) {
               case 200:
