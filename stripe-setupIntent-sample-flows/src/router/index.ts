@@ -58,6 +58,14 @@ const router = createRouter({
       component: () => import('../views/WalletView.vue'),
     },
     {
+      path: '/SuccessSetupIntent',
+      name: 'SuccessSetupIntent',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/SuccessSetupIntent.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -74,7 +82,7 @@ const router = createRouter({
       component: () => import('../views/AddCustomer.vue'),
     },
     {
-      path: '/addSetupintent',
+      path: '/addSetupintent/:id',
       name: 'addSetupintent',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route

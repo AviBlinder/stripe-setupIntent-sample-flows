@@ -173,11 +173,16 @@ const searchCustomer = async (email) => {
   }
 
 // create a SetupIntent
-app.post('/api/stripe/v1/create-setup-intent', async (req, res) => {
+app.post('/api/stripe/v1/create-setup-intent', jsonParser, async (req, res) => {
   try {
+    console.log("req.body =",req.body)
     const intent = await stripe.setupIntents.create({
       customer: req.body.customerId,
+      automatic_payment_methods: {
+        enabled: true,
+      },
     });
+    console.log('intent = ', intent);
     res.status(201).json({ intent });
   } catch (error) {
     res.status(500).json({ error: error.message });

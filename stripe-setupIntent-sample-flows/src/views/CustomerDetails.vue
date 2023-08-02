@@ -32,7 +32,7 @@
 
       <router-link 
       class="justify-start"
-      :to="{ name: 'addSetupintent' }">
+      :to="{ name: 'addSetupintent', params: {id: id} , query: { name: user.name }}">
         <button class="btn-sm md:btn">
           <i class="fa fa-plus" aria-hidden="true"></i>
           Add Setup Intent
@@ -122,7 +122,7 @@
 <script setup lang="ts">
   import { ref, onMounted } from 'vue';
 
-  import { useRoute } from 'vue-router';
+  import { useRouter, useRoute } from 'vue-router';
   // @ts-ignore
   import SetupintentModal from '../components/SetupintentModal.vue';
 
@@ -131,6 +131,7 @@
   const BACKEND_BASE_URL :string = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const route = useRoute();
+  const router = useRouter()
 
   const id : string | any = route.params.id;
 
