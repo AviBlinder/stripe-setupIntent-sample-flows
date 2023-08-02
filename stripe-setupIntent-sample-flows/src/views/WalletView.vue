@@ -10,7 +10,9 @@
       </router-link>
 
   <div class="flex md:flex-row sm:flex-col gap-4">
-    <div v-if="setup_intents.length">
+    <div v-if="setup_intents.length" 
+    class="mb-3 md:mb-3"
+    >
     <ul v-for="intent in setup_intents"
       :key="intent.key"
     >
@@ -87,6 +89,7 @@
       </div>
       <!-- Credit Card end-->
     </ul>
+    <hr class="bg-secondary-200 border-200 max-w-md mt-2 ml-2 md:my-4">
     </div>
     <template v-else class="m-4 p-4">
       <p>No Credit Cards currently associated to this customer</p>

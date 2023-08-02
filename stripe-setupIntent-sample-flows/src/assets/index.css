@@ -10,6 +10,11 @@
   flex-row md:flex-col shrink grow mt-4
 
 }
+
+.fieldErrorBorder {
+  @apply border-red-500 mb-2 ring-red-500 text-red-500 text-xs md:text-sm font-medium
+}
+
 .btn {
   @apply mx-4 rounded-md bg-primary-500 px-2 py-2 
         text-center text-xs md:text-sm   font-semibold text-white shadow-sm 
