@@ -350,14 +350,17 @@
               createCustomerResponse.value =
                 'customer already exists. Try a different email';
               customerCreated.value = false;
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               break;
             case 201:
               createCustomerResponse.value = 'customer created successfully';
               customerCreated.value = true;
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               break;
             default:
               createCustomerResponse.value = `issue creating new customer. return status is ${response.status}`;
               customerCreated.value = false;
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               break;
           }
         });
