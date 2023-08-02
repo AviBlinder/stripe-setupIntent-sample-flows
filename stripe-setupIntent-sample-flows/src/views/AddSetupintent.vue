@@ -1,17 +1,19 @@
 <template>
   <main class="viewSize">
     <div>
-      <router-link class="justify-start" :to="{ name: 'customers' }">
+      <!-- :to="{ name: 'customers' }" -->
+      <router-link class="flex justify-center my-1 md:my-4" 
+      :to="{ name: 'customer-details', params : {id: route.params.id} }">
         <button class="btn-sm md:btn">
           <i class="fa fa-user" aria-hidden="true"></i>
-          Back to Customers
+          Back to Customer
         </button>
       </router-link>
 
-      <hr class="border-1 bg-secondary-300 my-2" />
+      <!-- <hr class="border-1 bg-secondary-300 my-2 mx-6 md:ml-10" /> -->
 
       <!-- Stripe Element -->
-      <form id="payment-form">
+      <form id="payment-form" class="mx-6 my-3 md:my-4 md:ml-10 md:mt-5 md:max-w-[500px]">
         <div id="payment-element">
           <!-- Elements will create form elements here -->
         </div>

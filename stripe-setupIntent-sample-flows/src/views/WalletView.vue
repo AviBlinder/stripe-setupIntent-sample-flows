@@ -1,14 +1,22 @@
 <template>
     <main class="viewSize">
+      <div class="flex flex-row md:flex-row align-middle justify-center m-2 md:m-4">
       <router-link 
-  
-      :to="{ name: 'customers' }">
-        <button class="btn-sm md:btn m-4 ">
-          <i class="fa fa-user" aria-hidden="true"></i>
-          Back to Customers
+        :to="{ name: 'customer-details', params : {id: route.params.id} }">
+        <button class="btn-sm md:btn">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          Back to Customer
         </button>
       </router-link>
 
+      <router-link 
+        :to="{ name: 'customers' }">
+        <button class="btn-sm md:btn ">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          Back to Customers List
+        </button>
+      </router-link>
+    </div>
   <div class="flex md:flex-row sm:flex-col gap-4">
     <div v-if="setup_intents.length" 
     class="mb-3 md:mb-3"
