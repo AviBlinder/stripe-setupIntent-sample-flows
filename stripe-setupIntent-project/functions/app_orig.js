@@ -23,6 +23,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const port = 4001;
 
+
 // stripe-related endpoints
 // get all customers
 app.get('/api/stripe/v1/customers', async (req, res) => {

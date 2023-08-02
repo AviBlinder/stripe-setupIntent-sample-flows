@@ -39,6 +39,14 @@ npm run dev
 npm run build
 ```
 
+## Deploying the project with /functions folder:
+```sh
+netlify dev
+npm run dev
+netlify deploy
+netlify deploy --prod
+```
+
 ### Netlify functions:
 - under /stripe-setupIntent-backend:
 ```sh

@@ -72,29 +72,20 @@
   });
 
   //
-  var  helloFunction = ''
-  fetch('/.netlify/functions/hello').then(
+  const  getCustomers = ref([])
+  // fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)
+  fetch('/.netlify/functions/getCustomers').then(
       ( (response) => response.json())).then(
          (data) => {
-          helloFunction = data
-          // @ts-ignore
-        console.log("helloFunction = ", helloFunction.customers.data)
+          getCustomers.value = data
         // @ts-ignore
-        users.value = helloFunction.customers.data
+        users.value = getCustomers.value.customers.data
         }
       )
+    //
   
-  //
-  // fetch('https://reqres.in/api/users')
-  // fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)
   
-  fetch('/.netlify/functions/api/stripe/v1/customers')
-    .then((response) => response.json())
-    .then((res2) => {
-      users.value = res2.data;
-      console.log(users.value);
-    });
-
+  
   const customerDetails = () => {
     // @ts-ignore
     router.push(`/customers/${selectedCustomer.value.id}`);
