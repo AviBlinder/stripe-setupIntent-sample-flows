@@ -41,7 +41,7 @@
                   <p class="text-sm text-gray-500 tracking-wide font-medium">
                     Please confirm the deletion of customer
                     
-                    {{ currentUser?.email }}
+                    {{ currentUser.email }}
                     This action is irreversible.
                   </p>
                 </div>
@@ -79,7 +79,7 @@ import type { PropType } from 'vue'
 import { type stripeUser  } from '../types/customers';
 
   const props = defineProps({
-    currentUser: Object as PropType<stripeUser> ,        
+    currentUser: Object as PropType<stripeUser> | any,        
     modalIsOpen:  Boolean
   });
 

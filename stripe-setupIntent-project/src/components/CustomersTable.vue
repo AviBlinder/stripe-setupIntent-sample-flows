@@ -27,7 +27,7 @@
     <!-- delete modal -->
       <deleteConfirmation
       v-if="isOpen"
-      :currentUser?="currentUser"
+      :currentUser="currentUser"
       :modalIsOpen="isOpen"
       @delete:modelValue="confirmDelete"
       @cancelDelete="cancelDelete"
