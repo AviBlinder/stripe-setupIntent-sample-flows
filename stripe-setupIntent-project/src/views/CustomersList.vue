@@ -1,10 +1,12 @@
 <template>
   <main class="viewSize">
-    <!-- <main class="container text-white max-w-full"> -->
     <div class="ml-5">
-      <!-- <CustomersTable :users="users" /> -->
       <Suspense>
-        <CustomersTable :users="users" />
+        <CustomersTable 
+        :users="users" 
+        @update:modelValue='updateUsers'
+        v-model="users"
+        />
       </Suspense>
      <div>
         <div v-if="selectedCustomer">
@@ -30,9 +32,15 @@
 </template>
 
 <script async setup lang="ts">
-  import { ref, onMounted, inject } from 'vue';
+  import { ref, onMounted, inject, getCurrentInstance } from 'vue';
 
   import { useRouter, useRoute } from 'vue-router';
+
+  const componentKey = ref(0);
+
+  const forceRerender = () => {
+    componentKey.value += 1;
+  };
 
   // @ts-ignore
   import CustomersTable from '../components/CustomersTable.vue';
@@ -53,6 +61,10 @@
   const style = '';
   const JWT = ref('');
 
+  const updateUsers = async (event : any) => {
+    // users.value = await JSON.parse(localStorage.getItem('stripeCustomers'))
+    users.value = Object.assign(event.value)
+  }
   onMounted(async () => {
     // To Do:
     // make call to obtain JWT based on returned code from backend
@@ -85,7 +97,6 @@ let getCustomers = ref<object | null>(null)
     // @ts-ignore
     users.value = JSON.parse(stripeCustomers)
     // @ts-ignore    
-    console.log('localStorage exists :', users.value)
   } else {
 
     // fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)

@@ -360,7 +360,6 @@
               const localStorageUpdated = updateLocalStorage(
                 data.customerCreate
               );
-              console.log('fullResponseBody =', data.customerCreate);
               customerCreated.value = true;
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               break;

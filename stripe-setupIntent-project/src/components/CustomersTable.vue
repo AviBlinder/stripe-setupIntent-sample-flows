@@ -301,7 +301,10 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, inject } from 'vue';
+  import { ref, inject,  } from 'vue';
+  
+  const emit = defineEmits(['update:modelValue']) 
+  
   import {
     TransitionRoot,
     TransitionChild,
@@ -318,6 +321,7 @@
   const props = defineProps({
     users: [Object],
   });
+  const globalCustomers = ref(props.users)
 
   const createDateFunc = function (linuxDate: number) {
     const longDate = new Date(linuxDate * 1000);
@@ -362,11 +366,13 @@
           await localStorage.setItem(
             'stripeCustomers',
             JSON.stringify(customers)
-          );
+            )
+        globalCustomers.value = Object.assign({}, customers)            
         } else {
           await localStorage.removeItem('stripeCustomers');
+          globalCustomers.value = {}
         }
-        break;
+        break
       }
     }
   };
@@ -386,9 +392,8 @@
     };
     try {
       const response = await fetch(`${baseURL}/deleteCustomer`, requestOptions);
-      await response
-        .json()
-
+      await response.json()
+       
         .then((data) => {
           switch (response.status) {
             case 200:
@@ -400,7 +405,7 @@
               closeModal();
               break;
           }
-        });
+        }).then ( () => emit('update:modelValue',globalCustomers))
     } catch (err) {
       console.log(`there was an error creating the deleting: ${err}`);
     }
