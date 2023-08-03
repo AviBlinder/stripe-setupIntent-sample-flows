@@ -330,7 +330,12 @@
       customers.unshift(customer);
       await localStorage.setItem('stripeCustomers', JSON.stringify(customers));
       return;
-    }
+    } 
+    // else {
+    //   // create stripeCustomers localStorage for first customer
+    //   await localStorage.setItem('stripeCustomers', JSON.stringify(customer));
+
+    // }
   }
 
   const saveCustomer = async () => {

@@ -1,92 +1,87 @@
 <template>
   <main class="viewSize">
     <div class="">
-
-  <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-10">
-      <TransitionChild
-        as="template"
-        enter="duration-300 ease-out"
-        enter-from="opacity-0"
-        enter-to="opacity-100"
-        leave="duration-200 ease-in"
-        leave-from="opacity-100"
-        leave-to="opacity-0"
-      >
-        <div class="fixed inset-0 bg-black bg-opacity-25" />
-      </TransitionChild>
-
-      <div class="fixed top-2 left-3 md:left-14 overflow-y-auto ">
-        <div
-          class="flex min-h-full items-center justify-center p-4 text-center"
+    <TransitionRoot appear :show="isOpen" as="template">
+      <Dialog as="div" @close="closeModal" class="relative z-10">
+        <TransitionChild
+          as="template"
+          enter="duration-300 ease-out"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="duration-200 ease-in"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
         >
-          <TransitionChild
-            as="template"
-            enter="duration-300 ease-out"
-            enter-from="opacity-0 scale-95"
-            enter-to="opacity-100 scale-100"
-            leave="duration-200 ease-in"
-            leave-from="opacity-100 scale-100"
-            leave-to="opacity-0 scale-95"
+          <div class="fixed inset-0 bg-black bg-opacity-25" />
+        </TransitionChild>
+
+        <div class="fixed top-2 left-3 md:left-14 overflow-y-auto">
+          <div
+            class="flex min-h-full items-center justify-center p-4 text-center"
           >
-            <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle 
-              shadow-xl transition-all"
+            <TransitionChild
+              as="template"
+              enter="duration-300 ease-out"
+              enter-from="opacity-0 scale-95"
+              enter-to="opacity-100 scale-100"
+              leave="duration-200 ease-in"
+              leave-from="opacity-100 scale-100"
+              leave-to="opacity-0 scale-95"
             >
-              <DialogTitle
-                as="h3"
-                class="text-lg  leading-6 text-gray-900 font-bold"
+              <DialogPanel
+                class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
               >
-                Confirm Customer Deletion
-              </DialogTitle>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500 tracking-wide font-medium">
-                  Please confirm the deletion of this customer.
-                  This action is irreversible. 
-                </p>
-              </div>
-
-              <div class="mt-6 flex flex-row justify-evenly">
-                <button
-                  type="button"
-                  class="inline-flex justify-center rounded-md border border-transparent 
-                  bg-red-400 px-4 py-2 text-sm md:text-md font-medium text-white hover:bg-red-500 
-                  focus:outline-none 
-                  focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2"
-                  @click="deleteCustomer"
+                <DialogTitle
+                  as="h3"
+                  class="text-lg leading-6 text-gray-900 font-bold"
                 >
-                  Delete
-                </button>
-                <button
-                  type="button"
-                  class="inline-flex justify-center rounded-md border border-transparent 
-                  bg-secondary-100 px-4 py-2 text-sm md:text-md font-medium text-secondary-600 hover:bg-secondary-200 
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  @click="closeModal"
-                >
-                  Cancel
-                </button>
+                  Confirm Customer Deletion
+                </DialogTitle>
+                <div class="mt-2">
+                  <p class="text-sm text-gray-500 tracking-wide font-medium">
+                    Please confirm the deletion of customer
+                    {{ currentUser.email }}
+                    This action is irreversible.
+                  </p>
+                </div>
 
-              </div>
-            </DialogPanel>
-          </TransitionChild>
+                <div class="mt-6 flex flex-row justify-evenly">
+                  <button
+                    type="button"
+                    class="inline-flex justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-sm md:text-md font-medium text-white hover:bg-red-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2"
+                    @click="confirmDelete"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex justify-center rounded-md border border-transparent bg-secondary-100 px-4 py-2 text-sm md:text-md font-medium text-secondary-600 hover:bg-secondary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    @click="cancelDelete"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
         </div>
-      </div>
-    </Dialog>
-  </TransitionRoot>
+      </Dialog>
+    </TransitionRoot>
+
   </div>
   </main>
 </template>
 
 <script setup lang="ts" >
-import { ref , inject} from 'vue'
+import { ref , onMounted} from 'vue'
   const props = defineProps({
-    user: Object,    
+    currentUser: Object,    
     modalIsOpen:  Boolean
   });
 
-  console.log("user :", props.user)
-
+onMounted( () => {
+  isOpen.value = props.modalIsOpen
+})
 import {
   TransitionRoot,
   TransitionChild,
@@ -95,66 +90,24 @@ import {
   DialogTitle,
 } from '@headlessui/vue'
 
+const emit = defineEmits(['delete:modelValue','cancelDelete']) 
 const isOpen = ref(false)
 
+const confirmDelete = () => {
+  emit('delete:modelValue')
+
+}
+
+const cancelDelete = () => {
+  emit('cancelDelete')
+}
 function closeModal() {
   isOpen.value = false
+  
 }
 function openModal() {
   isOpen.value = true
 }
 
- const removeLocalStorage = async (id : string | any) => {
-  console.log('inside removeLocalStorage ', id)
-  // @ts-ignore
-  let customers : [object]  = localStorage.getItem('stripeCustomers')
-  
-  let index : number  = 0
-  let customer : object = {}
-  // ts-ignore
-  for ([index, customer]  of customers.entries()) { 
-    // ts-ignore
-		if (customer.id === id) 
-		{		
-		customers.splice(index,1)
-		localStorage.setItem('stripeCustomers' , JSON.stringify(customers))
-		break
-		} 
-	}
-}
-  const baseURL = inject('NETLIFY_FUNCTIONS_URL');
-
-  const deleteCustomer = async (id) => {
-    console.log('deleteCustomer ', id);
-
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id }),
-    };
-    try {
-      const response = await fetch(`${baseURL}/deleteCustomer`, requestOptions)
-      await response.json()
-      .then( (data) => {
-        switch (response.status) {
-          case 200:
-            console.log('delete customer status 200 ', response.status);
-            isOpen.value = false
-            await removeLocalStorage(id)
-            break;
-          default:
-            console.log('delete customer status ', response.status);
-            isOpen.value = true
-            break;
-        }
-      });
-    } catch (err) {
-      console.log(`there was an error creating the deleting: ${err}`);
-    }
-
-    // stripe/v1/delete-customer
-  };
 
 </script>
