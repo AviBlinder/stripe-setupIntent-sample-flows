@@ -2,12 +2,14 @@
   <div class="flex flex-col min-h-screen">
 
     <SiteNavigation/>
-
+    
+    <Suspense>
     <RouterView class="flex-1" v-slot="{ Component }">
       <Transition name="page">
         <component :is="Component" />
       </Transition>
-    </RouterView>
+      </RouterView>
+    </Suspense>
 
   </div>
 

@@ -1,17 +1,7 @@
 <template>
   <main class="viewSize">
     <div class="">
-  <div class="fixed inset-0 flex items-center justify-center">
-    <button
-      type="button"
-      @click="openModal"
-      class="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium 
-      text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white 
-      focus-visible:ring-opacity-75"
-    >
-      Open dialog
-    </button>
-  </div>
+
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" @close="closeModal" class="relative z-10">
       <TransitionChild
@@ -63,7 +53,7 @@
                   bg-red-400 px-4 py-2 text-sm md:text-md font-medium text-white hover:bg-red-500 
                   focus:outline-none 
                   focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2"
-                  @click="closeModal"
+                  @click="deleteCustomer"
                 >
                   Delete
                 </button>
@@ -88,8 +78,15 @@
   </main>
 </template>
 
-<script setup >
-import { ref } from 'vue'
+<script setup lang="ts" >
+import { ref , inject} from 'vue'
+  const props = defineProps({
+    user: Object,    
+    modalIsOpen:  Boolean
+  });
+
+  console.log("user :", props.user)
+
 import {
   TransitionRoot,
   TransitionChild,
@@ -106,4 +103,37 @@ function closeModal() {
 function openModal() {
   isOpen.value = true
 }
+  const baseURL = inject('NETLIFY_FUNCTIONS_URL');
+
+  const deleteCustomer = (id) => {
+    console.log('deleteCustomer ', id);
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id }),
+    };
+    try {
+      fetch(`${baseURL}/deleteCustomer`, requestOptions).then((response) => {
+        switch (response.status) {
+          case 200:
+            console.log('delete customer status 200 ', response.status);
+            isOpen.value = false
+
+            break;
+          default:
+            console.log('delete customer status ', response.status);
+            isOpen.value = true
+            break;
+        }
+      });
+    } catch (err) {
+      console.log(`there was an error creating the deleting: ${err}`);
+    }
+
+    // stripe/v1/delete-customer
+  };
+
 </script>

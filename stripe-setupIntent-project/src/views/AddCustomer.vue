@@ -325,7 +325,7 @@
     }
   };
 
-  const saveCustomer = () => {
+  const saveCustomer = async () => {
     
     if (!validationError.value) {
       var customer = Object.assign({}, customerDetails.value);
@@ -339,12 +339,11 @@
       };
       try {
         console.log("customer :", customer)
-        fetch(
-          // `${BACKEND_BASE_URL}/stripe/v1/create-customer`,
-          // requestOptions
-          `${baseURL}/createCustomer`,
-          requestOptions)
-          .then((response) => {
+        
+        const response = await fetch( `${baseURL}/createCustomer`,requestOptions)
+        
+        await response.json().then( data => {
+          console.log('data =' , data)
           switch (response.status) {
             case 200:
               createCustomerResponse.value =
@@ -354,17 +353,24 @@
               break;
             case 201:
               createCustomerResponse.value = 'customer created successfully';
+              console.log('fullResponseBody =', data.customerCreate)
               customerCreated.value = true;
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               break;
             default:
-              createCustomerResponse.value = `issue creating new customer. return status is ${response.status}`;
+              createCustomerResponse.value = `issue creating new customer. return status is ${data}`;
               customerCreated.value = false;
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               break;
-          }
-        });
-      } catch (err) {
+          }        
+        }
+
+          )
+
+
+        
+        }
+       catch (err) {
         createCustomerResponse.value = `there was an error creating the customer: ${err}`;
         customerCreated.value = false;
       }

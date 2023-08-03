@@ -5,7 +5,7 @@
         <div
           class="text-lg md:text-xl mb-2 flex md:flex-row md:ml-10 md:mt-4 text-secondary-700"
         >
-          List of Stripe Users:
+          List of Stripe Users: 
         </div>
         <div
           class="mb-2 flex md:flex-row md:ml-10 md:mt-4 text-md md:text-normal text-md text-secondary-600"
@@ -23,6 +23,80 @@
         </router-link>
       </div>
     </div>
+
+    <!-- delete modal -->
+  <TransitionRoot appear :show="isOpen" as="template">
+    <Dialog as="div" @close="closeModal" class="relative z-10">
+      <TransitionChild
+        as="template"
+        enter="duration-300 ease-out"
+        enter-from="opacity-0"
+        enter-to="opacity-100"
+        leave="duration-200 ease-in"
+        leave-from="opacity-100"
+        leave-to="opacity-0"
+      >
+        <div class="fixed inset-0 bg-black bg-opacity-25" />
+      </TransitionChild>
+
+      <div class="fixed top-2 left-3 md:left-14 overflow-y-auto ">
+        <div
+          class="flex min-h-full items-center justify-center p-4 text-center"
+        >
+          <TransitionChild
+            as="template"
+            enter="duration-300 ease-out"
+            enter-from="opacity-0 scale-95"
+            enter-to="opacity-100 scale-100"
+            leave="duration-200 ease-in"
+            leave-from="opacity-100 scale-100"
+            leave-to="opacity-0 scale-95"
+          >
+            <DialogPanel
+              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle 
+              shadow-xl transition-all"
+            >
+              <DialogTitle
+                as="h3"
+                class="text-lg  leading-6 text-gray-900 font-bold"
+              >
+                Confirm Customer Deletion
+              </DialogTitle>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500 tracking-wide font-medium">
+                  Please confirm the deletion of customer {{ currentUser.email }}
+                  This action is irreversible. 
+                </p>
+              </div>
+
+              <div class="mt-6 flex flex-row justify-evenly">
+                <button
+                  type="button"
+                  class="inline-flex justify-center rounded-md border border-transparent 
+                  bg-red-400 px-4 py-2 text-sm md:text-md font-medium text-white hover:bg-red-500 
+                  focus:outline-none 
+                  focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2"
+                  @click="confirmDelete" >
+                  Delete 
+                </button>
+                <button
+                  type="button"
+                  class="inline-flex justify-center rounded-md border border-transparent 
+                  bg-secondary-100 px-4 py-2 text-sm md:text-md font-medium text-secondary-600 hover:bg-secondary-200 
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                  @click="closeModal"
+                >
+                  Cancel
+                </button>
+
+              </div>
+            </DialogPanel>
+          </TransitionChild>
+        </div>
+      </div>
+    </Dialog>
+  </TransitionRoot>
+    <!-- delete modal end -->
 
     <div class="p-5 h-screen grid grid-cols-1">
       <div class="overflow-auto rounded-lg shadow hidden md:block">
@@ -76,7 +150,7 @@
               <td>
                 <button
                   class="p-1 hover:scale-110"
-                  @click="deleteCustomer(user.id)"
+                  @click="openModal(user)"
                 >
                   <i class="fa-solid fa-trash text-red-500"> </i>
                 </button>
@@ -220,8 +294,7 @@
           >
             <button 
               class="font-semibold text-white p-1 tracking-wide  leading-5 text-xs "
-              @click="deleteCustomer(user.id)"
-            >
+              @click="openModal(user)"                >
               Delete customer
               <span class="ml-4">
                 <i class="fa-solid fa-trash"> </i>
@@ -235,8 +308,20 @@
 </template>
 
 <script setup lang="ts">
-  import { inject } from 'vue';
+ import { ref, inject } from 'vue';
+import {
+  TransitionRoot,
+  TransitionChild,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+} from '@headlessui/vue'
+
+ // @ts-ignore
+//  import deleteConfirmation from '../components/deleteConfirmation.vue';
+
   const baseURL = inject('NETLIFY_FUNCTIONS_URL');
+
 
   const props = defineProps({
     users: [Object],
@@ -259,6 +344,25 @@
   // @ts-ignore
   const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
 
+  // 
+const isOpen = ref(false)
+
+function closeModal() {
+  isOpen.value = false
+}
+function openModal(user) {
+  if (user) {
+     currentUser.value = user
+
+  }
+  isOpen.value = true
+}
+
+  const currentUser = ref('')
+  // 
+  const confirmDelete = (user : Object) => {
+      deleteCustomer(currentUser.value.id)
+  }
   // @ts-ignore
   const deleteCustomer = (id) => {
     console.log('deleteCustomer ', id);
@@ -275,10 +379,11 @@
         switch (response.status) {
           case 200:
             console.log('delete customer status 200 ', response.status);
-
+            closeModal()
             break;
           default:
             console.log('delete customer status ', response.status);
+            closeModal()
             break;
         }
       });

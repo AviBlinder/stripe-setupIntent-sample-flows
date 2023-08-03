@@ -48,7 +48,7 @@ const handler = async (event, context) => {
         description: customer.fullName,
         balance: balance,
       });
-
+      console.log('customerCreate =', customerCreate);
       return {
         statusCode: 201,
         body: JSON.stringify({ customerCreate }),

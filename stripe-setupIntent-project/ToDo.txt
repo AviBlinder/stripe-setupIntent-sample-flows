@@ -1,5 +1,5 @@
 To Do:
-1 Delete Customer: Confirmetion Modal + refresh list
+1 Delete Customer: Confirmetion Modal (as component) + refresh list
 
 2 Add localStorage
 https://gist.github.com/AviBlinder/a7ca0303d45c78a80bac030b345a0eef

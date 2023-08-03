@@ -1,13 +1,17 @@
 <template>
   <main class="viewSize">
-  <!-- <main class="container text-white max-w-full"> -->
-    <div class=" ml-5 ">
+    <!-- <main class="container text-white max-w-full"> -->
+    <div class="ml-5">
       <!-- <CustomersTable :users="users" /> -->
-      <CustomersTable :users="users" />
-
-      <div>
+      <Suspense>
+        <CustomersTable :users="users" />
+      </Suspense>
+     <div>
         <div v-if="selectedCustomer">
-          <button @click="customerDetails" class="m-4 p-2 btn text-2xl md:texl-lg">
+          <button
+            @click="customerDetails"
+            class="m-4 p-2 btn text-2xl md:texl-lg"
+          >
             See Customer details
           </button>
         </div>
@@ -25,9 +29,8 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script async setup lang="ts">
   import { ref, onMounted, inject } from 'vue';
-  
 
   import { useRouter, useRoute } from 'vue-router';
 
@@ -44,9 +47,8 @@
 
   // @ts-ignore
   const users = ref({});
-  const selectedCustomer =  ref<Users | null>(null);
+  const selectedCustomer = ref<Users | null>(null);
   const loading = ref(true);
-
 
   const style = '';
   const JWT = ref('');
@@ -56,7 +58,7 @@
     // make call to obtain JWT based on returned code from backend
     //
     // @ts-ignore
-    const stripePublicKey : string = import.meta.env.VITE_STRIPE_KEY
+    const stripePublicKey: string = import.meta.env.VITE_STRIPE_KEY;
     const ELEMENT_TYPE = 'card';
     // const ELEMENT_TYPE = "payment";
     // stripe = await loadStripe(import.meta.env.VITE_STRIPE_KEY);
@@ -72,20 +74,31 @@
   });
 
   //
-  const  getCustomers = ref([])
-  // fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)
-  fetch(`${inject('NETLIFY_FUNCTIONS_URL')}/getCustomers`).then(
-      ( (response) => response.json())).then(
-         (data) => {
-          getCustomers.value = data
+//@ts-ignore
+let getCustomers = ref<object | null>(null)
+
+
+
+  if (localStorage.getItem('stripeCustomers') ) {
+    // @ts-ignore
+    const stripeCustomers = localStorage.getItem('stripeCustomers')
+    // @ts-ignore
+    users.value = JSON.parse(stripeCustomers)
+    // @ts-ignore    
+    console.log('localStorage exists :', users.value)
+  } else {
+
+    // fetch(`${BACKEND_BASE_URL}/stripe/v1/customers`)
+    fetch(`${inject('NETLIFY_FUNCTIONS_URL')}/getCustomers`)
+      .then((response) => response.json())
+      .then((data) => {
+        getCustomers.value = data;
         // @ts-ignore
-        users.value = getCustomers.value.customers.data
-        }
-      )
-    //
-  
-  
-  
+        users.value = getCustomers.value.customers.data;
+        localStorage.setItem('stripeCustomers', JSON.stringify(users.value));
+      });
+  }
+
   const customerDetails = () => {
     // @ts-ignore
     router.push(`/customers/${selectedCustomer.value.id}`);
