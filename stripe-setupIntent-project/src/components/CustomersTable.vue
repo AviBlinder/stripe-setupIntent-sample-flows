@@ -75,7 +75,7 @@
               </td>
               <td>
                 <button
-                  class="p-1   hover:scale-110"
+                  class="p-1 hover:scale-110"
                   @click="deleteCustomer(user.id)"
                 >
                   <i class="fa-solid fa-trash text-red-500"> </i>
@@ -164,68 +164,70 @@
             </div>
           </router-link>
 
-            <div
-              class="flex flex-row items-center justify-between text-xs mb-2 pb-2 mt-6"
-            >
-              <div>
-                <i class="fa-regular fa-calendar text-secondary-200"> </i>
-                <span class="pl-2">{{ createDateFunc(user.created) }}</span>
-              </div>
-              <div class="flex flex-row ml-5 justify-end">
-                <i class="fa-solid fa-coins mx-1"></i>
-                <span>
-                  {{ user.balance }}
-                </span>
-              </div>
+          <div
+            class="flex flex-row items-center justify-between text-xs mb-2 pb-2 mt-6"
+          >
+            <div>
+              <i class="fa-regular fa-calendar text-secondary-200"> </i>
+              <span class="pl-2">{{ createDateFunc(user.created) }}</span>
             </div>
+            <div class="flex flex-row ml-5 justify-end">
+              <i class="fa-solid fa-coins mx-1"></i>
+              <span>
+                {{ user.balance }}
+              </span>
+            </div>
+          </div>
 
-            <div class="flex items-center text-xs text-gray-700 my-2">
-              <div>
-                <i class="fa-regular fa-envelope"></i>
-                <span class="pl-2">{{ user.email }}</span>
-              </div>
+          <div class="flex items-center text-xs text-gray-700 my-2">
+            <div>
+              <i class="fa-regular fa-envelope"></i>
+              <span class="pl-2">{{ user.email }}</span>
             </div>
-            <div
-              v-if="user.phone"
-              class="flex items-center text-xs text-gray-700 pt-3"
-            >
-              <div>
-                <i class="fa-solid fa-phone"></i>
-                <span class="pl-2">{{ user.phone }}</span>
-              </div>
+          </div>
+          <div
+            v-if="user.phone"
+            class="flex items-center text-xs text-gray-700 pt-3"
+          >
+            <div>
+              <i class="fa-solid fa-phone"></i>
+              <span class="pl-2">{{ user.phone }}</span>
             </div>
-            <div v-else class="flex items-center text-xs text-gray-700 pt-3">
-              <div>
-                <i class="fa-solid fa-phone"></i>
-                <span class="pl-2">N/A</span>
-              </div>
+          </div>
+          <div v-else class="flex items-center text-xs text-gray-700 pt-3">
+            <div>
+              <i class="fa-solid fa-phone"></i>
+              <span class="pl-2">N/A</span>
             </div>
+          </div>
 
-            <router-link
+          <router-link
             :to="{
               name: 'customer-details',
               params: { id: user.id },
-            }">
-            <div class="text-sm font-medium text-black mt-2 ">
+            }"
+          >
+            <div class="text-sm font-medium text-black mt-2">
               <i class="fa-solid fa-info"></i>
               <span class="text-blue-400 text-xs pl-1"> View full profile</span>
             </div>
-            </router-link>
+          </router-link>
 
-            <hr class="border-2 border-slate-200 mt-2" />
-                        <div class="bg-red-500 opacity-80 mx-2 mt-5 rounded-lg flex flex-row justify-evenly align-middle">
-               <button
-                  class=" text-white p-1 font-semibold text-xs md:text-sm leading-5"
-                  @click="deleteCustomer(user.id)"
-                > Delete customer
-                <span class="ml-4">
-                      <i class="fa-solid fa-trash"> </i>
-                </span>
-                  
-                </button>
+          <hr class="border-2 border-slate-200 mt-2" />
 
-            </div>
-
+          <div
+            class="bg-red-500 opacity-80 mx-2 mt-5 rounded-lg flex flex-row justify-evenly align-middle"
+          >
+            <button 
+              class="font-semibold text-white p-1 tracking-wide  leading-5 text-xs "
+              @click="deleteCustomer(user.id)"
+            >
+              Delete customer
+              <span class="ml-4">
+                <i class="fa-solid fa-trash"> </i>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

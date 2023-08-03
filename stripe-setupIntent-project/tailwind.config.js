@@ -58,7 +58,21 @@ module.exports = {
       },
       // Palette 16:
       colors: {
-        primary: colors.purple,
+        // primary: colors.purple,
+        // palette #19
+        primary: {
+          900: '#19216C',
+          800: '#647ACB',
+          700: '#2D3A8C',
+          600: '#7B93DB',
+          500: '#35469C',
+          400: '#98AEEB',
+          300: '#4055A8',
+          200: '#BED0F7',
+          100: '#4C63B6',
+          50: '#E0E8F9'
+        },
+
         // blue grey palleta
         secondary: {
           DEFAULT: '#486581',
