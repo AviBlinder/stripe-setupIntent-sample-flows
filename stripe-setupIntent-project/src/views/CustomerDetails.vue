@@ -138,9 +138,14 @@
     id: '',
     object: '',
     address: {
+      state: '',
       city: '',
       line1: '',
-      postal_code: 0,
+      line2: null,
+      postal_code: '',
+      country: '',
+
+
     },
     balance: 0,
     created: 0,

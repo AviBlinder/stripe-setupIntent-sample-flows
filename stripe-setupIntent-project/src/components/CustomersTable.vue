@@ -27,7 +27,7 @@
     <!-- delete modal -->
       <deleteConfirmation
       v-if="isOpen"
-      :currentUser="currentUser"
+      :currentUser?="currentUser"
       :modalIsOpen="isOpen"
       @delete:modelValue="confirmDelete"
       @cancelDelete="cancelDelete"
@@ -244,7 +244,8 @@
 
 <script setup lang="ts">
   import { ref, inject,  } from 'vue';
-  
+  import type { PropType } from 'vue'
+  import { type stripeUser } from '../types/customers';
   const emit = defineEmits(['update:modelValue']) 
   
   import {
@@ -261,9 +262,9 @@
   const baseURL = inject('NETLIFY_FUNCTIONS_URL');
 
   const props = defineProps({
-    users: [Object],
+    users: Object as PropType<stripeUser[]> 
   });
-  const globalCustomers = ref(props.users)
+  const globalCustomers  = ref(props.users)
 
   const createDateFunc = function (linuxDate: number) {
     const longDate = new Date(linuxDate * 1000);
@@ -277,7 +278,7 @@
   };
   // @ts-ignore
   const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
-  const currentUser = ref({});
+  const currentUser = ref<Object | null | any>({});
 
   //
   const isOpen = ref(false);
@@ -285,7 +286,7 @@
   function closeModal() {
     isOpen.value = false;
   }
-  function openModal(user)  {
+  function openModal(user : object)  {
     currentUser.value = user;
     isOpen.value = true;
   }
@@ -297,11 +298,12 @@
   const removeLocalStorage = async (id: string | any) => {
     // @ts-ignore
     let customers: [object] = await JSON.parse(
+      // @ts-ignore
       localStorage.getItem('stripeCustomers')
     );
 
     let index: number = 0;
-    let customer: object = {};
+    let customer: object | any = {};
     // ts-ignore
     for ([index, customer] of customers.entries()) {
       // ts-ignore
@@ -312,10 +314,12 @@
             'stripeCustomers',
             JSON.stringify(customers)
             )
+            // @ts-ignore
         globalCustomers.value = Object.assign({}, customers)            
 
       } else {
         await localStorage.removeItem('stripeCustomers');
+            // @ts-ignore        
         globalCustomers.value = {}
         }
         break

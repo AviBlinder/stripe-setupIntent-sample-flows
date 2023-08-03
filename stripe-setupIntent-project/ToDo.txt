@@ -1,9 +1,7 @@
 To Do:
-1 Delete Customer: Confirmation Modal (as component)
-----
-2. Fix Nav Bar (see example from vueJobs)
+1. Fix Nav Bar (see example from vueJobs)
 
-3 About page
+2 About page
 ---------------------------------------------------------------------
 - Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind
 

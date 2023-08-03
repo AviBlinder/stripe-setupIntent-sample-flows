@@ -40,7 +40,8 @@
                 <div class="mt-2">
                   <p class="text-sm text-gray-500 tracking-wide font-medium">
                     Please confirm the deletion of customer
-                    {{ currentUser.email }}
+                    
+                    {{ currentUser?.email }}
                     This action is irreversible.
                   </p>
                 </div>
@@ -74,13 +75,19 @@
 
 <script setup lang="ts" >
 import { ref , onMounted} from 'vue'
+import type { PropType } from 'vue'
+import { type stripeUser  } from '../types/customers';
+
   const props = defineProps({
-    currentUser: Object,    
+    currentUser: Object as PropType<stripeUser> ,        
     modalIsOpen:  Boolean
   });
 
 onMounted( () => {
   isOpen.value = props.modalIsOpen
+  // ts-ignore
+console.log('current user: ', props.currentUser)
+
 })
 import {
   TransitionRoot,

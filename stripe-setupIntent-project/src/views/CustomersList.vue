@@ -3,7 +3,7 @@
     <div class="ml-5">
       <Suspense>
         <CustomersTable 
-        :users="users" 
+        :users?="users" 
         @update:modelValue='updateUsers'
         v-model="users"
         />
