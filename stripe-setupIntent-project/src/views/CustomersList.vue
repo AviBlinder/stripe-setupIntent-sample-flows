@@ -3,7 +3,7 @@
     <div class="ml-5">
       <Suspense>
         <CustomersTable 
-        :users?="users" 
+        :users="users" 
         @update:modelValue='updateUsers'
         v-model="users"
         />
@@ -51,10 +51,10 @@
   const router = useRouter();
   const route = useRoute();
 
-  import { type Users } from '../types/customers';
+  import { type stripeUser, type Users } from '../types/customers';
 
   // @ts-ignore
-  const users = ref({});
+  const users = ref<stripeUser | any>(null);
   const selectedCustomer = ref<Users | null>(null);
   const loading = ref(true);
 
