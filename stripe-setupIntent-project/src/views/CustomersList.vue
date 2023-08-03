@@ -62,7 +62,6 @@
   const JWT = ref('');
 
   const updateUsers = async (event : any) => {
-    // users.value = await JSON.parse(localStorage.getItem('stripeCustomers'))
     users.value = Object.assign(event.value)
   }
   onMounted(async () => {

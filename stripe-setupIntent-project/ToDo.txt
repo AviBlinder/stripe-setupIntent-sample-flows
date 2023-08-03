@@ -1,7 +1,7 @@
 To Do:
-1 Delete Customer: Confirmetion Modal (as component) + refresh list
+1 Delete Customer: Confirmation Modal (as component)
 ----
-2. Fix Nav Bar
+2. Fix Nav Bar (see example from vueJobs)
 
 3 About page
 ---------------------------------------------------------------------
