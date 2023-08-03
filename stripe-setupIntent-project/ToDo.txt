@@ -1,9 +1,9 @@
 To Do:
-- Finish migration to serverless functions
+- Delete Customer:Add on Mobile view +  Confirmetion Modal + refresh list
 - Add localStorage
 https://gist.github.com/AviBlinder/a7ca0303d45c78a80bac030b345a0eef
 - Fix Nav Bar
-- Delete Customer: Confirmetion Modal + refresh list
+
 - About page
 ---------------------------------------------------------------------
 - Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind

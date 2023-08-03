@@ -151,7 +151,7 @@
                 </div>
               </div>
 
-              <div class="sm:col-span-2">
+              <div class="sm:col-span-3">
                 <label
                   for="city"
                   class="block text-sm font-medium leading-6 text-secondary-900"
@@ -169,11 +169,11 @@
                 </div>
               </div>
 
-              <div class="sm:col-span-2 md:col-start-4">
+              <div class="sm:col-span-3 md:col-start-4">
                 <label
                   for="postal-code"
                   class="block text-sm font-medium leading-6 text-secondary-900"
-                  >ZIP / Postal code</label
+                  >Postal code</label
                 >
                 <div class="mt-2">
                   <input
