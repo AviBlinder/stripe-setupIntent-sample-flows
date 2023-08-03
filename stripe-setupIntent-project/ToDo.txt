@@ -1,10 +1,12 @@
 To Do:
-- Delete Customer:Add on Mobile view +  Confirmetion Modal + refresh list
-- Add localStorage
-https://gist.github.com/AviBlinder/a7ca0303d45c78a80bac030b345a0eef
-- Fix Nav Bar
+1 Delete Customer: Confirmetion Modal + refresh list
 
-- About page
+2 Add localStorage
+https://gist.github.com/AviBlinder/a7ca0303d45c78a80bac030b345a0eef
+
+3. Fix Nav Bar
+
+4 About page
 ---------------------------------------------------------------------
 - Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind
 

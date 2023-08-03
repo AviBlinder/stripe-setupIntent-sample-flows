@@ -57,7 +57,7 @@
           </thead>
           <tbody class="divide-y divide-gray-100">
             <tr
-              class="bg-white hover:bg-slate-300"
+              class="bg-white hover:bg-slate-100"
               v-for="user in users"
               :key="user.id"
             >
@@ -75,10 +75,10 @@
               </td>
               <td>
                 <button
-                  class="btn  p-1 bg-red-400 hover:bg-red-500 hover:scale-105"
+                  class="p-1   hover:scale-110"
                   @click="deleteCustomer(user.id)"
                 >
-                  <i class="fa-solid fa-trash bg-red-500"> </i>
+                  <i class="fa-solid fa-trash text-red-500"> </i>
                 </button>
               </td>
               <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
@@ -215,7 +215,7 @@
             <hr class="border-2 border-slate-200 mt-2" />
                         <div class="bg-red-500 opacity-80 mx-2 mt-5 rounded-lg flex flex-row justify-evenly align-middle">
                <button
-                  class=" text-white p-1 font-light text-xs md:text-sm leading-5"
+                  class=" text-white p-1 font-semibold text-xs md:text-sm leading-5"
                   @click="deleteCustomer(user.id)"
                 > Delete customer
                 <span class="ml-4">
