@@ -325,6 +325,17 @@
     }
   };
 
+  const updateLocalStorage = async (customer : any) => {
+    // @ts-ignore
+    if (JSON.parse(localStorage.getItem('stripeCustomers'))) {
+      // @ts-ignore
+      let customers = await JSON.parse(localStorage.getItem('stripeCustomers'))
+      customers.unshift(customer)
+      await localStorage.setItem('stripeCustomers',JSON.stringify(customers))
+      return 
+    }
+
+  }
   const saveCustomer = async () => {
     
     if (!validationError.value) {
@@ -342,7 +353,8 @@
         
         const response = await fetch( `${baseURL}/createCustomer`,requestOptions)
         
-        await response.json().then( data => {
+        await response.json()
+        .then( data => {
           console.log('data =' , data)
           switch (response.status) {
             case 200:
@@ -352,7 +364,8 @@
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               break;
             case 201:
-              createCustomerResponse.value = 'customer created successfully';
+              createCustomerResponse.value = 'customer created successfully';  
+              const localStorageUpdated = updateLocalStorage(data.customerCreate)         
               console.log('fullResponseBody =', data.customerCreate)
               customerCreated.value = true;
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
