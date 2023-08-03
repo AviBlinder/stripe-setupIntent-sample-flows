@@ -16,9 +16,9 @@ const handler = async (event, context) => {
   }
 
   const data = JSON.parse(event.body);
-
   try {
     const deleted = await stripe.customers.del(data.id);
+
     if (deleted.deleted) {
       return {
         statusCode: 200,

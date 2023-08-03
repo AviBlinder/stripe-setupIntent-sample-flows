@@ -5,7 +5,7 @@
         <div
           class="text-lg md:text-xl mb-2 flex md:flex-row md:ml-10 md:mt-4 text-secondary-700"
         >
-          List of Stripe Users: 
+          List of Stripe Users:
         </div>
         <div
           class="mb-2 flex md:flex-row md:ml-10 md:mt-4 text-md md:text-normal text-md text-secondary-600"
@@ -25,77 +25,72 @@
     </div>
 
     <!-- delete modal -->
-  <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-10">
-      <TransitionChild
-        as="template"
-        enter="duration-300 ease-out"
-        enter-from="opacity-0"
-        enter-to="opacity-100"
-        leave="duration-200 ease-in"
-        leave-from="opacity-100"
-        leave-to="opacity-0"
-      >
-        <div class="fixed inset-0 bg-black bg-opacity-25" />
-      </TransitionChild>
-
-      <div class="fixed top-2 left-3 md:left-14 overflow-y-auto ">
-        <div
-          class="flex min-h-full items-center justify-center p-4 text-center"
+    <TransitionRoot appear :show="isOpen" as="template">
+      <Dialog as="div" @close="closeModal" class="relative z-10">
+        <TransitionChild
+          as="template"
+          enter="duration-300 ease-out"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="duration-200 ease-in"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
         >
-          <TransitionChild
-            as="template"
-            enter="duration-300 ease-out"
-            enter-from="opacity-0 scale-95"
-            enter-to="opacity-100 scale-100"
-            leave="duration-200 ease-in"
-            leave-from="opacity-100 scale-100"
-            leave-to="opacity-0 scale-95"
+          <div class="fixed inset-0 bg-black bg-opacity-25" />
+        </TransitionChild>
+
+        <div class="fixed top-2 left-3 md:left-14 overflow-y-auto">
+          <div
+            class="flex min-h-full items-center justify-center p-4 text-center"
           >
-            <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle 
-              shadow-xl transition-all"
+            <TransitionChild
+              as="template"
+              enter="duration-300 ease-out"
+              enter-from="opacity-0 scale-95"
+              enter-to="opacity-100 scale-100"
+              leave="duration-200 ease-in"
+              leave-from="opacity-100 scale-100"
+              leave-to="opacity-0 scale-95"
             >
-              <DialogTitle
-                as="h3"
-                class="text-lg  leading-6 text-gray-900 font-bold"
+              <DialogPanel
+                class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
               >
-                Confirm Customer Deletion
-              </DialogTitle>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500 tracking-wide font-medium">
-                  Please confirm the deletion of customer {{ currentUser.email }}
-                  This action is irreversible. 
-                </p>
-              </div>
-
-              <div class="mt-6 flex flex-row justify-evenly">
-                <button
-                  type="button"
-                  class="inline-flex justify-center rounded-md border border-transparent 
-                  bg-red-400 px-4 py-2 text-sm md:text-md font-medium text-white hover:bg-red-500 
-                  focus:outline-none 
-                  focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2"
-                  @click="confirmDelete" >
-                  Delete 
-                </button>
-                <button
-                  type="button"
-                  class="inline-flex justify-center rounded-md border border-transparent 
-                  bg-secondary-100 px-4 py-2 text-sm md:text-md font-medium text-secondary-600 hover:bg-secondary-200 
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  @click="closeModal"
+                <DialogTitle
+                  as="h3"
+                  class="text-lg leading-6 text-gray-900 font-bold"
                 >
-                  Cancel
-                </button>
+                  Confirm Customer Deletion
+                </DialogTitle>
+                <div class="mt-2">
+                  <p class="text-sm text-gray-500 tracking-wide font-medium">
+                    Please confirm the deletion of customer
+                    {{ currentUser.email }}
+                    This action is irreversible.
+                  </p>
+                </div>
 
-              </div>
-            </DialogPanel>
-          </TransitionChild>
+                <div class="mt-6 flex flex-row justify-evenly">
+                  <button
+                    type="button"
+                    class="inline-flex justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-sm md:text-md font-medium text-white hover:bg-red-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2"
+                    @click="confirmDelete"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex justify-center rounded-md border border-transparent bg-secondary-100 px-4 py-2 text-sm md:text-md font-medium text-secondary-600 hover:bg-secondary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    @click="closeModal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
         </div>
-      </div>
-    </Dialog>
-  </TransitionRoot>
+      </Dialog>
+    </TransitionRoot>
     <!-- delete modal end -->
 
     <div class="p-5 h-screen grid grid-cols-1">
@@ -148,10 +143,7 @@
                 </router-link>
               </td>
               <td>
-                <button
-                  class="p-1 hover:scale-110"
-                  @click="openModal(user)"
-                >
+                <button class="p-1 hover:scale-110" @click="openModal(user)">
                   <i class="fa-solid fa-trash text-red-500"> </i>
                 </button>
               </td>
@@ -292,9 +284,10 @@
           <div
             class="bg-red-500 opacity-80 mx-2 mt-5 rounded-lg flex flex-row justify-evenly align-middle"
           >
-            <button 
-              class="font-semibold text-white p-1 tracking-wide  leading-5 text-xs "
-              @click="openModal(user)"                >
+            <button
+              class="font-semibold text-white p-1 tracking-wide leading-5 text-xs"
+              @click="openModal(user)"
+            >
               Delete customer
               <span class="ml-4">
                 <i class="fa-solid fa-trash"> </i>
@@ -308,31 +301,26 @@
 </template>
 
 <script setup lang="ts">
- import { ref, inject } from 'vue';
-import {
-  TransitionRoot,
-  TransitionChild,
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-} from '@headlessui/vue'
+  import { ref, inject } from 'vue';
+  import {
+    TransitionRoot,
+    TransitionChild,
+    Dialog,
+    DialogPanel,
+    DialogTitle,
+  } from '@headlessui/vue';
 
- // @ts-ignore
-//  import deleteConfirmation from '../components/deleteConfirmation.vue';
+  // @ts-ignore
+  //  import deleteConfirmation from '../components/deleteConfirmation.vue';
 
   const baseURL = inject('NETLIFY_FUNCTIONS_URL');
-
 
   const props = defineProps({
     users: [Object],
   });
 
-  // console.log('users: ', props.users);
-
   const createDateFunc = function (linuxDate: number) {
-    // console.log(linuxDate);
     const longDate = new Date(linuxDate * 1000);
-    // console.log('longDate :', longDate);
     return (
       longDate.getDate() +
       '/' +
@@ -344,29 +332,51 @@ import {
   // @ts-ignore
   const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
 
-  // 
-const isOpen = ref(false)
+  //
+  const isOpen = ref(false);
 
-function closeModal() {
-  isOpen.value = false
-}
-function openModal(user) {
-  if (user) {
-     currentUser.value = user
-
+  function closeModal() {
+    isOpen.value = false;
   }
-  isOpen.value = true
-}
-
-  const currentUser = ref('')
-  // 
-  const confirmDelete = (user : Object) => {
-      deleteCustomer(currentUser.value.id)
+  function openModal(user) {
+    if (user) {
+      currentUser.value = user;
+    }
+    isOpen.value = true;
   }
+
+  const removeLocalStorage = async (id: string | any) => {
+    // @ts-ignore
+    let customers: [object] = await JSON.parse(
+      localStorage.getItem('stripeCustomers')
+    );
+
+    let index: number = 0;
+    let customer: object = {};
+    // ts-ignore
+    for ([index, customer] of customers.entries()) {
+      // ts-ignore
+      if (customer.id === id) {
+        customers.splice(index, 1);
+        if (customers.length > 0) {
+          await localStorage.setItem(
+            'stripeCustomers',
+            JSON.stringify(customers)
+          );
+        } else {
+          await localStorage.removeItem('stripeCustomers');
+        }
+        break;
+      }
+    }
+  };
+  const currentUser = ref('');
+  //
+  const confirmDelete = (user: Object) => {
+    deleteCustomer(currentUser.value.id);
+  };
   // @ts-ignore
-  const deleteCustomer = (id) => {
-    console.log('deleteCustomer ', id);
-
+  const deleteCustomer = async (id) => {
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -375,23 +385,25 @@ function openModal(user) {
       body: JSON.stringify({ id }),
     };
     try {
-      fetch(`${baseURL}/deleteCustomer`, requestOptions).then((response) => {
-        switch (response.status) {
-          case 200:
-            console.log('delete customer status 200 ', response.status);
-            closeModal()
-            break;
-          default:
-            console.log('delete customer status ', response.status);
-            closeModal()
-            break;
-        }
-      });
+      const response = await fetch(`${baseURL}/deleteCustomer`, requestOptions);
+      await response
+        .json()
+
+        .then((data) => {
+          switch (response.status) {
+            case 200:
+              removeLocalStorage(id);
+              closeModal();
+              break;
+            default:
+              console.log('delete customer status != 200 : ', response.status);
+              closeModal();
+              break;
+          }
+        });
     } catch (err) {
       console.log(`there was an error creating the deleting: ${err}`);
     }
-
-    // stripe/v1/delete-customer
   };
 </script>
 

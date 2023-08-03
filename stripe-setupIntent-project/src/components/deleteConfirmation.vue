@@ -103,9 +103,28 @@ function closeModal() {
 function openModal() {
   isOpen.value = true
 }
+
+ const removeLocalStorage = async (id : string | any) => {
+  console.log('inside removeLocalStorage ', id)
+  // @ts-ignore
+  let customers : [object]  = localStorage.getItem('stripeCustomers')
+  
+  let index : number  = 0
+  let customer : object = {}
+  // ts-ignore
+  for ([index, customer]  of customers.entries()) { 
+    // ts-ignore
+		if (customer.id === id) 
+		{		
+		customers.splice(index,1)
+		localStorage.setItem('stripeCustomers' , JSON.stringify(customers))
+		break
+		} 
+	}
+}
   const baseURL = inject('NETLIFY_FUNCTIONS_URL');
 
-  const deleteCustomer = (id) => {
+  const deleteCustomer = async (id) => {
     console.log('deleteCustomer ', id);
 
     const requestOptions = {
@@ -116,12 +135,14 @@ function openModal() {
       body: JSON.stringify({ id }),
     };
     try {
-      fetch(`${baseURL}/deleteCustomer`, requestOptions).then((response) => {
+      const response = await fetch(`${baseURL}/deleteCustomer`, requestOptions)
+      await response.json()
+      .then( (data) => {
         switch (response.status) {
           case 200:
             console.log('delete customer status 200 ', response.status);
             isOpen.value = false
-
+            await removeLocalStorage(id)
             break;
           default:
             console.log('delete customer status ', response.status);

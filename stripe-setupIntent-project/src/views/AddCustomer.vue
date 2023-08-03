@@ -57,15 +57,15 @@
                     {{ fullNameValidationErrorMessage }}
                   </span>
                 </div>
-                </div>
+              </div>
 
-                <div class="sm:col-span-3">
+              <div class="sm:col-span-3">
                 <label
                   for="phone-number"
                   class="block text-sm font-medium leading-6 text-secondary-900"
                   >Phone Number</label
-                  >
-                  <!-- @keyup="validatephoneError" -->
+                >
+                <!-- @keyup="validatephoneError" -->
                 <div class="mt-2">
                   <input
                     v-model="customerDetails.phone"
@@ -82,7 +82,6 @@
                   >
                     {{ phoneValidationErrorMessage }}
                   </span>
-
                 </div>
               </div>
 
@@ -109,7 +108,6 @@
                   >
                     {{ emailValidationErrorMessage }}
                   </span>
-
                 </div>
               </div>
 
@@ -240,8 +238,8 @@
 <script setup lang="ts">
   import { ref, inject } from 'vue';
 
-  const baseURL = inject('NETLIFY_FUNCTIONS_URL')
- 
+  const baseURL = inject('NETLIFY_FUNCTIONS_URL');
+
   const customerDetails = ref({
     fullName: '',
     email: '',
@@ -256,19 +254,17 @@
   });
   const createCustomerResponse = ref('');
   const customerCreated = ref(false);
-  // 
+  //
 
   const validationError = ref(true);
   const fullNameValidationErrorMessage = ref('');
   const phoneValidationErrorMessage = ref('');
   const emailValidationErrorMessage = ref('');
 
-
   const fullNameError = ref(false);
   const phoneError = ref(false);
   const emailError = ref(false);
 
-  
   //validateFullname
   const validateFullname = () => {
     customerDetails.value.fullName.trim();
@@ -278,18 +274,18 @@
     ) {
       validationError.value = true;
       fullNameValidationErrorMessage.value = `Full name must contain at least three characters `;
-      fullNameError.value = true
+      fullNameError.value = true;
       return true;
     } else {
       validationError.value = false;
       fullNameValidationErrorMessage.value = '';
-      fullNameError.value = false
+      fullNameError.value = false;
       return false;
     }
   };
-//
+  //
 
-//validatephoneError
+  //validatephoneError
   const validatephoneError = () => {
     customerDetails.value.phone.trim();
     if (
@@ -298,46 +294,46 @@
     ) {
       validationError.value = true;
       phoneValidationErrorMessage.value = `Phone number must contain at least six characters `;
-      phoneError.value = true
+      phoneError.value = true;
       return true;
     } else {
       validationError.value = false;
       phoneValidationErrorMessage.value = '';
-      phoneError.value = false
+      phoneError.value = false;
       return false;
     }
   };
 
-    //validateEmailError
+  //validateEmailError
   const validateemailError = () => {
-  customerDetails.value.email.trim();
-	const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;	
+    customerDetails.value.email.trim();
+    const validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (!customerDetails.value.email.match(validRegex)) {
       validationError.value = true;
-      emailValidationErrorMessage.value = ` Invalid email format `
-      emailError.value = true
+      emailValidationErrorMessage.value = ` Invalid email format `;
+      emailError.value = true;
       return true;
     } else {
       validationError.value = false;
-      emailValidationErrorMessage.value = ''
-      emailError.value = false
+      emailValidationErrorMessage.value = '';
+      emailError.value = false;
       return false;
     }
   };
 
-  const updateLocalStorage = async (customer : any) => {
+  const updateLocalStorage = async (customer: any) => {
     // @ts-ignore
     if (JSON.parse(localStorage.getItem('stripeCustomers'))) {
       // @ts-ignore
-      let customers = await JSON.parse(localStorage.getItem('stripeCustomers'))
-      customers.unshift(customer)
-      await localStorage.setItem('stripeCustomers',JSON.stringify(customers))
-      return 
+      let customers = await JSON.parse(localStorage.getItem('stripeCustomers'));
+      customers.unshift(customer);
+      await localStorage.setItem('stripeCustomers', JSON.stringify(customers));
+      return;
     }
-
   }
+
   const saveCustomer = async () => {
-    
     if (!validationError.value) {
       var customer = Object.assign({}, customerDetails.value);
 
@@ -349,41 +345,33 @@
         body: JSON.stringify({ customer }),
       };
       try {
-        console.log("customer :", customer)
-        
-        const response = await fetch( `${baseURL}/createCustomer`,requestOptions)
-        
-        await response.json()
-        .then( data => {
-          console.log('data =' , data)
+        const response = await fetch(`${baseURL}/createCustomer`,requestOptions);
+
+        await response.json().then((data) => {
           switch (response.status) {
             case 200:
               createCustomerResponse.value =
                 'customer already exists. Try a different email';
               customerCreated.value = false;
-              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               break;
             case 201:
-              createCustomerResponse.value = 'customer created successfully';  
-              const localStorageUpdated = updateLocalStorage(data.customerCreate)         
-              console.log('fullResponseBody =', data.customerCreate)
+              createCustomerResponse.value = 'customer created successfully';
+              const localStorageUpdated = updateLocalStorage(
+                data.customerCreate
+              );
+              console.log('fullResponseBody =', data.customerCreate);
               customerCreated.value = true;
-              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               break;
             default:
               createCustomerResponse.value = `issue creating new customer. return status is ${data}`;
               customerCreated.value = false;
-              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               break;
-          }        
-        }
-
-          )
-
-
-        
-        }
-       catch (err) {
+          }
+        });
+      } catch (err) {
         createCustomerResponse.value = `there was an error creating the customer: ${err}`;
         customerCreated.value = false;
       }

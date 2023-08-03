@@ -1,12 +1,9 @@
 To Do:
 1 Delete Customer: Confirmetion Modal (as component) + refresh list
+----
+2. Fix Nav Bar
 
-2 Add localStorage
-https://gist.github.com/AviBlinder/a7ca0303d45c78a80bac030b345a0eef
-
-3. Fix Nav Bar
-
-4 About page
+3 About page
 ---------------------------------------------------------------------
 - Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind
 
