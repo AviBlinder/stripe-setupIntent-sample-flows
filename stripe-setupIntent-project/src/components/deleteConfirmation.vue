@@ -86,7 +86,6 @@ import { type stripeUser  } from '../types/customers';
 onMounted( () => {
   isOpen.value = props.modalIsOpen
   // ts-ignore
-console.log('current user: ', props.currentUser)
 
 })
 import {

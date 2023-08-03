@@ -1,4 +1,5 @@
 To Do:
+// review https://vuejs.org/guide/typescript/composition-api.html
 1. Fix Nav Bar (see example from vueJobs)
 
 2 About page

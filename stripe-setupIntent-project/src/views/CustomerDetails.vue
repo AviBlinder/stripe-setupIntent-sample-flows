@@ -121,50 +121,22 @@
 
 <script setup lang="ts">
   import { ref, onMounted , inject} from 'vue';
+import type { Ref } from 'vue'
 
   import { useRouter, useRoute } from 'vue-router';
   // @ts-ignore
   import SetupintentModal from '../components/SetupintentModal.vue';
 
-  import { type User, type InvoiceSettings } from '../types/customers';
+  import { type stripeUser, type InvoiceSettings } from '../types/customers';
 
   const route = useRoute();
   const router = useRouter();
 
-  const id: string | any = route.params.id;
+  const id = route.params.id;
 
-  const user = ref<User>({
-    value: undefined,
-    id: '',
-    object: '',
-    address: {
-      state: '',
-      city: '',
-      line1: '',
-      line2: null,
-      postal_code: '',
-      country: '',
-
-
-    },
-    balance: 0,
-    created: 0,
-    currency: null,
-    default_source: null,
-    delinquent: false,
-    description: '',
-    discount: null,
-    email: '',
-    invoice_prefix: '',
-    livemode: false,
-    name: '',
-    next_invoice_sequence: 0,
-    phone: null,
-    preferred_locales: [],
-    shipping: null,
-    tax_exempt: '',
-    test_clock: null,
-  });
+  // const user = ref<stripeUser >();
+  // @ts-ignore
+  const user :  Ref<stripeUser> = ref();
   const modalActive = ref<boolean>(false);
   const toggleModal = () => {
     modalActive.value = !modalActive.value;

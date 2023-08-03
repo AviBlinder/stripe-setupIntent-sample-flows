@@ -69,7 +69,7 @@
           <tbody class="divide-y divide-gray-100">
             <tr
               class="bg-white hover:bg-slate-100"
-              v-for="user in users"
+              v-for="user in globalCustomers"
               :key="user.id"
             >
               <td
@@ -150,7 +150,7 @@
       <!-- on non-mobile devices - the cards will be hidden -->
       <div class="grid grid-cols-1 col-start-2 gap-4 md:hidden">
         <div
-          v-for="user in users"
+          v-for="user in globalCustomers"
           :key="user.id"
           class="bg-white space-y-3 p-4 rounded-lg hover:scale-105 w-[250px] shadow-sm border-2"
         >
@@ -243,7 +243,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, inject,  } from 'vue';
+  import { ref, inject } from 'vue';
   import type { PropType } from 'vue'
   import { type stripeUser } from '../types/customers';
   const emit = defineEmits(['update:modelValue']) 
@@ -258,13 +258,15 @@
 
   // @ts-ignore
    import deleteConfirmation from '../components/deleteConfirmation.vue';
-
   const baseURL = inject('NETLIFY_FUNCTIONS_URL');
 
   const props = defineProps({
     users: Object as PropType<stripeUser[]> 
   });
-  const globalCustomers  = ref(props.users)
+
+  const globalCustomers = ref(props.users)
+  
+  const currentUser = ref<stripeUser | any >(null)
 
   const createDateFunc = function (linuxDate: number) {
     const longDate = new Date(linuxDate * 1000);
@@ -278,8 +280,6 @@
   };
   // @ts-ignore
   const BACKEND_BASE_URL: string = import.meta.env.VITE_BACKEND_BASE_URL;
-  const currentUser = ref<Object | null | any>({});
-
   //
   const isOpen = ref(false);
 
