@@ -10,9 +10,9 @@
           <p class="text-2xl md:text-2xl">Stripe Customers and Intents</p>
         </div>
       </RouterLink>
-      <!-- <router-link :to="{name: 'view2'}"
+      <router-link :to="{name: 'view3'}"
       class="text-2xl md:text-lg"
-      > view2 </router-link> -->
+      > view3 </router-link>
       <!-- <router-link :to="{name: 'view1'}"> view1 </router-link> 
       <router-link :to="{name: 'view3'}"> view3 </router-link>
       <router-link :to="{name: 'view4'}"> view4 </router-link> -->
