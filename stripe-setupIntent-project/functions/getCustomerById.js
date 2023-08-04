@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 
 // @ts-ignore
 const handler = async (event, context) => {
+  // console.log('inside getCustomerById ');
   // @ts-ignore
   const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
   // @ts-ignore

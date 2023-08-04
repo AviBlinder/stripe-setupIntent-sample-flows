@@ -1,7 +1,9 @@
 <template>
   <main class="viewSize">
     <div class="flex flex-col md:flex-row">
-      <div class="flex flex-row justify-center align-middle p-2 w-full mr-8 m-2 md:m-4 text-center">
+      <div
+        class="flex flex-row justify-center align-middle p-2 w-full mr-8 m-2 md:m-4 text-center"
+      >
         <div>
           <i
             class="fa-solid fa-question-circle aria-hidden='true' text-2xl text-primary-400 mt-1 cursor-pointer"
@@ -56,8 +58,10 @@
       </div>
     </div>
     <hr class="border-1 border-slate-200 my-1" />
-    <div class="flex flex-row justify-normal ml-5 mb-3 md:ml-10 md:mb-5 text-2xl">
-      Customer Details: 
+    <div
+      class="flex flex-row justify-normal ml-5 mb-3 md:ml-10 md:mb-5 text-2xl"
+    >
+      Customer Details:
     </div>
     <div
       class="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg md: ml-6"
@@ -120,14 +124,14 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted , inject} from 'vue';
-import type { Ref } from 'vue'
+  import { ref, onBeforeMount, inject } from 'vue';
+  import type { Ref } from 'vue';
 
   import { useRouter, useRoute } from 'vue-router';
   // @ts-ignore
   import SetupintentModal from '../components/SetupintentModal.vue';
 
-  import { type stripeUser, type InvoiceSettings } from '../types/customers';
+  import { type stripeUser} from '../types/customers';
 
   const route = useRoute();
   const router = useRouter();
@@ -136,18 +140,55 @@ import type { Ref } from 'vue'
 
   // const user = ref<stripeUser >();
   // @ts-ignore
-  const user :  Ref<stripeUser> = ref();
+  const user: Ref<stripeUser > = ref({
+      id:                '',
+  object:                '',
+  address:              {
+    city:                 '',
+    country:              '',
+    line1:                '',
+    line2:                null,
+    postal_code:          '',
+    state:                '',
+    },
+  balance:               0,
+  created:               0,
+  currency:              '',
+  default_source:        null,
+  delinquent:            false,
+  description:           '',
+  discount:              null,
+  email:                 '',
+  invoice_prefix:        '',
+  invoice_settings:      {
+  custom_fields:          null,
+  default_payment_method: null,
+  footer:                 null,
+  rendering_options:      null,
+  },
+  livemode:              false,
+  metadata:              null,
+  name:                  '',
+  next_invoice_sequence: 0,
+  phone:                 '',
+  preferred_locales:     null,
+  shipping:              null,
+  tax_exempt:            '',
+  test_clock:            null,
+  });
   const modalActive = ref<boolean>(false);
   const toggleModal = () => {
     modalActive.value = !modalActive.value;
   };
 
-  onMounted(async () => {
+  onBeforeMount( async () => {
     const response = await fetch(
-      `${inject('NETLIFY_FUNCTIONS_URL')}/getCustomerById/${id}`)
-      // @ts-ignore
-    const responseJson = await response.json()
-    user.value = responseJson.customer
+      `${inject('NETLIFY_FUNCTIONS_URL')}/getCustomerById/${id}`
+    );
+    // @ts-ignore
+    console.log("response :", response)
+    const responseJson = await response.json();
+    user.value = Object.assign({}, responseJson.customer)
   });
 </script>
 

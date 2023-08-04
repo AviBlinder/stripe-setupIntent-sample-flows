@@ -33,10 +33,14 @@ module.exports = {
       15: '640px',
       16: '768px',
     },
-    // fonts - set:
-    // 1. font-size (text-sm, text-base, text-lg,text-xl...) +
-    // 2. font-weight - see above setup  +
+    // Typhography setup:
+    // 1. font-size (text-sm, text-base, text-lg,text-xl...)
+    // 2. font-weight (font-extralight ...)
     // 3. text-color (lightness lower for de-emphasazing)
+    // 4. letter spacing (tracking-tighter...)
+    // 5. Line Hight (leading-3 ...)
+    // 6. text-align (text-center, text-left, text-start, text-justify ...)
+    // 7. Vertical align (align-baseline, align-middle, align-top...)
 
     // customized font-weights
     fontWeight: {
@@ -57,20 +61,35 @@ module.exports = {
         Roboto: ['Roboto, sans-serif'],
       },
       // Palette 16:
+      // [TailwindCSS Colors Generatos](https://uicolors.app/create)
       colors: {
         // primary: colors.purple,
         // palette #19
+        // primary: {
+        //   900: '#19216C',
+        //   800: '#647ACB',
+        //   700: '#2D3A8C',
+        //   600: '#7B93DB',
+        //   500: '#35469C',
+        //   400: '#98AEEB',
+        //   300: '#4055A8',
+        //   200: '#BED0F7',
+        //   100: '#4C63B6',
+        //   50: '#E0E8F9',
+        // },
+        // cornflower:
         primary: {
-          900: '#19216C',
-          800: '#647ACB',
-          700: '#2D3A8C',
-          600: '#7B93DB',
-          500: '#35469C',
-          400: '#98AEEB',
-          300: '#4055A8',
-          200: '#BED0F7',
-          100: '#4C63B6',
-          50: '#E0E8F9'
+          50: '#f2f7fc',
+          100: '#e1ecf8',
+          200: '#cadff3',
+          300: '#9fc7ea',
+          400: '#7aaee0',
+          500: '#5a92d7',
+          600: '#4677ca',
+          700: '#3c65b9',
+          800: '#365397',
+          900: '#304778',
+          950: '#212e4a',
         },
 
         // blue grey palleta
