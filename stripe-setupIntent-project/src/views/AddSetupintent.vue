@@ -1,29 +1,33 @@
 <template>
   <main class="viewSize">
-    <div>
+    <div class="flex flex-col justify-center ">
       <!-- :to="{ name: 'customers' }" -->
-      <router-link class="flex justify-center my-1 md:my-4" 
+      <div>
+      <router-link class="flex justify-center mt-1 mb-3 md:my-4" 
       :to="{ name: 'customer-details', params : {id: route.params.id} }">
         <button class="btn-sm md:btn">
           <i class="fa fa-user" aria-hidden="true"></i>
           Back to Customer
         </button>
       </router-link>
-
+    </div>
       <!-- <hr class="border-1 bg-secondary-300 my-2 mx-6 md:ml-10" /> -->
 
       <!-- Stripe Element -->
-      <form id="payment-form" class="mx-6 my-3 md:my-4 md:ml-10 md:mt-5 md:max-w-[500px]">
+      <div class="bg-secondary-200  p-4 rounded-lg">
+        
+      <form id="payment-form" class="my-3 md:my-4 md:mt-5 flex flex-col justify-center">
         <div id="payment-element">
           <!-- Elements will create form elements here -->
         </div>
-        <button class="btn m-4" @click.prevent="submitSetupIntent" id="submit">
-          Submit
+        <button class="btn my-4" @click.prevent="submitSetupIntent" id="submit">
+          Submit Setup Intent
         </button>
         <div id="error-message">
           <!-- Display error message to your customers here -->
         </div>
       </form>
+      </div>
     </div>
   </main>
 </template>

@@ -1,10 +1,11 @@
 To Do:
-1. Fix Nav Bar (see example from vueJobs) --> puck a sample from tailwindUI
-2. Add 'search by email' functinality - based on Weather App
+1. Fix Nav Bar (Menus: left: Customers + Add Customer / middle: search / right: about 
+2. Fix styling of 2 'add' elements 
+2. Add 'search by email' functinality to Nav bar - based on Weather App
 
 2. Bugs:
 - Add navigation buttons to SuccessSetupIntent + About
-- Show <teleport> message for cusstomer successfully added + navigate back to '/customers'
+- Show <teleport> message for customer successfully added + navigate back to '/customers'
 - add 'errorURL' + error page after createSetupIntent
 - display loaded on 'show setupIntents' page
 
