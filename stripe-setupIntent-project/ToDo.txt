@@ -3,6 +3,12 @@ To Do:
 
 2 About page
 
+3. Bugs:
+- Add navigation buttons to SuccessSetupIntent + About
+- Show <teleport> message for cusstomer successfully added + navigate back to '/customers'
+- add 'errorURL' + error page after createSetupIntent
+- display loaded on 'show setupIntents' page
+
 --> connect to CI tool
 ---------------------------------------------------------------------
 - Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind

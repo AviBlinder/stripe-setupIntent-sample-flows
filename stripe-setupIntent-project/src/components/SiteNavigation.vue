@@ -1,29 +1,19 @@
 <template>
-  <header 
+  <header
     class="sticky top-0 max-w-full min-w-full bg-secondary-200 rounded-sm md:mt-3">
-    <div class="flex flex-col md:flex-row gap-4 flex-1 justify-between align-middle m-2">
-      <RouterLink :to="{ name: 'home' }">
-        <div
-          class="flex items-center gap-3 justif-center text-secondary-700"
-        >
-          <i class="fa-solid fa-credit-card text-2xl pl-2"></i>
-          <p class="text-2xl md:text-2xl">Stripe Customers and Intents</p>
-        </div>
-      </RouterLink>
-      <!-- <router-link :to="{name: 'view3'}"
-      class="text-2xl md:text-lg"
-      > view3 </router-link> -->
-      <!-- <router-link :to="{name: 'view1'}"> view1 </router-link> 
-      <router-link :to="{name: 'view3'}"> view3 </router-link>
-      <router-link :to="{name: 'view4'}"> view4 </router-link> -->
+    <div class="flex flex-row md:flex-row gap-2 m-2 justify-around">
+      <div class=" items-center gap-3 text-secondary-700 ">
+        <RouterLink :to="{ name: 'home' }" class="flex flow-row justify-evenly" >
+            <i class="fa-solid fa-credit-card text-2xl pl-2 mx-4"></i>
+          <p class="text-2xl md:text-2xl">Stripe Setup Intents</p>
+        </RouterLink>
+      </div>
 
-      <RouterLink to="/about">
-        <div
-          class="flex justify-end text-4xl md:text-lg flex-inital-4 text-secondary-700"
-        >
-          <i class="fa-solid fa-user md:pt-1 md:pr-4"></i>
-        </div>
-      </RouterLink>
+      <div class="text-[24px] md:text-lg flex-inital-4 text-secondary-600 align-middle ">
+        <RouterLink to="/about">
+          <i class="fa-solid fa-question md:pr-4  pl-2 mx-4 "></i>
+        </RouterLink>
+      </div>
     </div>
   </header>
 </template>
