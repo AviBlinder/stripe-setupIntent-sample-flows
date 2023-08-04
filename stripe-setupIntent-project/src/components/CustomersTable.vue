@@ -1,20 +1,20 @@
 <template>
   <div>
     <div class="flex flex-col md:flex-row">
-      <div class="flex flex-col">
+      <div class="flex flex-col ">
         <div
           class="text-lg md:text-xl mb-2 flex md:flex-row md:ml-10 md:mt-4 text-secondary-700"
         >
           List of Stripe Users:
         </div>
         <div
-          class="mb-2 flex md:flex-row md:ml-10 md:mt-4 text-md md:text-normal text-md text-secondary-600"
+          class="mb-2 flex md:flex-row md:ml-10 md:mt-4 text-md md:text-normal text-secondary-600 "
         >
           Select a user to get additional information and perform actions
         </div>
       </div>
       <div
-        class="flex justify-center md:justify-end align-middle mt-3 md:mt-4 ml-5 md:ml-4"
+        class="flex justify-center md:justify-end align-middle mt-3 md:mt-4 mb-2 "
       >
         <router-link :to="{ name: 'AddCustomer' }">
           <button class="btn text-center font-semibold px-4">
@@ -34,14 +34,14 @@
       >
       </deleteConfirmation>
     <!-- delete modal end -->
-
-    <div class="p-5 h-screen grid grid-cols-1">
+      <div class="flex justify-center mt-2">
+    <div class=" h-auto grid grid-cols-1 ">
       <div class="overflow-auto rounded-lg shadow hidden md:block">
-        <table class="w-full">
+        <table class="w-full ">
           <thead class="bg-gray-50 border-b-2 border-gray-200">
             <tr>
               <th
-                class="w-20 p-3 text-sm font-semibold tracking-wide text-left"
+                class=" text-sm font-semibold tracking-wide text-left"
               >
                 Name
               </th>
@@ -238,6 +238,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>

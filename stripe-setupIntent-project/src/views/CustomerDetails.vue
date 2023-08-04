@@ -1,6 +1,6 @@
 <template>
   <main class="viewSize">
-    <div class="flex flex-col md:flex-row">
+    <div class="flex flex-col md:flex-row ">
       <div
         class="flex flex-row justify-center align-middle p-2 w-full mr-8 m-2 md:m-4 text-center"
       >
@@ -57,16 +57,13 @@
         </div>
       </div>
     </div>
-    <hr class="border-1 border-slate-200 my-1" />
-    <div
-      class="flex flex-row justify-normal ml-5 mb-3 md:ml-10 md:mb-5 text-2xl"
-    >
+    <div class="flex flex-row justify-normal ml-5 mb-3 md:ml-10 md:mb-5 text-2xl ">
       Customer Details:
     </div>
+    <div class="grid grid-cols-1 mb-4">
     <div
-      class="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg md: ml-6"
-    >
-      <div class="border-t border-gray-200">
+      class=" shadow overflow-hidden md:ml-6 ">
+      <div class="border border-primary-300 sm:rounded-lg md:rounded-lg ">
         <dl>
           <div
             class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
@@ -119,6 +116,7 @@
           </div>
         </dl>
       </div>
+    </div>
     </div>
   </main>
 </template>

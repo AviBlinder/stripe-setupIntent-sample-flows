@@ -1,23 +1,23 @@
 <template>
-  <div class="flex flex-col min-h-screen">
-
+  <!-- <div class="flex flex-col min-h-screen"> -->
     <SiteNavigation/>
-    
+
+    <!-- flex-row md:flex-col  grow mt-4  -->
     <Suspense>
-    <RouterView class="flex-1" v-slot="{ Component }">
+      <div class="max-w-full flex justify-center align-middle ">
+      <RouterView  v-slot="{ Component }">
       <Transition name="page">
         <component :is="Component" />
       </Transition>
       </RouterView>
+      </div>
     </Suspense>
-
-  </div>
-
 </template>
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import SiteNavigation from './components/SiteNavigation.vue'
+// import SiteNavigation from './components/SiteNavigation.vue'
+import SiteNavigation from './components/view4.vue'
 
 </script>
 

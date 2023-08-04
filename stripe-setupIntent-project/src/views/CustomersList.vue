@@ -1,6 +1,6 @@
 <template>
   <main class="viewSize">
-    <div class="ml-5">
+    <div class="">
       <Suspense>
         <CustomersTable 
         :users="users" 

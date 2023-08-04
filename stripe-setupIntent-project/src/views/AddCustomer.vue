@@ -1,14 +1,14 @@
 <template>
   <main class="viewSize">
-    <div class="flex flex-row shrink-0 ml-4 my-4 md:ml-2 md:my-2">
-      <router-link class="justify-start" :to="{ name: 'customers' }">
+    <div class="flex flex-row my-4  justify-center">
+      <router-link class="flex " :to="{ name: 'customers' }">
         <button class="btn-sm md:btn m-4">
           <i class="fa fa-user" aria-hidden="true"></i>
           Back to Customers
         </button>
       </router-link>
     </div>
-    <hr class="w-full mx-2 border-1 bg-secondary-200 my-2" />
+    <!-- <hr class="w-full mx-2 border-1 bg-secondary-200 my-2" /> -->
     <div v-if="!customerCreated">
       <div
         v-if="createCustomerResponse"
@@ -19,7 +19,7 @@
       <form>
         <div class="space-y-2 md:space-y-12">
           <div
-            class="grid grid-cols-1 gap-x-8 md:border-b border-gray-900/10 pb-6 md:pb-8 md:grid-cols-3 ml-5 md:ml-1"
+            class="grid grid-cols-1 gap-x-8 md:border-b border-gray-900/10 pb-6 md:pb-8 md:grid-cols-3"
           >
             <div>
               <p class="text-base font-semibold leading-7 text-secondary-900">

@@ -1,14 +1,10 @@
 @tailwind base;
 @tailwind components;
- body {
-  @apply
-    flex align-middle justify-center
-  }
-
+ 
+  
 .viewSize {
-  @apply  w-[300px] md:w-[600px]	lg:w-[850px] 
-  flex-row md:flex-col shrink grow mt-4
-
+  @apply  max-w-[85%] md:max-w-[55%] mt-4 
+  
 }
 
 .fieldErrorBorder {
