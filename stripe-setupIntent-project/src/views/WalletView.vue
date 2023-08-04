@@ -68,6 +68,7 @@
                           <p class="">
                             {{ intent.card.exp_month }} /
                             {{ intent.card.exp_year }}
+
                           </p>
                         </div>
                         <div class="md:pt-1 ml-7 flex justify-end flex-col align-baseline ">
@@ -101,14 +102,15 @@
 
 <script setup lang="ts">
   import { useRoute } from 'vue-router';
-  import { onMounted, ref, inject } from 'vue';
-
+  import { onMounted, ref,  inject } from 'vue';
+  import { type Setupintents } from '@/types/setupintents';
   // @ts-ignore
   const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
   const route = useRoute();
   // @ts-ignore
-  const setup_intents = ref([]);
+  const setup_intents = ref<Setupintents | any>([]);
+  
 
   onMounted(async () => {
     const id = route.params.id;
