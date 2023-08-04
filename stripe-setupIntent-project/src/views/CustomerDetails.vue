@@ -185,8 +185,6 @@
     const response = await fetch(
       `${inject('NETLIFY_FUNCTIONS_URL')}/getCustomerById/${id}`
     );
-    // @ts-ignore
-    console.log("response :", response)
     const responseJson = await response.json();
     user.value = Object.assign({}, responseJson.customer)
   });
