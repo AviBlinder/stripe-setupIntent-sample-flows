@@ -3,9 +3,6 @@
   <main 
   >
     <div class="m-6">
-      <button class="btn">
-        <RouterLink to="/">Customers List</RouterLink>
-      </button>
     </div>
     <div class="
     max-w-sm  md:max-w-xl mx-4 p-1
@@ -15,6 +12,9 @@
     text-left align-baseline
     ">
     <div class="leading-6">
+      <div>
+        <p class="text-2xl tracking-tight text-left align-middle text-secondary-700 ml-4">About Stripe's Setup Intent </p>
+      </div>
       <div>
         <p class="my-2">
           <span>&#10003;</span>

@@ -4,7 +4,7 @@
       <div
         v-show="modalActive"
         class="absolute w-full bg-black bg-opacity-30 h-full 
-        top-0 left-0 flex justify-center px-8 "
+        -top-1 left-0 flex justify-center px-8 "
       >
         <Transition name="modal-inner">
           <div
@@ -14,6 +14,11 @@
             mt-6"
           >
             <!-- Modal contents -->
+        <div class="flex justify-end ">
+              <button @click="$emit('close-modal')">
+                <i class="fa fa-close text-lg"> </i>
+              </button>
+        </div>            
         <div class="text-secondary-600">
           <h1 class="text-xl mt-1 p-2">What is a Setup intent?</h1>
           <div class="text-sm font-light">
@@ -57,7 +62,7 @@
             <button
               class="text-white mt-8 bg-weather-primary py-2 px-6 btn"
               @click="$emit('close-modal')"
-            >
+           >
               Close
             </button>
           </div>

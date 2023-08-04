@@ -1,14 +1,11 @@
 To Do:
 1. Fix Nav Bar (Menus: left: Customers + Add Customer / middle: search / right: about 
-2. Fix styling of 2 'add' elements 
 2. Add 'search by email' functinality to Nav bar - based on Weather App
 
 2. Bugs:
-- Add navigation buttons to SuccessSetupIntent + About
-- Show <teleport> message for customer successfully added + navigate back to '/customers'
-- Handle "Success" redirect page (after 3 secs, redirect back to /customers/:id page?) 
-- add 'errorURL' + error page after createSetupIntent
-- display loader on 'show setupIntents' page
+1 Show <teleport> message for customer successfully added + navigate back to '/customers'
+2 add 'errorURL' + error page after createSetupIntent
+3 display loader on 'show setupIntents' page
 
 --> connect to CI tool
 ---------------------------------------------------------------------

@@ -11,9 +11,14 @@
           ></i>
         </div>
         <!-- v-if="router.query.preview" -->
-        <SetupintentModal :modalActive="modalActive" @close-modal="toggleModal">
-        </SetupintentModal>
-
+        <div class="relative">
+          <SetupintentModal 
+          :modalActive="modalActive" 
+          @close-modal="toggleModal"
+          @keydown.esc="toggleModal">
+          </SetupintentModal>
+        </div>
+          
         <!--  -->
         <router-link class="justify-start" :to="{ name: 'customers' }">
           <button class="btn-sm md:btn">

@@ -33,7 +33,7 @@
     // setTimeout(functionRef, delay)
 setTimeout( () => {
     router.push(`/customers`);
-} , 2000)
+} , 4000)
   })
   // import { useRouter, useRoute } from 'vue-router'
 
