@@ -17,7 +17,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 // import SiteNavigation from './components/SiteNavigation.vue'
-import SiteNavigation from './components/view4.vue'
 
 </script>
 

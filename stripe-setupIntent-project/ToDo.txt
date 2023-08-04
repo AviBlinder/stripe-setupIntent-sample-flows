@@ -6,8 +6,9 @@ To Do:
 2. Bugs:
 - Add navigation buttons to SuccessSetupIntent + About
 - Show <teleport> message for customer successfully added + navigate back to '/customers'
+- Handle "Success" redirect page (after 3 secs, redirect back to /customers/:id page?) 
 - add 'errorURL' + error page after createSetupIntent
-- display loaded on 'show setupIntents' page
+- display loader on 'show setupIntents' page
 
 --> connect to CI tool
 ---------------------------------------------------------------------
