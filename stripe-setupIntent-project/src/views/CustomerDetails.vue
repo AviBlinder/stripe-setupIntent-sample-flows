@@ -15,7 +15,7 @@
           <SetupintentModal 
           :modalActive="modalActive" 
           @close-modal="toggleModal"
-          @keydown.esc="toggleModal">
+          >
           </SetupintentModal>
         </div>
           

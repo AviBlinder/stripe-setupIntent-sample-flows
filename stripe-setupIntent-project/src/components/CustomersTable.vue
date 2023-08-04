@@ -55,7 +55,7 @@
                 <span class="pl-6">Email </span>
               </th>
               <th
-                class="w-24 p-3 text-sm font-semibold tracking-wide text-left"
+                class="w-24 p-3 text-sm font-semibold tracking-wide text-right"
               >
                 Balance
               </th>
@@ -107,14 +107,14 @@
                   }"
                 >
                   <span
-                    class="p-1.5 text-xs font-medium uppercase tracking-wider text-secondary-400 rounded-lg bg-opacity-50"
+                    class="p-1.5 text-xs lowercase font-medium tracking-wider text-secondary-400 rounded-lg bg-opacity-50"
                   >
                     {{ user.email }}</span
                   >
                 </router-link>
               </td>
               <td
-                class="p-3 text-sm text-gray-700 whitespace-nowrap flex justify-end -translate-x-7"
+                class="p-3 text-sm text-gray-700 whitespace-nowrap flex justify-end"
               >
                 <router-link
                   :to="{
