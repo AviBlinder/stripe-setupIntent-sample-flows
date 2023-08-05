@@ -1,7 +1,5 @@
 To Do:
-1. Add 'search by email' functinality to Nav bar - based on Weather App
-
-2. Bugs:
+Bugs:
 1 Show <teleport> message for customer successfully added + navigate back to '/customers'
 2 add 'errorURL' + error page after createSetupIntent
 3 display loader on 'show setupIntents' page (see functionality on Weather App)

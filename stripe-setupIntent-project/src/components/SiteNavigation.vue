@@ -204,9 +204,9 @@ const getSearchResults = () => {
 }
 const navigateToCusotmer = () => {
   console.log('inside navigateToCusotmer ', customerFound.value)
-  // @ts-ignore
   emailFound.value = false
   searchQuery.value = ''
+  // @ts-ignore
   router.push(`/customers/${customerFound.value.id}`);
 
 
