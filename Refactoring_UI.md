@@ -12,17 +12,7 @@ spacing and sizing system”:
 It’s constrained just enough to speed up your decision making, but isn’t so
 limited as to make you feel like you’re missing a useful size.
 ```js
-12px
-14px
-16px
-18px
-20px
-24px
-30px
-36px
-48px
-60px
-72px
+12px , 14px, 16px, 18px, 20px, 24px, 30px, 36px, 48px, 60px, 72px
 ```
 It’s constrained just enough to speed up your decision making, but isn’t so
 limited as to make you feel like you’re missing a useful size.
@@ -161,4 +151,47 @@ never use it as the only means of communication.
 
 
 ## Part 5 - Creating Depth
+- Creating this effect might look complicated at first, but it actually only
+requires you to understand one fundamental rule: **Light comes from above**
 
+<img src="light-source.png" alt="Light Source" width="250" height="250" title="Light Source">
+
+#### Simulating light in a user interface
+- If you want an element to appear raised or inset, first figure out what profile
+you want that element to have, then mimic how a light source would interact
+with that shape.
+Example:
+Because the top and bottom edges are both flat, it would be impossible to
+see both of them at the same time. People generally look slightly downward
+towards their screens, so for the most natural look, reveal a little bit of the
+top edge and hide the bottom edge.
+Since the top edge is facing upward, make it slightly lighter than the face of
+Emulate a light source 153
+the button, usually using a top border or an inset box shadow with a slight
+vertical offset:
+<img src="box-shadow-example.png" alt="Box Shadow Example" width="250" height="250" title="Box Shadow Example">
+
+Next, you need to account for the fact that a raised element will block some
+of the light from reaching the area below the element.
+Do this by adding a small dark box shadow with a slight vertical offset (you
+only want the shadow to appear below the element)
+
+<img src="box-shadow-example2.png" alt="Box Shadow Example 2" width="250" height="250" title="Box Shadow Example 2">
+
+#### Use shadows to convey elevation
+Shadows can be more than just a flashy effect — used thoughtfully, they let
+you position elements on a virtual z-axis to create a meaningful sense of
+depth.
+The closer something feels to the user, the more it will attract their focus.
+- You might use a smaller shadow for something like a button, where you want
+the user to notice it but don’t want it to dominate the page
+- Medium shadows are useful for things like dropdowns; elements that need
+to sit a bit further above the rest of the UI
+- Large shadows are great for modal dialogs, where you really want to capture
+the user’s attention
+
+#### Establishing an elevation system
+- Just like with color, typography, spacing, and sizing, defining a fixed set of
+shadows will speed up your workflow and help maintain consistency in your
+designs.
+You don’t need a ton of different shadows — five options is usually plenty.

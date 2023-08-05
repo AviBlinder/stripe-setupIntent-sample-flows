@@ -103,7 +103,7 @@
 <script setup lang="ts">
   import { useRoute } from 'vue-router';
   import { onMounted, ref,  inject } from 'vue';
-  import { type Setupintents } from '@/types/setupintents';
+  import { type Setupintents } from '../types/setupintents';
   // @ts-ignore
   const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
