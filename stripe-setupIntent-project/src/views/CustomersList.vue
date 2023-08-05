@@ -77,7 +77,12 @@
     const stripe = Stripe(stripePublicKey);
 
     //stripe.elements is the stripe's Iframe
-    const elements = stripe.elements();
+ const options = {
+    mode: 'setup',
+  //  currency: 'usd',
+  };
+
+    const elements = stripe.elements(options);
     const element = elements.create(ELEMENT_TYPE, style);
     element.mount('#stripe-element-mount-point');
     loading.value = false;

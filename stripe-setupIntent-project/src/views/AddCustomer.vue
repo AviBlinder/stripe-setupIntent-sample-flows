@@ -221,9 +221,14 @@
       </form>
     </div>
     <div v-else>
-      <p class="text-lg md:text-xl m-4 text-green-500 font-bold leading-4">
-        {{ createCustomerResponse }}
-      </p>
+      <div class="bg-secondary-100 p-5 rounded-md">
+        <div class="font-semibold font-2xl text-green-500">
+          <p> {{ createCustomerResponse }} </p>
+        </div>
+      </div>
+
+        <!--  -->
+
     </div>
     </div>
   </main>
@@ -335,7 +340,7 @@
 const redirectHome =  () => {
   setTimeout( () => {
     router.push(`/customers`);
-      } , 2500)
+      } , 3500)
   }
 
   const saveCustomer = async () => {
