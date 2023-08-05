@@ -20,6 +20,7 @@
       </router-link>
     </div>
     <div class="flex md:flex-row sm:flex-col gap-4">
+      <div v-if="loaded">
       <div v-if="setup_intents.length" class="mb-3 md:mb-3">
         <ul v-for="(intent, index) in setup_intents" :key="index">
           <hr class="bg-secondary-200 border-200 max-w-md my-1 ml-2 md:my-4" />
@@ -53,7 +54,8 @@
                       </p>
                     </div>
                     <div
-                      class="flex justify-end bg-slate-400 p-4 ml-9 md:mx-6 rounded-xl md:translate-x-9"
+                      class="flex justify-end bg-amber-500/60 p-4  md:mx-6 rounded-xl 
+                      translate-x-10 md:translate-x-10"
                     >
                       <span>
                         {{ intent.card.brand }}
@@ -97,6 +99,10 @@
         </div>
       </template>
     </div>
+    <div v-else>    
+      <p> Loading data...</p>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -110,9 +116,10 @@
   const route = useRoute();
   // @ts-ignore
   const setup_intents = ref<Setupintents | any>([]);
+  const loaded = ref(false)
   
-
   onMounted(async () => {
+    loaded.value = false
     const id = route.params.id;
     const full_name = route.query.name;
 
@@ -122,6 +129,7 @@
 
     const fullResponse = await response.json();
     setup_intents.value = await fullResponse.paymentMethods;
+    loaded.value = true
 
     console.log('fullResponse.paymentMethods =', setup_intents.value);
   });
