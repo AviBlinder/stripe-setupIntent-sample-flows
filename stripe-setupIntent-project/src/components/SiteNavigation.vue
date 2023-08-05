@@ -37,7 +37,8 @@
               <input
                 id="search"
                 name="search"
-                class="block w-full rounded-md border-0 bg-gray-700 py-1.5 pl-10 pr-3 text-gray-300 placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
+                class="block w-full rounded-md border-0 bg-gray-700 py-1.5 pl-10 pr-3 text-gray-300 
+                placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder="Search"
                 type="search"
               />
@@ -48,7 +49,8 @@
         <div class="flex lg:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton
-            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-700
+             hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
             <span class="absolute -inset-0.5" />
             <span class="sr-only">Open main menu</span>
@@ -59,9 +61,11 @@
         <!-- non-mobile menu -->
         <div class="hidden lg:ml-4 lg:block">
           <div class="flex items-center">
+            <!-- focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 -->
             <router-link
               :to="{ name: 'about' }"
-              class="relative flex-shrink-1 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              class="relative flex-shrink-1 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white 
+              focus:outline-none "
             >
               <div class="flex flex-row align-baseline px-2">
                 <span class="absolute -inset-1.5" />

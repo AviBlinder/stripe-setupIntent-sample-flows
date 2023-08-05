@@ -1,6 +1,5 @@
 To Do:
-1. Fix Nav Bar (Menus: left: Customers + Add Customer / middle: search / right: about 
-2. Add 'search by email' functinality to Nav bar - based on Weather App
+1. Add 'search by email' functinality to Nav bar - based on Weather App
 
 2. Bugs:
 1 Show <teleport> message for customer successfully added + navigate back to '/customers'
