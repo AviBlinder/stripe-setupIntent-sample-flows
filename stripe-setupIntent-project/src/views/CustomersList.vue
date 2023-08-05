@@ -35,7 +35,9 @@
   import { ref, onMounted, inject, getCurrentInstance } from 'vue';
 
   import { useRouter, useRoute } from 'vue-router';
-
+  const router = useRouter();
+  const route = useRoute();
+  
   const componentKey = ref(0);
 
   const forceRerender = () => {
@@ -47,9 +49,6 @@
 
   // import { getToken } from '../utils/ExchangeCodeWithJWT.js'
   // const { userData } = getToken()
-
-  const router = useRouter();
-  const route = useRoute();
 
   import { type stripeUser, type Users } from '../types/customers';
 
@@ -88,9 +87,7 @@
 //@ts-ignore
 let getCustomers = ref<object | null>(null)
 
-
-
-  if (localStorage.getItem('stripeCustomers') ) {
+if (localStorage.getItem('stripeCustomers') ) {
     // @ts-ignore
     const stripeCustomers = localStorage.getItem('stripeCustomers')
     // @ts-ignore

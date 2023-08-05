@@ -1,10 +1,10 @@
 <template>
   <Disclosure as="nav" class="bg-secondary-400" v-slot="{ open }">
-    <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+    <div class="mx-auto max-w-7xl px-2 sm:px-4 md:px-8">
       <div class="relative flex h-8 items-center justify-between">
-        <div class="flex items-center px-2 lg:px-0">
+        <div class="flex items-center px-2 md:px-0">
           <!-- non-mobile menu -->
-          <div class="hidden lg:ml-6 lg:block">
+          <div class="hidden md:ml-6 md:block">
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <router-link
@@ -22,8 +22,8 @@
           </div>
         </div>
         <!-- search field on mobile  -->
-        <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-center">
-          <div class="w-full max-w-lg lg:max-w-xs">
+        <div class="flex flex-1 justify-center px-2 md:ml-6 md:justify-center ">
+          <div class="w-full max-w-lg md:max-w-xs">
             <label for="search" class="sr-only">Search</label>
             <div class="relative">
               <div
@@ -34,19 +34,35 @@
                   aria-hidden="true"
                 />
               </div>
+              <!-- search fixes -->
               <input
                 id="search"
                 name="search"
-                class="block w-full rounded-md border-0 bg-gray-700 py-1.5 pl-10 pr-3 text-gray-300 
-                placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
-                placeholder="Search"
+                class="block w-full rounded-md border-0 bg-gray-700 py-1.5 pl-8 pr-3 text-gray-300 
+                placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:ring-0 sm:text-sm sm:leading-6
+                "
+                placeholder="Search customer by email"
                 type="search"
+                v-model="searchQuery"
+                @input="getSearchResults"
               />
+   <ul
+        class="absolute bg-secondary-400 text-white w-full shadow-md py-1 px-1 top-[66px] rounded-lg"
+        v-if="emailFound"
+      >
+        <li
+          class="py-2 cursor-pointer"
+          @click="navigateToCusotmer"
+        >
+          {{ emailSearchResults }}
+        </li>
+      </ul>
+
             </div>
           </div>
         </div>
         <!-- mobile menu -->
-        <div class="flex lg:hidden">
+        <div class="flex md:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton
             class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-700
@@ -59,7 +75,7 @@
           </DisclosureButton>
         </div>
         <!-- non-mobile menu -->
-        <div class="hidden lg:ml-4 lg:block">
+        <div class="hidden md:ml-4 md:block">
           <div class="flex items-center">
           <!-- rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white -->
             <router-link
@@ -83,7 +99,7 @@
     </div>
 
     <!-- mobile menu -->
-    <DisclosurePanel class="lg:hidden">
+    <DisclosurePanel class="md:hidden">
       <div class="border-t border-gray-700 pb-3 pt-4">
         <div class="flex items-center px-5"></div>
         <div class="mt-3 space-y-1 px-2">
@@ -133,4 +149,66 @@
     XMarkIcon,
     AcademicCapIcon,
   } from '@heroicons/vue/24/outline';
+
+  import {ref, onMounted} from 'vue'
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
+
+  // search
+const searchQuery = ref<string >("");
+const queryTimeout = ref(0);
+const emailSearchResults = ref< string | null >(null);
+const emailFound = ref(false)
+const searchError = ref(false);
+const customerFound = ref({})
+const getSearchResults = () => {
+
+// lazy search function:
+  clearTimeout(queryTimeout.value);
+  // @ts-ignore
+  queryTimeout.value = setTimeout(async () => {
+   if (searchQuery.value !== "") {
+     try {
+       // search localStorage
+    emailSearchResults.value = null;
+    emailFound.value = false
+    customerFound.value = {}
+    let customers: [object] = await JSON.parse(
+      // @ts-ignore
+      localStorage.getItem('stripeCustomers')
+    );
+    let index: number = 0;
+    let customer: object | any = {};
+    // ts-ignore
+    for ([index, customer] of customers.entries()) {
+      // ts-ignore
+      if (customer.email === searchQuery.value) {
+          emailSearchResults.value = customer.email
+          console.log('mail found ', emailSearchResults.value, ' ' , customer.email)
+          emailFound.value = true
+          customerFound.value = customer
+
+      }
+      return emailSearchResults
+    }
+      // 
+      } catch {
+        searchError.value = true;
+        emailFound.value = false
+      }
+
+      return;
+    }
+    
+  }, 300);
+}
+const navigateToCusotmer = () => {
+  console.log('inside navigateToCusotmer ', customerFound.value)
+  // @ts-ignore
+  emailFound.value = false
+  searchQuery.value = ''
+  router.push(`/customers/${customerFound.value.id}`);
+
+
+}
 </script>
