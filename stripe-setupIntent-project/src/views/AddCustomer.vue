@@ -231,7 +231,8 @@
 
 <script setup lang="ts">
   import { ref, inject } from 'vue';
-
+  import {useRouter} from 'vue-router'
+  const router = useRouter()
   const baseURL = inject('NETLIFY_FUNCTIONS_URL');
 
   const customerDetails = ref({
@@ -331,6 +332,11 @@
 
     // }
   }
+const redirectHome =  () => {
+  setTimeout( () => {
+    router.push(`/customers`);
+      } , 2500)
+  }
 
   const saveCustomer = async () => {
     if (!validationError.value) {
@@ -355,12 +361,14 @@
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               break;
             case 201:
-              createCustomerResponse.value = 'customer created successfully';
+              createCustomerResponse.value = 
+              'customer created successfully. In a few secs you will be redirected back';
               const localStorageUpdated = updateLocalStorage(
                 data.customerCreate
               );
               customerCreated.value = true;
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+              redirectHome()
               break;
             default:
               createCustomerResponse.value = `issue creating new customer. return status is ${data}`;
