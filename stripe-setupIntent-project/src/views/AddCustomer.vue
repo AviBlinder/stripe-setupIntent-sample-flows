@@ -1,13 +1,6 @@
 <template>
   <main class="viewSize">
-    <div class="flex flex-row my-4  justify-center">
-      <router-link class="flex " :to="{ name: 'customers' }">
-        <button class="btn-sm md:btn m-4">
-          <i class="fa fa-user" aria-hidden="true"></i>
-          Back to Customers
-        </button>
-      </router-link>
-    </div>
+    <div class="m-2">
     <!-- <hr class="w-full mx-2 border-1 bg-secondary-200 my-2" /> -->
     <div v-if="!customerCreated">
       <div
@@ -231,6 +224,7 @@
       <p class="text-lg md:text-xl m-4 text-green-500 font-bold leading-4">
         {{ createCustomerResponse }}
       </p>
+    </div>
     </div>
   </main>
 </template>

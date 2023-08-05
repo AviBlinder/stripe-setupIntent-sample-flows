@@ -61,19 +61,20 @@
         <!-- non-mobile menu -->
         <div class="hidden lg:ml-4 lg:block">
           <div class="flex items-center">
-            <!-- focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 -->
+          <!-- rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white -->
             <router-link
               :to="{ name: 'about' }"
-              class="relative flex-shrink-1 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white 
+              
+              class="relative flex-shrink-1 rounded-md  
+              px-3 py-2 text-sm font-medium  hover:bg-gray-700 
+              bg-gray-800 p-2 text-gray-300 hover:text-white 
               focus:outline-none "
             >
-              <div class="flex flex-row align-baseline px-2">
-                <span class="absolute -inset-1.5" />
+              <div class="flex flex-row align-baseline  hover:text-white ">
+                <!-- <span class="absolute -inset-1.5" /> -->
                 <span class="sr-only">View notifications</span>
-                <AcademicCapIcon class="h-5 w-5" aria-hidden="true"
-                  >About
-                </AcademicCapIcon>
-                <span class="mt-1 ml-1"> About </span>
+                <AcademicCapIcon class="h-5 w-5" aria-hidden="true"></AcademicCapIcon>
+                <span class="mt-1 ml-1 text-sm font-medium text-secondary-300 hover:text-white"> About </span>
               </div>
             </router-link>
           </div>

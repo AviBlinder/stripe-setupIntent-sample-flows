@@ -1,16 +1,6 @@
 <template>
   <main class="viewSize">
-    <div class="flex flex-col justify-center ">
-      <!-- :to="{ name: 'customers' }" -->
-      <div>
-      <router-link class="flex justify-center mt-1 mb-3 md:my-4" 
-      :to="{ name: 'customer-details', params : {id: route.params.id} }">
-        <button class="btn-sm md:btn">
-          <i class="fa fa-user" aria-hidden="true"></i>
-          Back to Customer
-        </button>
-      </router-link>
-    </div>
+    <div class="flex flex-col justify-center mt-6">
       <!-- <hr class="border-1 bg-secondary-300 my-2 mx-6 md:ml-10" /> -->
 
       <!-- Stripe Element -->

@@ -1,8 +1,9 @@
 <template>
   <main class="viewSize">
-    <div class="flex flex-col md:flex-row ">
+    <div class="flex flex-row md:flex-row w-full  justify-between mb-4">
+      <!-- modal button -->
       <div
-        class="flex flex-row justify-center align-middle p-2 w-full mr-8 m-2 md:m-4 text-center"
+        class="flex flex-row justify-center align-middle p-2 w-6 md:w-8 mr-8 text-center"
       >
         <div>
           <i
@@ -17,34 +18,24 @@
           @close-modal="toggleModal"
           >
           </SetupintentModal>
-        </div>
-          
-        <!--  -->
-        <router-link class="justify-start" :to="{ name: 'customers' }">
-          <button class="btn-sm md:btn">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            Back to Customers
-          </button>
-        </router-link>
+        </div>         
       </div>
-      <div
-        class="flex flex-row justify-center align-middle p-2 w-full mr-8 m-2 md:m-4 text-center"
-      >
+      <!-- Add Setup Intent button -->
+       <!-- justify-center align-middle p-2 w-6 md:w-8 mr-8 text-center -->
+      <div class="flex flex-row btn justify-center align-middle m-1 pt-3 text-center font-medium">
         <router-link
-          class="justify-start"
+          class=""
           :to="{
             name: 'addSetupintent',
             params: { id: id },
             query: { name: user.name },
           }"
         >
-          <button class="btn-sm md:btn">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            Add Setup Intent
-          </button>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Add Setup Intent
         </router-link>
-
-        <div>
+        </div>
+      <div class="flex flex-row btn justify-center align-middle m-1 pt-3 text-center font-medium ml-4">
           <Suspense>
             <router-link
               :to="{
@@ -53,15 +44,13 @@
                 query: { name: user.name },
               }"
             >
-              <button class="btn-sm md:btn">
                 <i class="fa fa-credit-card" aria-hidden="true"></i>
                 Show Credit Cards
-              </button>
             </router-link>
           </Suspense>
+          </div>
         </div>
-      </div>
-    </div>
+
     <div class="flex flex-row justify-normal ml-5 mb-3 md:ml-10 md:mb-5 text-2xl ">
       Customer Details:
     </div>

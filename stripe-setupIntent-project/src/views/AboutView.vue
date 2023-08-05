@@ -1,8 +1,9 @@
 <template>
   <main class="viewSize">
-    <div class="m-6"></div>
+    <div class="m-2"></div>
     <div
-      class="max-w-sm md:max-w-xl mx-4 p-1 text-sm md:text-md font-sans font-light tracking-wide md:tracking-normal text-left align-baseline"
+      class="max-w-sm md:max-w-xl mx-4 p-1 text-sm md:text-md 
+      font-sans font-light tracking-wide md:tracking-normal text-left align-baseline"
     >
       <div class="leading-6">
         <div>

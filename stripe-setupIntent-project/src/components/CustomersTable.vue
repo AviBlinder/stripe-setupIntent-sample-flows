@@ -1,14 +1,16 @@
 <template>
   <div>
     <div class="flex flex-col md:flex-row">
-      <div class="flex flex-col ">
+      <div class="flex flex-col  ">
         <div
-          class="text-lg md:text-xl mb-2 flex md:flex-row md:ml-10 md:mt-4 text-secondary-700"
+          class="md:text-2xl mb-2 flex md:flex-row md:mt-2 text-secondary-700
+          font-sans font-light tracking-wide md:tracking-normal text-left align-baseline
+          "
         >
           List of Stripe Users:
         </div>
         <div
-          class="mb-2 flex md:flex-row md:ml-10 md:mt-4 text-md md:text-normal text-secondary-600 "
+          class="mb-2 flex md:flex-row md:mt-2 text-md md:text-normal text-secondary-600 "
         >
           Select a user to get additional information and perform actions
         </div>
@@ -16,11 +18,6 @@
       <div
         class="flex justify-center md:justify-end align-middle mt-3 md:mt-4 mb-2 "
       >
-        <router-link :to="{ name: 'AddCustomer' }">
-          <button class="btn text-center font-semibold px-4">
-            Add Customer
-          </button>
-        </router-link>
       </div>
     </div>
 
