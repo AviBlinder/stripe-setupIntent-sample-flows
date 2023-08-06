@@ -157,7 +157,7 @@
   // search
 const searchQuery = ref<string >("");
 const queryTimeout = ref(0);
-const emailSearchResults = ref< string | null >(null);
+const emailSearchResults = ref< string| null >(null);
 const emailFound = ref(false)
 const searchError = ref(false);
 const customerFound = ref({})
@@ -181,15 +181,16 @@ const getSearchResults = () => {
     let customer: object | any = {};
     // ts-ignore
     for ([index, customer] of customers.entries()) {
-      // ts-ignore
-      if (customer.email === searchQuery.value) {
+
+      if (customer.email.indexOf(searchQuery.value) > -1) {
+      // if (customer.email === searchQuery.value) {
+        // @ts-ignore
           emailSearchResults.value = customer.email
-          console.log('mail found ', emailSearchResults.value, ' ' , customer.email)
           emailFound.value = true
           customerFound.value = customer
-
+         break 
       }
-      return emailSearchResults
+      // return emailSearchResults
     }
       // 
       } catch {
@@ -203,7 +204,6 @@ const getSearchResults = () => {
   }, 300);
 }
 const navigateToCusotmer = () => {
-  console.log('inside navigateToCusotmer ', customerFound.value)
   emailFound.value = false
   searchQuery.value = ''
   // @ts-ignore
