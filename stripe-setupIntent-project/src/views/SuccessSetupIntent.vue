@@ -40,6 +40,8 @@ setTimeout( () => {
   //   const route = useRoute();
   //   const setup_intent  = ref(route.query.setup_intent)
   //   const setup_intent_client_secret = ref(route.query.setup_intent_client_secret)
+
+  
 </script>
 
 <style scoped></style>

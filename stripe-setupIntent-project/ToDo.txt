@@ -1,3 +1,8 @@
+To Do:
+1. check why search is not working
+1. Update localStorage? update on View
+
+
 --> connect to CI tool
 ---------------------------------------------------------------------
 - Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind
