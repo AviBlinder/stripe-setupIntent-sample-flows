@@ -1,7 +1,3 @@
-To Do:
-Bugs:
-1 display loader on 'show setupIntents' page (see functionality on Weather App)
-
 --> connect to CI tool
 ---------------------------------------------------------------------
 - Styling - rely on Book + Wheather-App-Build-with-vue3-and-tailwind

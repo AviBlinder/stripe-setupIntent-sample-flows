@@ -10,11 +10,19 @@ const handler = async (event, context) => {
   try {
     
     const customers = await stripe.customers.list({
+      
       limit: 100,
-    });
+    })
     return {
       statusCode: 200,
-      body: JSON.stringify({ customers: customers }),
+      body: JSON.stringify({ customers }),
+
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Content-Type': 'application/json',
+        // "Access-Control-Allow-Methods": "GET, POST, OPTION",
+      },
     };
   } catch (error) {
     console.log('/stripe/customers error', error);
