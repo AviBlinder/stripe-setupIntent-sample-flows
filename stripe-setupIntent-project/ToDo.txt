@@ -1,4 +1,5 @@
-
+1. Add <teleport> modal for addSetupIntent 
+2. Pass class to <teleport> 
 --> connect to CI tool
 ---------------------------------------------------------------------
 Documentation about Stripe Setup Intent:
