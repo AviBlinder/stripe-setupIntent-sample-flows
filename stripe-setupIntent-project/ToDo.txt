@@ -1,8 +1,4 @@
-## Start project:
-```sh
-cd stripe-setupIntent-project
-netlify dev
-```
+
 --> connect to CI tool
 ---------------------------------------------------------------------
 Documentation about Stripe Setup Intent:

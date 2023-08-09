@@ -7,7 +7,18 @@
         v-if="createCustomerResponse"
         class="text-lg m-2 md:text-xl text-center font-semibold text-red-500 leading-4"
       >
-        {{ createCustomerResponse }}
+        <!-- {{ createCustomerResponse }} -->
+        <div class="relative">
+          <AddCustomerModal
+          :modalActive="modalActive" 
+          @close-addCustomer-modal="modalDisplayed"          
+          >
+          <template #message>
+              {{ createCustomerResponse }}
+          </template>
+          </AddCustomerModal>
+        </div>         
+
       </div>
       <form>
         <div class="space-y-2 md:space-y-12">
@@ -222,9 +233,20 @@
     </div>
     <div v-else>
       <div class="bg-secondary-100 p-5 rounded-md">
-        <div class="font-semibold font-2xl text-green-500">
+        <!-- <div class="font-semibold font-2xl text-green-500">
           <p> {{ createCustomerResponse }} </p>
-        </div>
+        </div> -->
+        <div class="relative">
+          <AddCustomerModal
+          :modalActive="modalActive" 
+          @close-addCustomer-modal="modalDisplayed"          
+          >
+          <template #message>
+              {{ createCustomerResponse }}
+          </template>
+          </AddCustomerModal>
+        </div>         
+
       </div>
 
         <!--  -->
@@ -237,6 +259,17 @@
 <script setup lang="ts">
   import { ref, inject } from 'vue';
   import {useRouter} from 'vue-router'
+    // @ts-ignore
+  import AddCustomerModal from '../components/AddCustomerModal.vue'
+  const modalActive = ref<boolean>(false);
+
+  const activateModal = () => {
+    modalActive.value = true
+  }
+  const toggleModal = () => {
+    modalActive.value = !modalActive.value;
+  };
+
   const router = useRouter()
   const baseURL = inject('NETLIFY_FUNCTIONS_URL');
 
@@ -337,11 +370,15 @@
 
     // }
   }
-const redirectHome =  () => {
-  setTimeout( () => {
+
+const modalDisplayed = () => {
+  if (customerCreated.value) {
+    toggleModal()
     router.push(`/customers`);
-      } , 3500)
+  } else {
+    toggleModal()
   }
+}  
 
   const saveCustomer = async () => {
     if (!validationError.value) {
@@ -361,23 +398,25 @@ const redirectHome =  () => {
           switch (response.status) {
             case 200:
               createCustomerResponse.value =
-                'customer already exists. Try a different email';
-              customerCreated.value = false;
+                'Customer already exists. Try a different email';               
+                customerCreated.value = false;
+                activateModal()
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               break;
             case 201:
               createCustomerResponse.value = 
-              'customer created successfully. In a few secs you will be redirected back';
+              'Customer created successfully! Back to the Customers list';
               const localStorageUpdated = updateLocalStorage(
                 data.customerCreate
               );
               customerCreated.value = true;
-              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-              redirectHome()
+              activateModal()
+              // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });             
               break;
             default:
-              createCustomerResponse.value = `issue creating new customer. return status is ${data}`;
+              createCustomerResponse.value = `Issue creating new customer. return status is ${data}`;
               customerCreated.value = false;
+              activateModal()
               window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
               break;
           }
