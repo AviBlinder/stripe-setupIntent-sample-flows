@@ -163,7 +163,7 @@
               class="flex flex-row space-t-2 text-xs py-2 bg-secondary-200 rounded-2xl"
             >
               <i class="ml-3 text-secondary-600/90 text-xs fa-solid fa-user"></i>
-              <div class="flex justify-start basis-1/2 align-middle">
+              <div class="flex justify-start align-middle ml-3">
                 <p class="text-secondary-500 font-bold hover:underline">
                   {{ user.name }}
                 </p>
