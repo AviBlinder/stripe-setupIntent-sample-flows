@@ -120,9 +120,10 @@
                   }"
                 >
                   <span
-                    class="p-1.5 text-xs font-medium uppercase tracking-wider text-secondary-400 rounded-lg bg-opacity-50"
+                    class="p-1.5 text-xs font-medium uppercase tracking-wider
+                     text-secondary-400 rounded-lg bg-opacity-50"
                   >
-                    {{ user.balance }} {{ user.currency }}
+                    {{ user.balance }} {{ user.currency }} 
                   </span>
                 </router-link>
               </td>
@@ -149,7 +150,8 @@
         <div
           v-for="user in globalCustomers"
           :key="user.id"
-          class="bg-white space-y-3 p-4 rounded-lg hover:scale-105 w-[250px] shadow-sm border-2"
+          class="bg-white space-y-3 p-4 rounded-lg hover:scale-105 w-[250px] shadow-lg 
+          border-t-1 "
         >
           <router-link
             :to="{
@@ -158,9 +160,9 @@
             }"
           >
             <div
-              class="flex flex-row space-x-2 text-xs py-2 bg-secondary-200 rounded-2xl"
+              class="flex flex-row space-t-2 text-xs py-2 bg-secondary-200 rounded-2xl"
             >
-              <i class="fa-solid fa-user text-secondary-200"></i>
+              <i class="ml-3 text-secondary-600/90 text-xs fa-solid fa-user"></i>
               <div class="flex justify-start basis-1/2 align-middle">
                 <p class="text-secondary-500 font-bold hover:underline">
                   {{ user.name }}
@@ -170,38 +172,38 @@
           </router-link>
 
           <div
-            class="flex flex-row items-center justify-between text-xs mb-2 pb-2 mt-6"
+            class="flex flex-row items-center justify-between text-xs mb-2 mt-6"
           >
             <div>
-              <i class="fa-regular fa-calendar text-secondary-200"> </i>
+              <i class="fa-regular fa-calendar text-secondary-300"> </i>
               <span class="pl-2">{{ createDateFunc(user.created) }}</span>
             </div>
             <div class="flex flex-row ml-5 justify-end">
-              <i class="fa-solid fa-coins mx-1"></i>
+              <i class="fa-solid fa-coins mx-1 text-secondary-600/90"></i>
               <span>
                 {{ user.balance }}
               </span>
             </div>
           </div>
 
-          <div class="flex items-center text-xs text-gray-700 my-2">
+          <div class="flex items-center text-xs text-gray-700 my-1">
             <div>
-              <i class="fa-regular fa-envelope"></i>
+              <i class="fa-regular fa-envelope text-secondary-300"></i>
               <span class="pl-2">{{ user.email }}</span>
             </div>
           </div>
           <div
             v-if="user.phone"
-            class="flex items-center text-xs text-gray-700 pt-3"
+            class="flex items-center text-xs text-gray-700 my-4"
           >
             <div>
-              <i class="fa-solid fa-phone"></i>
+              <i class="fa-solid fa-phone text-secondary-300"></i>
               <span class="pl-2">{{ user.phone }}</span>
             </div>
           </div>
-          <div v-else class="flex items-center text-xs text-gray-700 pt-3">
+          <div v-else class="flex items-center text-xs text-gray-700 my-3">
             <div>
-              <i class="fa-solid fa-phone"></i>
+              <i class="fa-solid fa-phone text-secondary-300"></i>
               <span class="pl-2">N/A</span>
             </div>
           </div>
@@ -213,12 +215,12 @@
             }"
           >
             <div class="text-sm font-medium text-black mt-2">
-              <i class="fa-solid fa-info"></i>
-              <span class="text-blue-400 text-xs pl-1"> View full profile</span>
+              <i class="fa-solid fa-info text-secondary-400"></i>
+              <span class="text-blue-500/90 text-xs pl-2"> View full profile</span>
             </div>
           </router-link>
 
-          <hr class="border-2 border-slate-200 mt-2" />
+          <hr class="border-1 border-slate-200 mt-2" />
 
           <div
             class="bg-red-500 opacity-80 mx-2 mt-5 rounded-lg flex flex-row justify-evenly align-middle"
